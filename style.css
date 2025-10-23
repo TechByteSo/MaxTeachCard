@@ -1,431 +1,356 @@
+/* Основные переменные и стили */
 :root {
-            --dark-blue: #08141B;
-            --blue-gray: #11212D;
-            --gray-blue: #253745;
-            --light-gray: #445C6A;
-            --beige-gray: #9BA8AB;
-            --light-beige: #CCDDCF;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            background-color: var(--blue-gray);
-            color: var(--beige-gray);
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
-        
-        /* Шапка */
-        header {
-            background-color: var(--dark-blue);
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            color: var(--light-beige);
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            color: var(--beige-gray);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 1.1rem;
-        }
-        
-        .nav-links a:hover {
-            color: var(--light-beige);
-        }
-        
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-        }
-        
-        /* Герой секция */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(8, 20, 27, 0.7), rgba(8, 20, 27, 0.7)), 
-                        url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            padding-top: 80px;
-            color: white;
-        }
-        
-        .hero-content {
-            width: 100%;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s forwards 0.5s;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--light-beige);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--light-beige);
-            color: var(--dark-blue);
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-            border: 2px solid var(--light-beige);
-        }
-        
-        .btn:hover {
-            background-color: transparent;
-            color: var(--light-beige);
-        }
-        
-        /* Секции */
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--light-beige);
-            font-size: 2.2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s forwards;
-        }
-        
-        /* О преподавателе */
-        .about {
-            background-color: var(--blue-gray);
-        }
-        
-        .teacher-profile {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s forwards 0.3s;
-        }
-        
-        .teacher-photo {
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--light-gray);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .bio h2 {
-            color: var(--light-beige);
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        
-        .bio p {
-            margin-bottom: 15px;
-        }
-        
-        /* Предметы */
-        .subjects {
-            background-color: var(--gray-blue);
-        }
-        
-        .subjects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .subject-card {
-            background-color: var(--blue-gray);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .subject-card:nth-child(1) { animation: fadeIn 1s forwards 0.2s; }
-        .subject-card:nth-child(2) { animation: fadeIn 1s forwards 0.4s; }
-        .subject-card:nth-child(3) { animation: fadeIn 1s forwards 0.6s; }
-        .subject-card:nth-child(4) { animation: fadeIn 1s forwards 0.8s; }
-        
-        .subject-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .subject-icon {
-            font-size: 3rem;
-            color: var(--light-beige);
-            margin-bottom: 20px;
-        }
-        
-        .subject-card h3 {
-            color: var(--light-beige);
-            margin-bottom: 15px;
-        }
-        
-        /* Мероприятия */
-        .events {
-            background-color: var(--blue-gray);
-        }
-        
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .event-card {
-            position: relative;
-            height: 250px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .event-card:nth-child(1) { animation: fadeIn 1s forwards 0.2s; }
-        .event-card:nth-child(2) { animation: fadeIn 1s forwards 0.4s; }
-        .event-card:nth-child(3) { animation: fadeIn 1s forwards 0.6s; }
-        
-        .event-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .event-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(8, 20, 27, 0.9), transparent);
-            padding: 20px;
-            color: white;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-        
-        .event-card:hover .event-img {
-            transform: scale(1.1);
-        }
-        
-        .event-card:hover .event-overlay {
-            transform: translateY(0);
-        }
-        
-        /* Контакты */
-        .contact {
-            background-color: var(--gray-blue);
-        }
-        
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-        }
-        
-        .contact-info {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s forwards 0.3s;
-        }
-        
-        .contact-info h3 {
-            color: var(--light-beige);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-        
-        .contact-info p {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .contact-info i {
-            margin-right: 10px;
-            color: var(--light-beige);
-        }
-        
-        .contact-form {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s forwards 0.6s;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--light-beige);
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--light-gray);
-            border-radius: 5px;
-            background-color: var(--blue-gray);
-            color: var(--beige-gray);
-        }
-        
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background-color: var(--light-beige);
-            color: var(--dark-blue);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-        
-        .submit-btn:hover {
-            background-color: transparent;
-            color: var(--light-beige);
-            border: 2px solid var(--light-beige);
-        }
-        
-        /* Футер */
-        footer {
-            background-color: var(--dark-blue);
-            color: var(--beige-gray);
-            text-align: center;
-            padding: 20px 0;
-        }
-        
-        /* Анимации */
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Адаптивность */
-        @media (max-width: 992px) {
-            .teacher-profile {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .teacher-photo {
-                width: 250px;
-                height: 250px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background-color: var(--dark-blue);
-                flex-direction: column;
-                align-items: center;
-                padding-top: 40px;
-                transition: left 0.3s;
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .menu-toggle {
-                display: block;
-                color: var(--beige-gray);
-                font-size: 1.5rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .container {
-                width: 90%;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .teacher-photo {
-                width: 200px;
-                height: 200px;
-            }
-        }
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --text-color: #333;
+    --light-gray: #f4f4f4;
+    --white: #fff;
+    --beige-gray: #8a7f8d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Стили для header */
+header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+/* Герой секция */
+.hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 120px 0 80px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #c0392b;
+}
+
+/* Секции */
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+}
+
+/* О преподавателе */
+.about {
+    background-color: var(--light-gray);
+}
+
+.teacher-profile {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.teacher-photo {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--white);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.bio h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.bio p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Предметы */
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.subject-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px);
+}
+
+.subject-icon {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.subject-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* Мероприятия */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.event-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.event-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: var(--white);
+    padding: 1rem;
+}
+
+.event-overlay h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Контакты */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.contact-info h3,
+.contact-form h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.contact-info p {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.social-links {
+    margin-top: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Футер */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .teacher-profile {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .teacher-photo {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+}

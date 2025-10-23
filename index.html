@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Педагог Алексашин Максим</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="slider.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -99,24 +100,107 @@
             <h2 class="section-title">Мероприятия и достижения</h2>
             <div class="events-grid">
                 <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Историческая олимпиада" class="event-img">
-                    <div class="event-overlay">
-                        <h3>Историческая олимпиада 2023</h3>
-                        <p>5 призеров городского этапа, 2 победителя регионального тура</p>
+                    <div class="slider-container">
+                        <div class="slider" id="slider1">
+                            <div class="slide">
+                                <img src="/images/муф 2024.jpg" alt="Московский урбанистический форум 2024г.">
+                                <div class="event-overlay">
+                                    <h3>МУФ2030 2024г.</h3>
+                                    <p>Московский урбанистический форум 2024г.</p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <img src="/images/муф 2024 (2).jpg" alt="Мероприятие 2">
+                                <div class="event-overlay">
+                                    <h3>МУФ2030 2024г.</h3>
+                                    <p>Дополнительное фото с форума</p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <img src="/images/муф 2024 (3).jpg" alt="Мероприятие 3">
+                                <div class="event-overlay">
+                                    <h3>МУФ2030 2024г.</h3>
+                                    <p>Еще одно фото с мероприятия</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-arrow prev" data-slider="slider1" data-direction="-1">&#10094;</button>
+                        <button class="slider-arrow next" data-slider="slider1" data-direction="1">&#10095;</button>
+                        <div class="slider-controls">
+                            <span class="slider-dot active" data-slider="slider1" data-index="0"></span>
+                            <span class="slider-dot" data-slider="slider1" data-index="1"></span>
+                            <span class="slider-dot" data-slider="slider1" data-index="2"></span>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Краеведческая экспедиция" class="event-img">
-                    <div class="event-overlay">
-                        <h3>Краеведческая экспедиция</h3>
-                        <p>Ежегодный летний выезд с исследованиями местной истории и природы</p>
+                    <div class="slider-container">
+                        <div class="slider" id="slider2">
+                            <div class="slide">
+                                <img src="/images/муф 2025.jpg" alt="Московский урбанистический форум 2025г.">
+                                <div class="event-overlay">
+                                    <h3>МУФ2030 2025г.</h3>
+                                    <p>Московский урбанистический форум 2025г.</p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Мероприятие 2">
+                                <div class="event-overlay">
+                                    <h3>МУФ2030 2025г.</h3>
+                                    <p>Дополнительное фото с форума</p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Мероприятие 3">
+                                <div class="event-overlay">
+                                    <h3>МУФ2030 2025г.</h3>
+                                    <p>Еще одно фото с мероприятия</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-arrow prev" data-slider="slider2" data-direction="-1">&#10094;</button>
+                        <button class="slider-arrow next" data-slider="slider2" data-direction="1">&#10095;</button>
+                        <div class="slider-controls">
+                            <span class="slider-dot active" data-slider="slider2" data-index="0"></span>
+                            <span class="slider-dot" data-slider="slider2" data-index="1"></span>
+                            <span class="slider-dot" data-slider="slider2" data-index="2"></span>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="День Победы" class="event-img">
-                    <div class="event-overlay">
-                        <h3>Проект "Живая история"</h3>
-                        <p>Встречи с ветеранами и реконструкция исторических событий</p>
+                    <div class="slider-container">
+                        <div class="slider" id="slider3">
+                            <div class="slide">
+                                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="День Победы">
+                                <div class="event-overlay">
+                                    <h3>Проект "Живая история"</h3>
+                                    <p>Встречи с ветеранами и реконструкция исторических событий</p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Мероприятие 2">
+                                <div class="event-overlay">
+                                    <h3>Проект "Живая история"</h3>
+                                    <p>Дополнительное фото с мероприятия</p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Мероприятие 3">
+                                <div class="event-overlay">
+                                    <h3>Проект "Живая история"</h3>
+                                    <p>Еще одно фото с мероприятия</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-arrow prev" data-slider="slider3" data-direction="-1">&#10094;</button>
+                        <button class="slider-arrow next" data-slider="slider3" data-direction="1">&#10095;</button>
+                        <div class="slider-controls">
+                            <span class="slider-dot active" data-slider="slider3" data-index="0"></span>
+                            <span class="slider-dot" data-slider="slider3" data-index="1"></span>
+                            <span class="slider-dot" data-slider="slider3" data-index="2"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -145,15 +229,15 @@
                     <form id="messageForm">
                         <div class="form-group">
                             <label for="name">Ваше имя</label>
-                            <input type="text" id="name" required>
+                            <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Сообщение</label>
-                            <textarea id="message" required></textarea>
+                            <textarea id="message" name="message" required></textarea>
                         </div>
                         <button type="submit" class="submit-btn">Отправить</button>
                     </form>
@@ -170,57 +254,6 @@
     </footer>
 
     <!-- JavaScript -->
-    <script>
-        // Мобильное меню
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Плавная прокрутка для якорных ссылок
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                }
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Анимация при скролле
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.section-title, .teacher-profile, .subject-card, .event-card, .contact-info, .contact-form');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.animation = `fadeIn 1s forwards`;
-                }
-            });
-        };
-        
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
-        
-        // Обработка формы
-        const form = document.getElementById('messageForm');
-        
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Здесь можно добавить AJAX отправку формы
-            alert('Сообщение отправлено! Я свяжусь с вами в ближайшее время.');
-            form.reset();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
