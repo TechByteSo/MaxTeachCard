@@ -249,25 +249,24 @@ section {
 }
 
 /* Предметы */
-.subjects {
-    background-color: var(--light-gray);
-}
-
 .subjects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
 .subject-card {
     background: var(--white);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(139,69,19,0.1);
     transition: transform 0.3s;
     border: 2px solid var(--beige);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .subject-card:hover {
@@ -276,20 +275,27 @@ section {
 }
 
 .subject-icon {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: var(--secondary-color);
     margin-bottom: 1rem;
+    flex-shrink: 0;
 }
 
 .subject-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 1rem;
     color: var(--secondary-color);
     font-weight: 600;
+    line-height: 1.3;
+    flex-shrink: 0;
 }
 
 .subject-card p {
     color: var(--text-color);
+    line-height: 1.5;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
 }
 
 /* Мероприятия */
