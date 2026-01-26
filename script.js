@@ -23,7 +23,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Анимация при скролле
 const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.section-title, .teacher-profile, .subject-card, .event-card, .contact-info, .contact-form');
+    const elements = document.querySelectorAll('.section-title, .teacher-profile, .service-card, .event-card, .contact-info, .contact-form, .stat-item, .review-card');
     
     elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
@@ -37,6 +37,33 @@ const animateOnScroll = () => {
 
 window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
+
+// FAQ аккордеон
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Закрываем все остальные элементы
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Переключаем текущий элемент
+            if (isActive) {
+                item.classList.remove('active');
+            } else {
+                item.classList.add('active');
+            }
+        });
+    });
+});
 
 // Обработка формы - ОБНОВЛЕННЫЙ КОД
 const form = document.getElementById('messageForm');

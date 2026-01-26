@@ -16,12 +16,13 @@
             <nav>
                 <div class="logo">Алексашин Максим</div>
                 <ul class="nav-links">
-                    <li><a href="#about">Обо мне</a></li>
-                    <li><a href="#subjects">Предметы</a></li>
-                    <li><a href="#events">Мероприятия</a></li>
-                    <li><a href="#documents">Документы</a></li>
+                    <li><a href="#about">О педагоге</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#events">Проекты</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
+                <a href="#contact" class="header-cta-btn">Записаться</a>
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -32,12 +33,46 @@
     <!-- Герой секция -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Алексашин Максим Алексеевич</h1>
-                <h3>Педагогический интерн</h3>
-                <p>Преподаватель 4 профилей подготовки: история, обществознание, география, основы безопасности жизнидеятельности.</p>
-                <p>Преподаватель с 4-летним репититорским стажем. Актуальная система форм индивидуального и группового обучения. Комплексный подход в изучении учебных дисциплин, нацеленный на получение знаний, формирование аналитического и критического мышлений, отсутствие шаблонного подхода и материала</p>
-                <a href="#contact" class="btn">Связаться</a>
+            <div class="hero-wrapper">
+                <div class="hero-content">
+                    <p class="hero-subtitle">Предоставляю профессиональные образовательные услуги</p>
+                    <h1>Качественное образование для будущих достижений</h1>
+                    <p class="hero-description">Преподаватель с 4-летним репетиторским стажем. Актуальная система форм индивидуального и группового обучения. Комплексный подход в изучении учебных дисциплин, нацеленный на получение знаний, формирование аналитического и критического мышления.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Записаться</a>
+                        <a href="#events" class="btn btn-secondary">Портфолио</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-image-wrapper">
+                        <img src="images/avatar.jpg" alt="Алексашин Максим Алексеевич" class="hero-photo">
+                        <div class="hero-decorative-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок статистики -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">2000</div>
+                    <div class="stat-label"><span class="stat-label-accent">Учеников</span></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label"><span class="stat-label-accent">Лет</span> опыта</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">800</div>
+                    <div class="stat-label"><span class="stat-label-accent">Учебных</span> часов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">150</div>
+                    <div class="stat-label"><span class="stat-label-accent">Учебных</span> программ</div>
+                </div>
             </div>
         </div>
     </section>
@@ -47,7 +82,7 @@
         <div class="container">
             <h2 class="section-title">О преподавателе</h2>
             <div class="teacher-profile">
-                <img src="" alt="Фото преподавателя" class="teacher-photo">
+                <img src="images/avatar.jpg" alt="Фото преподавателя" class="teacher-photo">
                 <div class="bio">
                     <h2>Алексашин Максим Алексеевич</h2>
                     <p>Преподаватель с современным подходом к образованию</p>
@@ -58,38 +93,45 @@
         </div>
     </section>
 
-    <!-- Предметы -->
-    <section id="subjects" class="subjects">
-        <div class="container">
-            <h2 class="section-title">Преподаваемые предметы</h2>
-            <div class="subjects-grid">
-                <div class="subject-card">
-                    <div class="subject-icon">
-                        <i class="fas fa-landmark"></i>
+    <!-- Услуги -->
+    <section id="services" class="services">
+        <div class="services-container">
+            <div class="services-header">
+                <h2 class="services-title">Наши образовательные программы</h2>
+                <p class="services-description">Комплексный подход к обучению с индивидуальным подбором методик для каждого ученика. Современные технологии и проверенные временем методы преподавания.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card service-card-dark">
+                    <div class="service-icon">
+                        <i class="fas fa-user-graduate"></i>
                     </div>
-                    <h3>История</h3>
-                    <p>Углубленное изучение отечественной и всемирной истории с акцентом на анализ источников и развитие исторического мышления.</p>
+                    <h3>Индивидуальные занятия</h3>
+                    <p>Персональный подход к каждому ученику с учетом его индивидуальных особенностей и целей обучения.</p>
+                    <a href="#contact" class="service-link">Узнать больше <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="subject-card">
-                    <div class="subject-icon">
+                <div class="service-card service-card-accent">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Подготовка к экзаменам</h3>
+                    <p>Комплексная подготовка к ЕГЭ и ОГЭ по истории, обществознанию и географии.</p>
+                    <a href="#contact" class="service-link">Узнать больше <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card service-card-accent">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Онлайн-курсы</h3>
+                    <p>Дистанционное обучение с использованием современных образовательных технологий.</p>
+                    <a href="#contact" class="service-link">Узнать больше <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card service-card-dark">
+                    <div class="service-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>Обществознание</h3>
-                    <p>Комплексное изучение общества, права, экономики и политики с практическими кейсами и подготовкой к ЕГЭ.</p>
-                </div>
-                <div class="subject-card">
-                    <div class="subject-icon">
-                        <i class="fas fa-globe-europe"></i>
-                    </div>
-                    <h3>География</h3>
-                    <p>Изучение физической и экономической географии с использованием современных ГИС-технологий и краеведческого подхода.</p>
-                </div>
-                <div class="subject-card">
-                    <div class="subject-icon">
-                        <i class="fas fa-first-aid"></i>
-                    </div>
-                    <h3>Основы безопасности жизнедеятельности</h3>
-                    <p>Практико-ориентированный курс по безопасности в повседневной жизни и чрезвычайных ситуациях.</p>
+                    <h3>Групповые занятия</h3>
+                    <p>Обучение в небольших группах для развития коммуникативных навыков и совместной работы.</p>
+                    <a href="#contact" class="service-link">Узнать больше <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -98,7 +140,10 @@
     <!-- Мероприятия -->
     <section id="events" class="events">
         <div class="container">
-            <h2 class="section-title">Мероприятия и достижения</h2>
+            <div class="events-header">
+                <h2 class="section-title">МОИ ПРОЕКТЫ</h2>
+                <a href="#events" class="events-filter">Все проекты</a>
+            </div>
             <div class="events-grid">
                 <div class="event-card">
                     <div class="slider-container">
@@ -301,6 +346,36 @@
         </div>
     </section>
 
+    <!-- Отзывы -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">Отзывы и рекомендации</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="review-text">"Отличный преподаватель! Помог моему ребенку успешно подготовиться к ЕГЭ по истории. Индивидуальный подход и понятное объяснение материала."</p>
+                    <div class="review-author">— Родитель ученика</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="review-text">"Профессиональный подход к обучению. Максим Алексеевич умеет заинтересовать предметом и объяснить сложные темы простым языком."</p>
+                    <div class="review-author">— Ученик</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="review-text">"Рекомендую как опытного педагога с современными методиками преподавания. Результаты видны уже после первых занятий."</p>
+                    <div class="review-author">— Коллега</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Документы -->
     <section id="documents" class="documents">
         <div class="container">
@@ -398,25 +473,105 @@
         </div>
     </section>
 
-    <!-- Контакты -->
-    <section id="contact" class="contact">
+    <!-- Расписание -->
+    <section id="schedule" class="schedule">
         <div class="container">
-            <h2 class="section-title">Контакты</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Контактная информация</h3>
-                    <p><i class="fas fa-envelope"></i> teacher.history@example.com</p>
-                    <p><i class="fas fa-phone"></i> +7 (123) 456-78-90</p>
-                    <p><i class="fas fa-school"></i> Гимназия №1, кабинет 215</p>
-                    <p><i class="fas fa-clock"></i> Консультации: Пн, Ср, Пт 15:00-17:00</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <h2 class="section-title">Расписание занятий</h2>
+            <div class="schedule-container">
+                <div class="schedule-info">
+                    <h3>График работы</h3>
+                    <div class="schedule-item">
+                        <i class="fas fa-calendar-week"></i>
+                        <div>
+                            <strong>Понедельник - Пятница</strong>
+                            <p>15:00 - 20:00</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <i class="fas fa-calendar-week"></i>
+                        <div>
+                            <strong>Суббота</strong>
+                            <p>10:00 - 16:00</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <i class="fas fa-calendar-times"></i>
+                        <div>
+                            <strong>Воскресенье</strong>
+                            <p>Выходной</p>
+                        </div>
+                    </div>
+                    <p class="schedule-note">График может быть скорректирован по индивидуальной договоренности</p>
+                </div>
+                <div class="schedule-calendar">
+                    <h3>Запись на консультацию</h3>
+                    <p>Выберите удобное время для консультации или записи на занятия</p>
+                    <a href="#contact" class="btn">Записаться на занятие</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Какие форматы занятий доступны?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Доступны индивидуальные занятия, групповые занятия (до 5 человек) и онлайн-курсы. Формат выбирается в зависимости от ваших целей и предпочтений.</p>
                     </div>
                 </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Какова стоимость занятий?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Стоимость зависит от формата занятий и количества уроков. Точную информацию можно получить при записи на консультацию.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Возможна ли подготовка к ЕГЭ за короткий срок?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да, возможна интенсивная подготовка. Однако для лучших результатов рекомендуется начинать подготовку заранее, минимум за 6-8 месяцев до экзамена.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Предоставляются ли учебные материалы?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да, все необходимые учебные материалы, включая презентации, тесты и дополнительные задания, предоставляются в электронном виде.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Как записаться на первое занятие?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Вы можете связаться со мной через форму обратной связи на сайте, по телефону или через мессенджеры (Telegram, WhatsApp). Первая консультация обычно бесплатная.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <div class="contact-form-wrapper">
                 <div class="contact-form">
-                    <h3>Написать сообщение</h3>
+                    <h3>Связаться со мной</h3>
                     <form id="messageForm">
                         <div class="form-group">
                             <label for="name">Ваше имя</label>
@@ -427,11 +582,18 @@
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
+                            <label for="subject">Тема</label>
+                            <input type="text" id="subject" name="subject">
+                        </div>
+                        <div class="form-group">
                             <label for="message">Сообщение</label>
                             <textarea id="message" name="message" required></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Отправить</button>
+                        <button type="submit" class="submit-btn">Отправить сообщение</button>
                     </form>
+                </div>
+                <div class="contact-image">
+                    <img src="images/avatar.jpg" alt="Алексашин Максим Алексеевич">
                 </div>
             </div>
         </div>
