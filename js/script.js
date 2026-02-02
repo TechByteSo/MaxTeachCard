@@ -196,46 +196,55 @@ document.addEventListener('DOMContentLoaded', function() {
     const subjectDetailClose = subjectDetail && subjectDetail.querySelector('.subject-detail-close');
     
     if (subjectItems.length && subjectDetail && subjectDetailTitle && subjectDetailText) {
+        function showSubjectDetail() {
+            subjectDetail.style.display = 'block';
+            subjectDetail.offsetHeight;
+            subjectDetail.classList.add('subject-detail-visible');
+            subjectDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        function hideSubjectDetail() {
+            subjectDetail.classList.remove('subject-detail-visible');
+            setTimeout(function() {
+                subjectDetail.style.display = 'none';
+            }, 350);
+        }
         subjectItems.forEach(item => {
             item.addEventListener('click', function() {
                 const title = this.getAttribute('data-subject');
                 const text = this.getAttribute('data-text');
                 const isAlreadyOpen = subjectDetail.style.display === 'block' && subjectDetailTitle.textContent === title;
                 if (isAlreadyOpen) {
-                    subjectDetail.style.display = 'none';
+                    hideSubjectDetail();
                     return;
                 }
                 if (title) subjectDetailTitle.textContent = title;
                 if (text) subjectDetailText.textContent = text;
-                subjectDetail.style.display = 'block';
-                subjectDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                showSubjectDetail();
             });
         });
         if (subjectDetailClose) {
-            subjectDetailClose.addEventListener('click', function() {
-                subjectDetail.style.display = 'none';
-            });
+            subjectDetailClose.addEventListener('click', hideSubjectDetail);
         }
     }
     
-    // Кнопка показать/скрыть проекты
+    // Кнопка показать/скрыть проекты: анимация через контейнер (max-height + opacity)
     const toggleEventsBtn = document.getElementById('toggleEvents');
-    const hiddenEvents = document.querySelectorAll('.event-card-hidden');
+    const eventsMoreWrapper = document.getElementById('eventsMoreWrapper');
     let eventsVisible = false;
     
-    if (toggleEventsBtn) {
+    if (toggleEventsBtn && eventsMoreWrapper) {
         toggleEventsBtn.addEventListener('click', function() {
-            eventsVisible = !eventsVisible;
-            hiddenEvents.forEach(card => {
-                if (eventsVisible) {
-                    card.classList.remove('event-card-hidden');
-                    card.classList.add('event-card-visible');
-                } else {
-                    card.classList.add('event-card-hidden');
-                    card.classList.remove('event-card-visible');
-                }
-            });
-            this.textContent = eventsVisible ? 'Скрыть проекты' : 'Показать все проекты';
+            if (eventsVisible) {
+                eventsMoreWrapper.classList.remove('events-more-wrapper--visible');
+                eventsMoreWrapper.classList.add('events-more-wrapper--hidden');
+                eventsVisible = false;
+                this.textContent = 'Показать все проекты';
+            } else {
+                eventsMoreWrapper.classList.remove('events-more-wrapper--hidden');
+                eventsMoreWrapper.classList.add('events-more-wrapper--visible');
+                eventsVisible = true;
+                this.textContent = 'Скрыть проекты';
+            }
         });
     }
     
