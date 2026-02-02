@@ -2,14 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Педагог Алексашин Максим</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="slider.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/slider.css">
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Перейти к контенту</a>
     <!-- Шапка -->
     <header>
         <div class="container">
@@ -17,10 +18,22 @@
                 <div class="logo">Алексашин Максим</div>
                 <ul class="nav-links">
                     <li><a href="#about">О педагоге</a></li>
-                    <li><a href="#services">Услуги</a></li>
-                    <li><a href="#events">Проекты</a></li>
+                    <li class="nav-dropdown">
+                        <a href="#services" aria-haspopup="true" aria-expanded="false" aria-controls="menu-services">Услуги <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu" id="menu-services" role="menu">
+                            <li role="none"><a href="#services" role="menuitem">Форматы уроков</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-dropdown">
+                        <a href="#events" aria-haspopup="true" aria-expanded="false" aria-controls="menu-projects">Проекты <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu" id="menu-projects" role="menu">
+                            <li role="none"><a href="#events" role="menuitem">Моё портфолио</a></li>
+                            <li role="none"><a href="#documents" role="menuitem">Документы и сертификаты</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#reviews">Отзывы</a></li>
-                    <li><a href="#contact">Контакты</a></li>
+                    <li><a href="#schedule">Контакты</a></li>
+                    <li class="nav-cta-mobile"><a href="#contact" class="header-cta-btn">Записаться</a></li>
                 </ul>
                 <a href="#contact" class="header-cta-btn">Записаться</a>
                 <div class="menu-toggle">
@@ -31,11 +44,11 @@
     </header>
 
     <!-- Герой секция -->
+    <main id="main-content">
     <section class="hero">
         <div class="container">
             <div class="hero-wrapper">
                 <div class="hero-content">
-                    <p class="hero-subtitle">Предоставляю профессиональные образовательные услуги</p>
                     <h1>Качественное образование для будущих достижений</h1>
                     <p class="hero-description">Преподаватель с 4-летним репетиторским стажем. Актуальная система форм индивидуального и группового обучения. Комплексный подход в изучении учебных дисциплин, нацеленный на получение знаний, формирование аналитического и критического мышления.</p>
                     <div class="hero-buttons">
@@ -45,8 +58,7 @@
                 </div>
                 <div class="hero-image">
                     <div class="hero-image-wrapper">
-                        <img src="images/avatar.jpg" alt="Алексашин Максим Алексеевич" class="hero-photo">
-                        <div class="hero-decorative-line"></div>
+                        <img src="images/avatar.jpg" alt="Алексашин Максим Алексеевич" class="hero-photo" width="500" height="500" fetchpriority="high">
                     </div>
                 </div>
             </div>
@@ -81,8 +93,14 @@
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">О преподавателе</h2>
+            <div class="about-icons">
+                <i class="fas fa-globe about-icon about-icon-left about-icon-top"></i>
+                <i class="fas fa-user-graduate about-icon about-icon-right about-icon-top"></i>
+                <i class="fas fa-pen about-icon about-icon-left about-icon-bottom"></i>
+                <i class="fas fa-glasses about-icon about-icon-right about-icon-bottom"></i>
+            </div>
             <div class="teacher-profile">
-                <img src="images/avatar.jpg" alt="Фото преподавателя" class="teacher-photo">
+                <img src="images/avatar.jpg" alt="Фото преподавателя" class="teacher-photo" loading="lazy" decoding="async">
                 <div class="bio">
                     <h2>Алексашин Максим Алексеевич</h2>
                     <p>Преподаватель с современным подходом к образованию</p>
@@ -97,8 +115,34 @@
     <section id="services" class="services">
         <div class="services-container">
             <div class="services-header">
-                <h2 class="services-title">Наши образовательные программы</h2>
+                <h2 class="services-title">Форматы уроков</h2>
                 <p class="services-description">Комплексный подход к обучению с индивидуальным подбором методик для каждого ученика. Современные технологии и проверенные временем методы преподавания.</p>
+            </div>
+            <div class="subjects-preview-wrapper">
+                <div class="subjects-preview">
+                    <div class="subject-preview-item" data-subject="История" data-text="Углубленное изучение отечественной и всемирной истории с акцентом на анализ источников и развитие исторического мышления.">
+                        <i class="fas fa-landmark"></i>
+                        <span>История</span>
+                    </div>
+                    <div class="subject-preview-item" data-subject="Обществознание" data-text="Комплексное изучение общества, права, экономики и политики с практическими кейсами и подготовкой к ЕГЭ.">
+                        <i class="fas fa-users"></i>
+                        <span>Обществознание</span>
+                    </div>
+                    <div class="subject-preview-item" data-subject="География" data-text="Изучение физической и экономической географии с использованием современных ГИС-технологий и краеведческого подхода.">
+                        <i class="fas fa-globe-europe"></i>
+                        <span>География</span>
+                    </div>
+                    <div class="subject-preview-item" data-subject="ОБЖ" data-text="Практико-ориентированный курс по безопасности в повседневной жизни и чрезвычайных ситуациях.">
+                        <i class="fas fa-first-aid"></i>
+                        <span>ОБЖ</span>
+                    </div>
+                </div>
+                <p class="subjects-preview-hint">При нажатии на предмет можно узнать о нём подробнее</p>
+            </div>
+            <div class="subject-detail" id="subjectDetail" style="display: none;">
+                <h4 class="subject-detail-title"></h4>
+                <p class="subject-detail-text"></p>
+                <button type="button" class="subject-detail-close">Закрыть</button>
             </div>
             <div class="services-grid">
                 <div class="service-card service-card-dark">
@@ -132,7 +176,7 @@
                     <h3>Групповые занятия</h3>
                     <p>Обучение в небольших группах для развития коммуникативных навыков и совместной работы.</p>
                     <a href="#contact" class="service-link">Узнать больше <i class="fas fa-arrow-right"></i></a>
-                </div>
+                                </div>
             </div>
         </div>
     </section>
@@ -141,29 +185,29 @@
     <section id="events" class="events">
         <div class="container">
             <div class="events-header">
-                <h2 class="section-title">МОИ ПРОЕКТЫ</h2>
+                <h2 class="section-title">МОЁ ПОРТФОЛИО</h2>
                 <a href="#events" class="events-filter">Все проекты</a>
             </div>
-            <div class="events-grid">
+            <div class="events-grid" id="eventsGrid">
                 <div class="event-card">
                     <div class="slider-container">
                         <div class="slider" id="slider1">
                             <div class="slide">
-                                <img src="images/Муф 2024/муф 2024WEB.webp" alt="Московский урбанистический форум 2024г.">
+                                <img loading="lazy" decoding="async" src="images/Муф 2024/муф 2024WEB.webp" alt="Московский урбанистический форум 2024г.">
                                 <div class="event-overlay">
                                     <h3>МУФ2030 2024г.</h3>
                                     <p>Московский урбанистический форум 2024г.</p>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Муф 2024/муф 2024 (2)WEB.webp" alt="Мероприятие 2">
+                                <img loading="lazy" decoding="async" src="images/Муф 2024/муф 2024 (2)WEB.webp" alt="Мероприятие 2">
                                 <div class="event-overlay">
                                     <h3>МУФ2030 2024г.</h3>
                                     <p>Дополнительное фото с форума</p>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Муф 2024/муф 2024 (3)WEB.webp" alt="Мероприятие 3">
+                                <img loading="lazy" decoding="async" src="images/Муф 2024/муф 2024 (3)WEB.webp" alt="Мероприятие 3">
                                 <div class="event-overlay">
                                     <h3>МУФ2030 2024г.</h3>
                                     <p>Дополнительное фото с форума</p>
@@ -184,21 +228,21 @@
                     <div class="slider-container">
                         <div class="slider" id="slider2">
                             <div class="slide">
-                                <img src="images/Муф 2025/муф 2025WEB.webp" alt="Московский урбанистический форум 2025г.">
+                                <img loading="lazy" decoding="async" src="images/Муф 2025/муф 2025WEB.webp" alt="Московский урбанистический форум 2025г.">
                                 <div class="event-overlay">
                                     <h3>МУФ2030 2025г.</h3>
                                     <p>Московский урбанистический форум 2025г.</p>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Муф 2025/муф 2025 (2)WEB.webp" alt="Мероприятие 2">
+                                <img loading="lazy" decoding="async" src="images/Муф 2025/муф 2025 (2)WEB.webp" alt="Мероприятие 2">
                                 <div class="event-overlay">
                                     <h3>МУФ2030 2025г.</h3>
                                     <p>Дополнительное фото с форума</p>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Муф 2025/муф 2025 (3)WEB.webp" alt="Мероприятие 3">
+                                <img loading="lazy" decoding="async" src="images/Муф 2025/муф 2025 (3)WEB.webp" alt="Мероприятие 3">
                                 <div class="event-overlay">
                                     <h3>МУФ2030 2025г.</h3>
                                     <p>Дополнительное фото с форума</p>
@@ -219,21 +263,21 @@
                     <div class="slider-container">
                         <div class="slider" id="slider3">
                             <div class="slide">
-                                <img src="images/Школа/Школа 1WEB.webp" alt="Уроки в сельской школе">
+                                <img loading="lazy" decoding="async" src="images/Школа/Школа 1WEB.webp" alt="Уроки в сельской школе">
                                 <div class="event-overlay">
-                                    <h3>Открытые уроки в сельской школе 2022,2023г.(Богородский городской округ)</h3>
+                                    <h3>Открытые уроки в сельской школе 2022,2023г. (Богородский округ)</h3>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Школа/Школа 2WEB.webp" alt="Уроки в сельской школе">
+                                <img loading="lazy" decoding="async" src="images/Школа/Школа 2WEB.webp" alt="Уроки в сельской школе">
                                 <div class="event-overlay">
-                                    <h3>Открытые уроки в сельской школе 2022,2023г.(Богородский городской округ)</h3>
+                                    <h3>Открытые уроки в сельской школе 2022,2023г. (Богородский округ)</h3>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Школа/Школа 3WEB.webp" alt="Уроки в сельской школе">
+                                <img loading="lazy" decoding="async" src="images/Школа/Школа 3WEB.webp" alt="Уроки в сельской школе">
                                 <div class="event-overlay">
-                                    <h3>Открытые уроки в сельской школе 2022,2023г.(Богородский городской округ)</h3>
+                                    <h3>Открытые уроки в сельской школе 2022,2023г. (Богородский округ)</h3>
                                 </div>
                             </div>
                         </div>
@@ -247,23 +291,23 @@
                     </div>
                 </div>
 
-                <div class="event-card">
+                <div class="event-card event-card-hidden">
                     <div class="slider-container">
                         <div class="slider" id="slider4">
                             <div class="slide">
-                                <img src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗаWEB.webp" alt="Мероприятия вне ВУЗа">
+                                <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗаWEB.webp" alt="Мероприятия вне ВУЗа">
                                 <div class="event-overlay">
                                     <h3>Организация мероприятия вне ВУЗа (г. Орехово-Зуево, г. Шатура)</h3>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗа. 2WEB.webp" alt="Мероприятия вне ВУЗа">
+                                <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗа. 2WEB.webp" alt="Мероприятия вне ВУЗа">
                                 <div class="event-overlay">
                                     <h3>Организация мероприятия вне ВУЗа (г. Орехово-Зуево, г. Шатура)</h3>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗа 3WEB.webp" alt="Мероприятия вне ВУЗа">
+                                <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗа 3WEB.webp" alt="Мероприятия вне ВУЗа">
                                 <div class="event-overlay">
                                     <h3>Организация мероприятия вне ВУЗа (г. Орехово-Зуево, г. Шатура)</h3>
                                 </div>
@@ -279,23 +323,23 @@
                     </div>
                 </div>
 
-                <div class="event-card">
+                <div class="event-card event-card-hidden">
                     <div class="slider-container">
                         <div class="slider" id="slider5">
                             <div class="slide">
-                                <img src="images/Самокат/Самокат 1WEB.webp" alt="Курьер-партнер компании Самокат">
+                                <img loading="lazy" decoding="async" src="images/Самокат/Самокат 1WEB.webp" alt="Курьер-партнер компании Самокат">
                                 <div class="event-overlay">
                                     <h3>Курьер-партнер компании "Самокат"</h3>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Самокат/Самокат 2WEB.webp" alt="Курьер-партнер компании Самокат">
+                                <img loading="lazy" decoding="async" src="images/Самокат/Самокат 2WEB.webp" alt="Курьер-партнер компании Самокат">
                                 <div class="event-overlay">
                                     <h3>Курьер-партнер компании "Самокат"</h3>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Самокат/Самокат 3WEB.webp" alt="Курьер-партнер компании Самокат">
+                                <img loading="lazy" decoding="async" src="images/Самокат/Самокат 3WEB.webp" alt="Курьер-партнер компании Самокат">
                                 <div class="event-overlay">
                                     <h3>Курьер-партнер компании "Самокат"</h3>
                                 </div>
@@ -311,23 +355,23 @@
                     </div>
                 </div>
 
-                                <div class="event-card">
+                <div class="event-card event-card-hidden">
                     <div class="slider-container">
                         <div class="slider" id="slider6">
                             <div class="slide">
-                                <img src="images/Let's go camp/camp1WEB.webp" alt="Смены вожатого в лагере Let's go camp">
+                                <img loading="lazy" decoding="async" src="images/Let's go camp/camp1WEB.webp" alt="Смены вожатого в лагере Let's go camp">
                                 <div class="event-overlay">
                                     <h3>Смены вожатого в лагере "Let's go camp"</h3>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Let's go camp/camp2WEB.webp" alt="Смены вожатого в лагере Let's go camp">
+                                <img loading="lazy" decoding="async" src="images/Let's go camp/camp2WEB.webp" alt="Смены вожатого в лагере Let's go camp">
                                 <div class="event-overlay">
                                     <h3>Смены вожатого в лагере "Let's go camp"</h3>
                                 </div>
                             </div>
                             <div class="slide">
-                                <img src="images/Let's go camp/camp3WEB.webp" alt="Смены вожатого в лагере Let's go camp">
+                                <img loading="lazy" decoding="async" src="images/Let's go camp/camp3WEB.webp" alt="Смены вожатого в лагере Let's go camp">
                                 <div class="event-overlay">
                                     <h3>Смены вожатого в лагере "Let's go camp"</h3>
                                 </div>
@@ -342,6 +386,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="events-more-container">
+                <button id="toggleEvents" class="btn">Показать все проекты</button>
             </div>
         </div>
     </section>
@@ -483,15 +530,8 @@
                     <div class="schedule-item">
                         <i class="fas fa-calendar-week"></i>
                         <div>
-                            <strong>Понедельник - Пятница</strong>
-                            <p>15:00 - 20:00</p>
-                        </div>
-                    </div>
-                    <div class="schedule-item">
-                        <i class="fas fa-calendar-week"></i>
-                        <div>
-                            <strong>Суббота</strong>
-                            <p>10:00 - 16:00</p>
+                            <strong>Понедельник - Суббота</strong>
+                            <p>12:00 - 20:00</p>
                         </div>
                     </div>
                     <div class="schedule-item">
@@ -501,12 +541,15 @@
                             <p>Выходной</p>
                         </div>
                     </div>
-                    <p class="schedule-note">График может быть скорректирован по индивидуальной договоренности</p>
+                    <p class="schedule-note">* График может быть скорректирован по индивидуальной договоренности</p>
                 </div>
                 <div class="schedule-calendar">
                     <h3>Запись на консультацию</h3>
-                    <p>Выберите удобное время для консультации или записи на занятия</p>
-                    <a href="#contact" class="btn">Записаться на занятие</a>
+                    <p>Выберите удобное время</p>
+                    <p class="schedule-contact"><i class="fas fa-phone"></i> +7 (123) 456-78-90</p>
+                    <p class="schedule-contact"><i class="fas fa-envelope"></i> teacher.history@example.com</p>
+                    <a href="https://t.me/example" target="_blank" rel="noopener" class="btn btn-telegram"><i class="fab fa-telegram"></i> Написать в Telegram</a>
+                    <a href="#contact" class="btn">Записаться</a>
                 </div>
             </div>
         </div>
@@ -566,6 +609,7 @@
         </div>
     </section>
 
+    </main>
     <!-- Контакты -->
     <section id="contact" class="contact">
         <div class="contact-container">
@@ -589,11 +633,9 @@
                             <label for="message">Сообщение</label>
                             <textarea id="message" name="message" required></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Отправить сообщение</button>
+                        <button type="submit" class="submit-btn" id="submitBtn">Отправить сообщение</button>
+                        <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
                     </form>
-                </div>
-                <div class="contact-image">
-                    <img src="images/avatar.jpg" alt="Алексашин Максим Алексеевич">
                 </div>
             </div>
         </div>
@@ -607,6 +649,6 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
