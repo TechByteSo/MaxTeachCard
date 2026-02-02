@@ -18,6 +18,10 @@
     --section-padding-lg: 100px 0;
     --container-padding: 20px;
     --touch-target: 44px;
+    /* отступы при якорной прокрутке (выше блок = меньше значение) */
+    --scroll-margin-high: 2rem;   /* О педагоге, Услуги */
+    --scroll-margin-near: 1rem;   /* Портфолио, Документы, Контакты */
+    --scroll-margin-contact: 0.5rem; /* Записаться — максимально высоко */
 }
 
 * {
@@ -28,6 +32,7 @@
 
 html {
     overflow-x: hidden;
+    scroll-padding-top: 5.5rem; /* учёт высоты фиксированного header при якорной прокрутке */
 }
 
 body {
@@ -221,13 +226,7 @@ nav .nav-links {
 }
 
 .nav-links a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--secondary-color);
+    display: none; /* подчёркивание у пунктов меню отключено */
 }
 
 /* Кнопка "Записаться" в header всегда с белым текстом (в т.ч. в бургер-меню при .active) */
@@ -421,6 +420,25 @@ section {
     padding: var(--section-padding);
     max-width: 100%;
     min-width: 0;
+    scroll-margin-top: 5.5rem; /* стыковка блока по верхнему краю при якорной прокрутке (учитывает header) */
+}
+
+/* О педагоге, Услуги — контент выше при переходе из меню */
+section#about,
+section#services {
+    scroll-margin-top: var(--scroll-margin-high);
+}
+
+/* Моё портфолио, Документы и сертификаты, Контакты — контент ниже при переходе из меню */
+section#events,
+section#documents,
+section#schedule {
+    scroll-margin-top: var(--scroll-margin-near);
+}
+
+/* Записаться — контент выше в области отображения */
+section#contact {
+    scroll-margin-top: var(--scroll-margin-contact);
 }
 
 section:first-of-type {
