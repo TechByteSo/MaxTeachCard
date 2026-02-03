@@ -438,9 +438,10 @@ section {
     scroll-margin-top: 5.5rem; /* стыковка блока по верхнему краю при якорной прокрутке (учитывает header) */
 }
 
-/* О педагоге, Услуги — контент выше при переходе из меню */
+/* О педагоге, Услуги, FAQ — контент выше при переходе из меню */
 section#about,
-section#services {
+section#services,
+section#faq {
     scroll-margin-top: var(--scroll-margin-high);
 }
 
@@ -1520,9 +1521,10 @@ footer {
     html {
         scroll-padding-top: 4.5rem; /* учёт высоты header в бургер-режиме при якорной прокрутке */
     }
-    /* О педагоге, Услуги — область отображения повыше при переходе из меню */
+    /* О педагоге, Услуги, FAQ — область отображения повыше при переходе из меню */
     section#about,
-    section#services {
+    section#services,
+    section#faq {
         scroll-margin-top: calc(var(--scroll-margin-high) - 0.75rem);
     }
     /* Заголовок "О преподавателе" в одну строку */
