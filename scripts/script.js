@@ -6,24 +6,38 @@ menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
 });
 
-// Плавная прокрутка для якорных ссылок
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#') return;
-        if (this.getAttribute('aria-haspopup') === 'true' && window.matchMedia('(max-width: 992px)').matches) {
-            e.preventDefault();
-            return;
-        }
+// Плавная прокрутка и подменю — один обработчик в capture-фазе (работает при file:// и Live Server)
+document.addEventListener('click', function(e) {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href');
+    if (href === '#') return;
+    const isMobile = window.matchMedia('(max-width: 992px)').matches;
+    if (anchor.getAttribute('aria-haspopup') === 'true' && isMobile) {
         e.preventDefault();
-        const target = document.querySelector(href);
-        if (!target) return;
-        if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
-        document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('active-dropdown'));
-        document.querySelectorAll('.nav-dropdown > a').forEach(a => a.setAttribute('aria-expanded', 'false'));
-        target.scrollIntoView({ behavior: 'smooth' });
-    });
-});
+        e.stopPropagation();
+        const dropdown = anchor.closest('.nav-dropdown');
+        if (dropdown) {
+            const wasOpen = dropdown.classList.toggle('active-dropdown');
+            anchor.setAttribute('aria-expanded', wasOpen ? 'true' : 'false');
+            document.querySelectorAll('.nav-dropdown').forEach(other => {
+                if (other !== dropdown) {
+                    other.classList.remove('active-dropdown');
+                    const t = other.querySelector(':scope > a');
+                    if (t) t.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+        return;
+    }
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (!target) return;
+    if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('active-dropdown'));
+    document.querySelectorAll('.nav-dropdown > a').forEach(a => a.setAttribute('aria-expanded', 'false'));
+    target.scrollIntoView({ behavior: 'smooth' });
+}, true);
 
 // Анимация при скролле
 const animateOnScroll = () => {
@@ -31,7 +45,7 @@ const animateOnScroll = () => {
     
     elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.3;
+        const screenPosition = window.innerHeight * 1.05; /* анимация при появлении в зоне видимости (раньше по скроллу) */
         
         if (elementPosition < screenPosition) {
             element.style.animation = `fadeIn 1s forwards`;
@@ -187,7 +201,130 @@ document.addEventListener('DOMContentLoaded', function() {
             goToSlide(sliderId, index);
         }
     });
-    
+
+    // Свайпы для слайдеров на мобильных
+    const swipeThreshold = 50;
+    document.querySelectorAll('.slider-container').forEach(container => {
+        const sliderEl = container.querySelector('.slider');
+        if (!sliderEl || !sliderEl.id) return;
+        let touchStartX = 0;
+        container.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches ? e.changedTouches[0].clientX : e.touches[0].clientX;
+        }, { passive: true });
+        container.addEventListener('touchend', function(e) {
+            const touchEndX = e.changedTouches ? e.changedTouches[0].clientX : e.touches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) < swipeThreshold) return;
+            changeSlide(sliderEl.id, diff > 0 ? 1 : -1);
+        }, { passive: true });
+    });
+
+    // Полноэкранный просмотр портфолио по клику на фото
+    const lightbox = document.getElementById('portfolioLightbox');
+    const lightboxSlides = lightbox && lightbox.querySelector('.lightbox-slides');
+    const lightboxCaption = lightbox && lightbox.querySelector('.lightbox-caption');
+    const lightboxDots = lightbox && lightbox.querySelector('.lightbox-dots');
+    const lightboxClose = lightbox && lightbox.querySelector('.lightbox-close');
+    const lightboxPrev = lightbox && lightbox.querySelector('.lightbox-prev');
+    const lightboxNext = lightbox && lightbox.querySelector('.lightbox-next');
+
+    if (lightbox && lightboxSlides && lightboxCaption) {
+        let lightboxCurrentIndex = 0;
+        let lightboxSlideData = [];
+
+        function openLightbox(sliderEl) {
+            const slides = sliderEl.querySelectorAll('.slide');
+            const currentIndex = parseInt(sliderEl.dataset.currentIndex || 0, 10);
+            lightboxSlideData = Array.from(slides).map(slide => {
+                const img = slide.querySelector('img');
+                const overlay = slide.querySelector('.event-overlay');
+                const h3 = overlay ? overlay.querySelector('h3') : null;
+                const p = overlay ? overlay.querySelector('p') : null;
+                return {
+                    src: img ? img.src : '',
+                    alt: img ? img.alt : '',
+                    title: h3 ? h3.textContent : '',
+                    desc: p ? p.textContent : ''
+                };
+            });
+            lightboxSlides.innerHTML = lightboxSlideData.map(d =>
+                `<div class="lightbox-slide"><img src="${d.src}" alt="${d.alt || ''}"></div>`
+            ).join('');
+            lightboxDots.innerHTML = lightboxSlideData.map((_, i) =>
+                `<button type="button" class="lightbox-dot ${i === currentIndex ? 'active' : ''}" data-index="${i}" aria-label="Слайд ${i + 1}"></button>`
+            ).join('');
+            lightboxCurrentIndex = currentIndex;
+            lightboxSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateLightboxCaption();
+            lightbox.removeAttribute('hidden');
+            lightbox.setAttribute('data-open', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateLightboxCaption() {
+            const d = lightboxSlideData[lightboxCurrentIndex];
+            if (!d) return;
+            lightboxCaption.innerHTML = (d.title ? `<h3>${d.title}</h3>` : '') + (d.desc ? `<p>${d.desc}</p>` : '');
+        }
+
+        function closeLightbox() {
+            lightbox.setAttribute('data-open', 'false');
+            lightbox.setAttribute('hidden', '');
+            document.body.style.overflow = '';
+        }
+
+        function lightboxGoTo(index) {
+            const n = lightboxSlideData.length;
+            if (n === 0) return;
+            lightboxCurrentIndex = ((index % n) + n) % n;
+            lightboxSlides.style.transform = `translateX(-${lightboxCurrentIndex * 100}%)`;
+            lightboxDots.querySelectorAll('.lightbox-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === lightboxCurrentIndex);
+            });
+            updateLightboxCaption();
+        }
+
+        document.querySelectorAll('.events .slider-container').forEach(container => {
+            const sliderEl = container.querySelector('.slider');
+            if (!sliderEl) return;
+            container.addEventListener('click', function(e) {
+                if (e.target.closest('.slider-arrow') || e.target.closest('.slider-dot')) return;
+                if (e.target.closest('.slide')) {
+                    e.preventDefault();
+                    openLightbox(sliderEl);
+                }
+            });
+        });
+
+        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+        if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); lightboxGoTo(lightboxCurrentIndex - 1); });
+        if (lightboxNext) lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); lightboxGoTo(lightboxCurrentIndex + 1); });
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) return closeLightbox();
+            if (!e.target.closest('.lightbox-slide img') && !e.target.closest('button') && !e.target.closest('.lightbox-caption')) closeLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (lightbox.getAttribute('data-open') !== 'true') return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') lightboxGoTo(lightboxCurrentIndex - 1);
+            if (e.key === 'ArrowRight') lightboxGoTo(lightboxCurrentIndex + 1);
+        });
+        lightboxDots.addEventListener('click', function(e) {
+            const dot = e.target.closest('.lightbox-dot');
+            if (dot) lightboxGoTo(parseInt(dot.dataset.index, 10));
+        });
+
+        let lightboxTouchStartX = 0;
+        lightbox.addEventListener('touchstart', function(e) {
+            lightboxTouchStartX = e.touches[0].clientX;
+        }, { passive: true });
+        lightbox.addEventListener('touchend', function(e) {
+            const x = e.changedTouches[0].clientX;
+            const diff = lightboxTouchStartX - x;
+            if (Math.abs(diff) > swipeThreshold) lightboxGoTo(lightboxCurrentIndex + (diff > 0 ? 1 : -1));
+        }, { passive: true });
+    }
+
     // Текст предмета при клике
     const subjectItems = document.querySelectorAll('.subject-preview-item');
     const subjectDetail = document.getElementById('subjectDetail');
@@ -291,19 +428,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 dropdown.classList.remove('active-dropdown');
             }
         });
-        trigger.addEventListener('click', (e) => {
-            if (window.matchMedia('(max-width: 992px)').matches) {
-                e.preventDefault();
-                const wasOpen = dropdown.classList.toggle('active-dropdown');
-                trigger.setAttribute('aria-expanded', wasOpen ? 'true' : 'false');
-                dropdowns.forEach(other => {
-                    if (other !== dropdown) {
-                        other.classList.remove('active-dropdown');
-                        const otherTrigger = other.querySelector(':scope > a');
-                        if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-        });
     });
 });
+
+// Кнопка «Наверх» — показ при скролле и плавная прокрутка по клику
+(function() {
+    const backToTop = document.getElementById('backToTop');
+    if (!backToTop) return;
+    const scrollThreshold = 400;
+    function toggleVisibility() {
+        if (window.pageYOffset > scrollThreshold) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    }
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    toggleVisibility();
+    backToTop.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+})();

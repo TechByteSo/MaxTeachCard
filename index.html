@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Педагог Алексашин Максим</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/slider.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/slider.css">
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -15,15 +15,11 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">Алексашин Максим</div>
+                <a href="#main-content" class="logo">Алексашин Максим</a>
                 <ul class="nav-links">
                     <li><a href="#about">О педагоге</a></li>
-                    <li class="nav-dropdown">
-                        <a href="#services" aria-haspopup="true" aria-expanded="false" aria-controls="menu-services">Услуги <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
-                        <ul class="dropdown-menu" id="menu-services" role="menu">
-                            <li role="none"><a href="#services" role="menuitem">Форматы уроков</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
                     <li class="nav-dropdown">
                         <a href="#events" aria-haspopup="true" aria-expanded="false" aria-controls="menu-projects">Проекты <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
                         <ul class="dropdown-menu" id="menu-projects" role="menu">
@@ -31,7 +27,6 @@
                             <li role="none"><a href="#documents" role="menuitem">Документы и сертификаты</a></li>
                         </ul>
                     </li>
-                    <li><a href="#reviews">Отзывы</a></li>
                     <li><a href="#schedule">Контакты</a></li>
                     <li class="nav-cta-mobile"><a href="#contact" class="header-cta-btn">Записаться</a></li>
                 </ul>
@@ -91,6 +86,7 @@
 
     <!-- О преподавателе -->
     <section id="about" class="about">
+        <div class="about-emojis-bg" aria-hidden="true"><span>🌍</span><span>👨‍🎓</span><span>✏️</span><span>👓</span></div>
         <div class="container">
             <h2 class="section-title">О преподавателе</h2>
             <div class="about-icons">
@@ -181,6 +177,36 @@
         </div>
     </section>
 
+    <!-- Отзывы -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">Отзывы и рекомендации</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="review-text">"Отличный преподаватель! Помог моему ребенку успешно подготовиться к ЕГЭ по истории. Индивидуальный подход и понятное объяснение материала."</p>
+                    <div class="review-author">— Родитель ученика</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="review-text">"Профессиональный подход к обучению. Максим Алексеевич умеет заинтересовать предметом и объяснить сложные темы простым языком."</p>
+                    <div class="review-author">— Ученик</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="review-text">"Рекомендую как опытного педагога с современными методиками преподавания. Результаты видны уже после первых занятий."</p>
+                    <div class="review-author">— Коллега</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Мероприятия -->
     <section id="events" class="events">
         <div class="container">
@@ -265,19 +291,22 @@
                             <div class="slide">
                                 <img loading="lazy" decoding="async" src="images/Школа/Школа 1WEB.webp" alt="Уроки в сельской школе">
                                 <div class="event-overlay">
-                                    <h3>Открытые уроки в сельской школе 2022,2023г. (Богородский округ)</h3>
+                                    <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                    <p>(Богородский округ)</p>
                                 </div>
                             </div>
                             <div class="slide">
                                 <img loading="lazy" decoding="async" src="images/Школа/Школа 2WEB.webp" alt="Уроки в сельской школе">
                                 <div class="event-overlay">
-                                    <h3>Открытые уроки в сельской школе 2022,2023г. (Богородский округ)</h3>
+                                    <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                    <p>Дополнительные фото с открытых уроков</p>
                                 </div>
                             </div>
                             <div class="slide">
                                 <img loading="lazy" decoding="async" src="images/Школа/Школа 3WEB.webp" alt="Уроки в сельской школе">
                                 <div class="event-overlay">
-                                    <h3>Открытые уроки в сельской школе 2022,2023г. (Богородский округ)</h3>
+                                    <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                    <p>Дополнительные фото с открытых уроков</p>
                                 </div>
                             </div>
                         </div>
@@ -298,19 +327,22 @@
                             <div class="slide">
                                 <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗаWEB.webp" alt="Мероприятия вне ВУЗа">
                                 <div class="event-overlay">
-                                    <h3>Организация мероприятия вне ВУЗа (г. Орехово-Зуево, г. Шатура)</h3>
+                                    <h3>Организация мероприятия вне ВУЗа</h3>
+                                    <p>(г. Орехово-Зуево, г. Шатура)</p>
                                 </div>
                             </div>
                             <div class="slide">
                                 <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗа. 2WEB.webp" alt="Мероприятия вне ВУЗа">
                                 <div class="event-overlay">
-                                    <h3>Организация мероприятия вне ВУЗа (г. Орехово-Зуево, г. Шатура)</h3>
+                                    <h3>Организация мероприятия вне ВУЗа</h3>
+                                    <p>Дополнительные фото с организации мероприятия</p>
                                 </div>
                             </div>
                             <div class="slide">
                                 <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗа 3WEB.webp" alt="Мероприятия вне ВУЗа">
                                 <div class="event-overlay">
-                                    <h3>Организация мероприятия вне ВУЗа (г. Орехово-Зуево, г. Шатура)</h3>
+                                    <h3>Организация мероприятия вне ВУЗа</h3>
+                                    <p>Дополнительные фото с организации мероприятия</p>
                                 </div>
                             </div>
                         </div>
@@ -337,12 +369,14 @@
                                 <img loading="lazy" decoding="async" src="images/Самокат/Самокат 2WEB.webp" alt="Курьер-партнер компании Самокат">
                                 <div class="event-overlay">
                                     <h3>Курьер-партнер компании "Самокат"</h3>
+                                    <p>Дополнительные фото</p>
                                 </div>
                             </div>
                             <div class="slide">
                                 <img loading="lazy" decoding="async" src="images/Самокат/Самокат 3WEB.webp" alt="Курьер-партнер компании Самокат">
                                 <div class="event-overlay">
                                     <h3>Курьер-партнер компании "Самокат"</h3>
+                                    <p>Дополнительные фото</p>
                                 </div>
                             </div>
                         </div>
@@ -369,12 +403,14 @@
                                 <img loading="lazy" decoding="async" src="images/Let's go camp/camp2WEB.webp" alt="Смены вожатого в лагере Let's go camp">
                                 <div class="event-overlay">
                                     <h3>Смены вожатого в лагере "Let's go camp"</h3>
+                                    <p>Дополнительные фото с лагеря</p>
                                 </div>
                             </div>
                             <div class="slide">
                                 <img loading="lazy" decoding="async" src="images/Let's go camp/camp3WEB.webp" alt="Смены вожатого в лагере Let's go camp">
                                 <div class="event-overlay">
                                     <h3>Смены вожатого в лагере "Let's go camp"</h3>
+                                    <p>Дополнительные фото с лагеря</p>
                                 </div>
                             </div>
                         </div>
@@ -391,36 +427,6 @@
             </div>
             <div class="events-more-container">
                 <button id="toggleEvents" class="btn">Показать все проекты</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Отзывы -->
-    <section id="reviews" class="reviews">
-        <div class="container">
-            <h2 class="section-title">Отзывы и рекомендации</h2>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="review-icon">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="review-text">"Отличный преподаватель! Помог моему ребенку успешно подготовиться к ЕГЭ по истории. Индивидуальный подход и понятное объяснение материала."</p>
-                    <div class="review-author">— Родитель ученика</div>
-                </div>
-                <div class="review-card">
-                    <div class="review-icon">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="review-text">"Профессиональный подход к обучению. Максим Алексеевич умеет заинтересовать предметом и объяснить сложные темы простым языком."</p>
-                    <div class="review-author">— Ученик</div>
-                </div>
-                <div class="review-card">
-                    <div class="review-icon">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="review-text">"Рекомендую как опытного педагога с современными методиками преподавания. Результаты видны уже после первых занятий."</p>
-                    <div class="review-author">— Коллега</div>
-                </div>
             </div>
         </div>
     </section>
@@ -643,6 +649,25 @@
         </div>
     </section>
 
+    <!-- Полноэкранный просмотр портфолио -->
+    <div id="portfolioLightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото" hidden>
+        <button type="button" class="lightbox-close" aria-label="Закрыть">&times;</button>
+        <div class="lightbox-content">
+            <button type="button" class="lightbox-prev" aria-label="Назад">&#10094;</button>
+            <div class="lightbox-slider">
+                <div class="lightbox-slides"></div>
+            </div>
+            <button type="button" class="lightbox-next" aria-label="Вперёд">&#10095;</button>
+        </div>
+        <div class="lightbox-caption"></div>
+        <div class="lightbox-dots"></div>
+    </div>
+
+    <!-- Кнопка «Наверх» -->
+    <a href="#main-content" id="backToTop" class="back-to-top" aria-label="Вернуться наверх" title="Вернуться наверх">
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </a>
+
     <!-- Футер -->
     <footer>
         <div class="container">
@@ -651,6 +676,6 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="js/script.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
