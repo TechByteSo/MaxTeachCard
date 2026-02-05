@@ -426,11 +426,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!trigger || !menu) return;
         dropdown.addEventListener('mouseenter', () => trigger.setAttribute('aria-expanded', 'true'));
         dropdown.addEventListener('mouseleave', () => {
+            if (window.matchMedia('(max-width: 992px)').matches) return;
             trigger.setAttribute('aria-expanded', 'false');
             dropdown.classList.remove('active-dropdown');
         });
         trigger.addEventListener('focus', () => trigger.setAttribute('aria-expanded', 'true'));
         dropdown.addEventListener('focusout', (e) => {
+            if (window.matchMedia('(max-width: 992px)').matches) return;
             if (!dropdown.contains(e.relatedTarget)) {
                 trigger.setAttribute('aria-expanded', 'false');
                 dropdown.classList.remove('active-dropdown');
