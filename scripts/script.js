@@ -6,6 +6,14 @@ menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
 });
 
+// Закрытие бургер-меню по клику на пустое место (только на мобильных)
+document.addEventListener('click', function(e) {
+    if (!window.matchMedia('(max-width: 992px)').matches) return;
+    if (!navLinks.classList.contains('active')) return;
+    if (e.target.closest('.nav-links') || e.target.closest('.menu-toggle')) return;
+    navLinks.classList.remove('active');
+});
+
 // Плавная прокрутка и подменю — один обработчик в capture-фазе (работает при file:// и Live Server)
 document.addEventListener('click', function(e) {
     const anchor = e.target.closest('a[href^="#"]');
