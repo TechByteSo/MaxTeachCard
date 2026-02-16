@@ -121,8 +121,12 @@ form.addEventListener('submit', async function(e) {
     formData.append('name', document.getElementById('name').value);
     formData.append('email', document.getElementById('email').value);
     formData.append('msg', document.getElementById('message').value);
+    
+    // URL для отправки формы (замените на реальный endpoint при настройке backend)
+    const formEndpoint = '/feedback'; // или 'https://your-domain.com/api/feedback'
+    
     try {
-        const response = await fetch('http://localhost:8000/feedback', {
+        const response = await fetch(formEndpoint, {
             method: 'POST',
             body: formData
         });
@@ -133,8 +137,11 @@ form.addEventListener('submit', async function(e) {
             showFormMessage('Ошибка при отправке сообщения. Попробуйте позже.', 'error');
         }
     } catch (error) {
-        console.error('Error:', error);
-        showFormMessage('Ошибка соединения с сервером. Проверьте, запущен ли сервер.', 'error');
+        // Ошибка логируется только в development режиме
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.error('Form submission error:', error);
+        }
+        showFormMessage('Ошибка соединения с сервером. Попробуйте позже или свяжитесь напрямую.', 'error');
     } finally {
         if (submitBtn) {
             submitBtn.disabled = false;
@@ -186,11 +193,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     sliders.forEach(slider => {
         slider.dataset.currentIndex = 0;
-        
-        // Автоматическое переключение слайдов каждые 5 секунд
-        setInterval(() => {
-            changeSlide(slider.id, 1);
-        }, 5000);
     });
     
     // Обработчики для кнопок слайдера через делегирование событий

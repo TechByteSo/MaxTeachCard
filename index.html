@@ -4,8 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Педагог Алексашин Максим</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/slider.css">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Профессиональный педагог Алексашин Максим. Образовательные услуги, проекты и портфолио.">
+    <meta name="keywords" content="педагог, образование, обучение, Алексашин Максим">
+    <meta name="author" content="Алексашин Максим">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Педагог Алексашин Максим">
+    <meta property="og:description" content="Профессиональный педагог Алексашин Максим. Образовательные услуги, проекты и портфолио.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/style.min.css">
+    <link rel="stylesheet" href="styles/slider.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -459,6 +479,40 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- ШАБЛОН ДЛЯ ДОБАВЛЕНИЯ НОВОГО ПРОЕКТА:
+                Скопируйте блок ниже и вставьте перед закрывающим </div> блока events-more-inner.
+                Замените sliderN на следующий номер (например, slider7, slider8 и т.д.)
+                Обновите пути к изображениям, заголовки и описания.
+                
+                <div class="event-card">
+                    <div class="slider-container">
+                        <div class="slider" id="sliderN">
+                            <div class="slide">
+                                <img loading="lazy" decoding="async" src="images/ПапкаПроекта/фото1.webp" alt="Описание проекта">
+                                <div class="event-overlay">
+                                    <h3>Название проекта</h3>
+                                    <p>Описание проекта</p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <img loading="lazy" decoding="async" src="images/ПапкаПроекта/фото2.webp" alt="Дополнительное фото">
+                                <div class="event-overlay">
+                                    <h3>Название проекта</h3>
+                                    <p>Дополнительное описание</p>
+                                </div>
+                            </div>
+                            <!-- Добавьте больше слайдов по необходимости -->
+                        </div>
+                        <button class="slider-arrow prev" data-slider="sliderN" data-direction="-1">&#10094;</button>
+                        <button class="slider-arrow next" data-slider="sliderN" data-direction="1">&#10095;</button>
+                        <div class="slider-controls">
+                            <span class="slider-dot active" data-slider="sliderN" data-index="0"></span>
+                            <span class="slider-dot" data-slider="sliderN" data-index="1"></span>
+                            <!-- Добавьте точки для каждого слайда (data-index="0", "1", "2" и т.д.) -->
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="events-more-container">
@@ -712,6 +766,6 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="scripts/script.js"></script>
+    <script src="scripts/script.min.js"></script>
 </body>
 </html>

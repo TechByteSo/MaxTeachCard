@@ -317,9 +317,6 @@ a.logo:hover {
 
 .hero-content {
     max-width: 100%;
-}
-
-.hero-content {
     position: relative;
     background: linear-gradient(135deg, rgba(44, 81, 80, 0.08) 0%, rgba(44, 81, 80, 0.03) 50%, transparent 100%);
     padding: 2.5rem;
@@ -1037,10 +1034,6 @@ section:first-of-type {
     gap: 1.5rem;
 }
 
-.events-more-wrapper {
-    margin-top: 1.5rem;
-}
-
 .events-more-container {
     text-align: center;
     margin-top: 1.5rem;
@@ -1060,6 +1053,7 @@ section:first-of-type {
 
 /* Блок «Показать все» — анимация раскрытия/закрытия по высоте (grid 0fr → 1fr) и opacity */
 .events-more-wrapper {
+    margin-top: 1.5rem;
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.5s ease;
@@ -2156,5 +2150,17 @@ footer {
         height: 48px; /* увеличено на 20% (было 40px) */
         bottom: max(0.75rem, env(safe-area-inset-bottom));
         right: max(0.75rem, env(safe-area-inset-right));
+    }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
