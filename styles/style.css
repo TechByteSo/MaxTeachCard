@@ -58,7 +58,7 @@ button:focus-visible {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: clamp(320px, 90vw, 1200px);
     width: 100%;
     margin: 0 auto;
     padding: 0 var(--container-padding);
@@ -265,12 +265,12 @@ a.logo:hover {
     display: inline-block;
     background-color: var(--secondary-color);
     color: #ffffff !important;
-    padding: 12px 30px;
+    padding: clamp(0.75rem, 1vw, 0.75rem) clamp(1.75rem, 2vw, 1.875rem);
     text-decoration: none;
     border-radius: 50px;
     transition: all 0.3s;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: clamp(0.875rem, 1vw, 0.95rem);
     white-space: nowrap;
     box-shadow: 0 4px 15px rgba(44, 81, 80, 0.2);
 }
@@ -311,7 +311,7 @@ a.logo:hover {
 .hero-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: clamp(2rem, 4vw, 4rem);
     align-items: center;
 }
 
@@ -319,9 +319,9 @@ a.logo:hover {
     max-width: 100%;
     position: relative;
     background: linear-gradient(135deg, rgba(44, 81, 80, 0.08) 0%, rgba(44, 81, 80, 0.03) 50%, transparent 100%);
-    padding: 2.5rem;
+    padding: clamp(1.5rem, 2.5vw, 2.5rem);
     border-radius: 16px;
-    border-left: 4px solid var(--secondary-color);
+    border-left: clamp(3px, 0.4vw, 4px) solid var(--secondary-color);
 }
 
 .hero-content h1 {
@@ -334,8 +334,8 @@ a.logo:hover {
 }
 
 .hero-description {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    margin-bottom: clamp(1.5rem, 2vw, 2rem);
     color: var(--text-color);
     line-height: 1.7;
     text-align: left;
@@ -343,10 +343,10 @@ a.logo:hover {
 
 .hero-buttons {
     display: flex;
-    gap: 1rem;
+    gap: clamp(0.75rem, 1vw, 1rem);
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    margin-top: clamp(1.5rem, 2vw, 2rem);
 }
 
 .hero-image {
@@ -359,7 +359,7 @@ a.logo:hover {
 .hero-image-wrapper {
     position: relative;
     width: 100%;
-    max-width: 500px;
+    max-width: clamp(280px, 40vw, 500px);
 }
 
 .hero-photo {
@@ -368,7 +368,7 @@ a.logo:hover {
     border-radius: 50%;
     object-fit: cover;
     aspect-ratio: 1;
-    border: 10px solid var(--secondary-color);
+    border: clamp(6px, 1vw, 10px) solid var(--secondary-color);
     box-shadow: 0 20px 60px rgba(44, 81, 80, 0.25);
     position: relative;
     z-index: 2;
@@ -379,14 +379,14 @@ a.logo:hover {
     display: inline-block;
     background-color: var(--secondary-color);
     color: var(--white);
-    padding: 15px 35px;
+    padding: clamp(0.875rem, 1.2vw, 0.9375rem) clamp(2rem, 2.5vw, 2.1875rem);
     text-decoration: none;
     border-radius: 50px;
     transition: all 0.3s;
     font-weight: 600;
     border: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
 }
 
 .btn-primary {
@@ -584,18 +584,18 @@ section:first-of-type {
     display: flex;
     align-items: center;
     gap: 3rem;
-    max-width: 1000px;
+    max-width: clamp(320px, 85vw, 1000px);
     margin: 0 auto;
     position: relative;
     z-index: 1;
 }
 
 .teacher-photo {
-    width: 300px;
-    height: 300px;
+    width: clamp(200px, 25vw, 300px);
+    height: clamp(200px, 25vw, 300px);
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid var(--white);
+    border: clamp(3px, 0.5vw, 5px) solid var(--white);
     box-shadow: 0 10px 30px rgba(44, 81, 80, 0.2);
     transition: transform 0.3s;
 }
@@ -683,7 +683,7 @@ section:first-of-type {
 }
 
 .services-container {
-    max-width: 1200px;
+    max-width: clamp(320px, 90vw, 1200px);
     width: 100%;
     margin: 0 auto;
     padding: clamp(1.5rem, 4vw, 60px) clamp(1.25rem, 3vw, 40px);
@@ -846,12 +846,12 @@ section:first-of-type {
 }
 
 .service-card {
-    padding: 2.5rem;
+    padding: clamp(1.5rem, 2.5vw, 2.5rem);
     border-radius: 16px;
     transition: all 0.3s;
     display: flex;
     flex-direction: column;
-    min-height: 300px;
+    min-height: clamp(280px, 30vw, 300px);
 }
 
 .service-card-dark {
@@ -923,16 +923,16 @@ section:first-of-type {
 
 .document-card {
     background: var(--white);
-    padding: 1.5rem;
+    padding: clamp(1.25rem, 2vw, 1.5rem);
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(139,69,19,0.1);
     transition: transform 0.3s;
     display: flex;
     flex-direction: column;
-    min-height: 300px;
-    border: 2px solid var(--beige);
-    width: 300px;
+    min-height: clamp(280px, 30vw, 300px);
+    border: clamp(1px, 0.2vw, 2px) solid var(--beige);
+    width: clamp(280px, 90vw, 300px);
     max-width: 100%;
 }
 
@@ -1091,6 +1091,20 @@ section:first-of-type {
     border: none;
 }
 
+/* Скрываем все slider-arrow вне slider-container в секции events */
+.events .slider-arrow:not(.slider-container .slider-arrow) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Убеждаемся, что slider-container правильно обрезает содержимое */
+.events .slider-container {
+    overflow: hidden !important;
+    position: relative !important;
+}
+
 /* Дубликат 3-го проекта только в блоке «ещё», виден только на планшетах */
 .event-card--tablet-only {
     display: none;
@@ -1103,19 +1117,19 @@ section:first-of-type {
     right: 0;
     background: linear-gradient(transparent, rgba(28, 81, 80, 0.95));
     color: var(--white);
-    padding: 1.5rem;
-    padding-bottom: 3rem;
+    padding: clamp(1.25rem, 1.5vw, 1.5rem);
+    padding-bottom: clamp(2.5rem, 3vw, 3rem);
     z-index: 5;
 }
 
 .event-overlay h3 {
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
+    font-size: clamp(0.9rem, 1vw, 1rem);
+    margin-bottom: clamp(0.2rem, 0.3vw, 0.25rem);
     font-weight: 500;
     line-height: 1.3;
 }
 .event-overlay p {
-    font-size: 0.85rem;
+    font-size: clamp(0.8rem, 0.9vw, 0.85rem);
     margin: 0;
     opacity: 0.95;
     line-height: 1.3;
@@ -1141,9 +1155,9 @@ section:first-of-type {
 
 .review-card {
     background: var(--white);
-    padding: 2rem;
+    padding: clamp(1.5rem, 2vw, 2rem);
     border-radius: 16px;
-    border-left: 4px solid var(--secondary-color);
+    border-left: clamp(3px, 0.4vw, 4px) solid var(--secondary-color);
     transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -1244,11 +1258,11 @@ section:first-of-type {
 
 .schedule-calendar {
     background: var(--white);
-    padding: 2rem;
+    padding: clamp(1.5rem, 3vw, 2rem);
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(44, 81, 80, 0.1);
-    max-width: 360px;
+    max-width: clamp(280px, 90vw, 360px);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -1282,7 +1296,7 @@ section:first-of-type {
 }
 
 .faq-container {
-    max-width: 800px;
+    max-width: clamp(320px, 90vw, 800px);
     margin: 0 auto;
     margin-top: 2rem;
 }
@@ -1349,7 +1363,7 @@ section:first-of-type {
 }
 
 .contact-container {
-    max-width: 1200px;
+    max-width: clamp(320px, 90vw, 1200px);
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -1358,9 +1372,9 @@ section:first-of-type {
     display: block;
     background: var(--white);
     border-radius: 24px;
-    padding: 60px;
+    padding: clamp(2rem, 5vw, 60px);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
+    max-width: clamp(320px, 90vw, 600px);
     margin: 0 auto;
 }
 
@@ -1429,11 +1443,11 @@ section:first-of-type {
 .submit-btn {
     background-color: var(--secondary-color);
     color: var(--white);
-    padding: 15px 40px;
+    padding: clamp(0.875rem, 1.2vw, 0.9375rem) clamp(2.25rem, 2.8vw, 2.5rem);
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
     font-weight: 600;
     transition: all 0.3s;
     font-family: 'Unbounded', sans-serif;
@@ -1938,7 +1952,7 @@ footer {
     inset: 0;
     z-index: 10000;
     background: rgba(0, 0, 0, 0.8);
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -1946,11 +1960,34 @@ footer {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s;
+    pointer-events: none;
+    overflow: hidden;
 }
+
+.lightbox[hidden],
+.lightbox:not([data-open="true"]) {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+}
+
+.lightbox[hidden] *,
+.lightbox:not([data-open="true"]) * {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
 .lightbox[data-open="true"] {
+    display: flex !important;
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
+
 .lightbox-close {
     position: absolute;
     top: 1rem;
@@ -1966,20 +2003,53 @@ footer {
     border-radius: 50%;
     z-index: 10002;
     transition: background 0.2s;
+    display: none !important;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    clip-path: inset(100% 100% 100% 100%) !important;
+    left: -9999px !important;
+    top: -9999px !important;
 }
+
+.lightbox[data-open="true"] .lightbox-close {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    clip-path: none !important;
+    left: auto !important;
+    top: 1rem !important;
+    right: 1rem !important;
+}
+
 .lightbox-close:hover {
     background: rgba(255, 255, 255, 0.3);
 }
+
 .lightbox-content {
     flex: 1 1 0%;
     min-height: 0;
-    display: flex;
+    display: none !important;
     align-items: center;
     justify-content: center;
     width: 100%;
     max-width: 100%;
     padding: 3rem 4rem;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
+
+.lightbox[data-open="true"] .lightbox-content {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
 .lightbox-prev,
 .lightbox-next {
     flex-shrink: 0;
@@ -1992,6 +2062,29 @@ footer {
     cursor: pointer;
     border-radius: 50%;
     transition: background 0.2s;
+    position: absolute !important;
+    z-index: 1;
+    display: none !important;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    clip-path: inset(100% 100% 100% 100%) !important;
+    left: -9999px !important;
+    top: -9999px !important;
+}
+
+.lightbox[data-open="true"] .lightbox-prev,
+.lightbox[data-open="true"] .lightbox-next {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    clip-path: none !important;
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
 }
 .lightbox-prev:hover,
 .lightbox-next:hover {
@@ -2002,10 +2095,19 @@ footer {
     max-width: 100%;
     min-width: 0;
     overflow: hidden;
-    display: flex;
+    display: none !important;
     align-items: center;
     justify-content: center;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
+
+.lightbox[data-open="true"] .lightbox-slider {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 .lightbox-slides {
     display: flex;
     transition: transform 0.4s ease;
@@ -2019,6 +2121,7 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 0 0.5rem;
+    min-height: 0;
 }
 .lightbox-slides .lightbox-slide img {
     max-width: 100%;
@@ -2026,7 +2129,9 @@ footer {
     width: auto;
     height: auto;
     object-fit: contain;
+    object-position: center;
     border-radius: 16px;
+    margin: auto;
 }
 .lightbox-caption {
     padding: 0.5rem 1rem;
@@ -2036,6 +2141,15 @@ footer {
     line-height: 1.3;
     flex-shrink: 0;
     min-height: 4rem;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+.lightbox[data-open="true"] .lightbox-caption {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 .lightbox-caption h3 {
     font-size: 0.95rem;
@@ -2150,6 +2264,69 @@ footer {
         height: 48px; /* увеличено на 20% (было 40px) */
         bottom: max(0.75rem, env(safe-area-inset-bottom));
         right: max(0.75rem, env(safe-area-inset-right));
+    }
+}
+
+/* Промежуточные размеры экранов (1200px - 1400px) */
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .container {
+        max-width: clamp(1000px, 85vw, 1200px);
+    }
+    .services-container {
+        max-width: clamp(1000px, 85vw, 1200px);
+    }
+    .contact-container {
+        max-width: clamp(1000px, 85vw, 1200px);
+    }
+    .hero-wrapper {
+        gap: clamp(3rem, 4vw, 4rem);
+    }
+    .hero-image-wrapper {
+        max-width: clamp(450px, 35vw, 500px);
+    }
+}
+
+/* Очень большие экраны (1400px+) - 4K, ultrawide */
+@media (min-width: 1400px) {
+    .container {
+        max-width: min(1200px, calc(100vw - 6rem));
+    }
+    .services-container {
+        max-width: min(1200px, calc(100vw - 6rem));
+    }
+    .contact-container {
+        max-width: min(1200px, calc(100vw - 6rem));
+    }
+    .hero-wrapper {
+        gap: 4.5rem;
+    }
+    .hero-content {
+        padding: clamp(2rem, 3vw, 3rem);
+    }
+    .hero-image-wrapper {
+        max-width: 550px;
+    }
+    .section-title {
+        font-size: clamp(2rem, 2.5vw, 3rem);
+    }
+    .services-header {
+        gap: 3.5rem;
+    }
+    .teacher-profile {
+        gap: 4rem;
+    }
+    .btn {
+        padding: clamp(0.875rem, 1.2vw, 1rem) clamp(2rem, 2.5vw, 2.5rem);
+        font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+    }
+    .service-card {
+        padding: clamp(2rem, 2.5vw, 3rem);
+    }
+    .review-card {
+        padding: clamp(1.75rem, 2vw, 2.5rem);
+    }
+    .document-card {
+        padding: clamp(1.5rem, 2vw, 2rem);
     }
 }
 
