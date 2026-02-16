@@ -27,8 +27,8 @@
                             <li role="none"><a href="#documents" role="menuitem">Документы и сертификаты</a></li>
                         </ul>
                     </li>
-                    <li><a href="#faq">FAQ</a></li>
                     <li><a href="#schedule">Контакты</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                     <li class="nav-cta-mobile"><a href="#contact" class="header-cta-btn">Записаться</a></li>
                 </ul>
                 <a href="#contact" class="header-cta-btn">Записаться</a>
@@ -208,14 +208,15 @@
         </div>
     </section>
 
-    <!-- Мероприятия -->
+    <!-- Моё портфолио -->
     <section id="events" class="events">
         <div class="container">
-            <div class="events-header">
+            <header class="events-header">
                 <h2 class="section-title">МОЁ ПОРТФОЛИО</h2>
-                <a href="#events" class="events-filter">Все проекты</a>
-            </div>
-            <div class="events-grid" id="eventsGrid">
+            </header>
+
+            <!-- Первая строка: всегда видимые проекты (десктоп — 3, планшет — 2, мобилка — 1) -->
+            <div class="events-grid">
                 <div class="event-card">
                     <div class="slider-container">
                         <div class="slider" id="slider1">
@@ -250,7 +251,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="event-card">
                     <div class="slider-container">
                         <div class="slider" id="slider2">
@@ -285,8 +285,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="event-card">
+                <div class="event-card event-card--third">
                     <div class="slider-container">
                         <div class="slider" id="slider3">
                             <div class="slide">
@@ -320,114 +319,150 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div id="eventsMoreWrapper" class="events-more-wrapper events-more-wrapper--hidden">
-                <div class="event-card">
-                    <div class="slider-container">
-                        <div class="slider" id="slider4">
-                            <div class="slide">
-                                <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗаWEB.webp" alt="Мероприятия вне ВУЗа">
-                                <div class="event-overlay">
-                                    <h3>Организация мероприятия вне ВУЗа</h3>
-                                    <p>(г. Орехово-Зуево, г. Шатура)</p>
+            <!-- Дополнительные проекты: раскрывается по кнопке, на планшетах 2 в ряд -->
+            <div id="eventsMoreWrapper" class="events-more-wrapper events-more-wrapper--hidden" role="region" aria-label="Дополнительные проекты">
+                <div class="events-more-inner">
+                    <div class="event-card event-card--tablet-only">
+                        <div class="slider-container">
+                            <div class="slider" id="slider3-tablet">
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Школа/Школа 1WEB.webp" alt="Уроки в сельской школе">
+                                    <div class="event-overlay">
+                                        <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                        <p>(Богородский округ)</p>
+                                    </div>
+                                </div>
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Школа/Школа 2WEB.webp" alt="Уроки в сельской школе">
+                                    <div class="event-overlay">
+                                        <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                        <p>Дополнительные фото с открытых уроков</p>
+                                    </div>
+                                </div>
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Школа/Школа 3WEB.webp" alt="Уроки в сельской школе">
+                                    <div class="event-overlay">
+                                        <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                        <p>Дополнительные фото с открытых уроков</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="slide">
-                                <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗа. 2WEB.webp" alt="Мероприятия вне ВУЗа">
-                                <div class="event-overlay">
-                                    <h3>Организация мероприятия вне ВУЗа</h3>
-                                    <p>Дополнительные фото с организации мероприятия</p>
-                                </div>
+                            <button class="slider-arrow prev" data-slider="slider3-tablet" data-direction="-1">&#10094;</button>
+                            <button class="slider-arrow next" data-slider="slider3-tablet" data-direction="1">&#10095;</button>
+                            <div class="slider-controls">
+                                <span class="slider-dot active" data-slider="slider3-tablet" data-index="0"></span>
+                                <span class="slider-dot" data-slider="slider3-tablet" data-index="1"></span>
+                                <span class="slider-dot" data-slider="slider3-tablet" data-index="2"></span>
                             </div>
-                            <div class="slide">
-                                <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗа 3WEB.webp" alt="Мероприятия вне ВУЗа">
-                                <div class="event-overlay">
-                                    <h3>Организация мероприятия вне ВУЗа</h3>
-                                    <p>Дополнительные фото с организации мероприятия</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="slider-arrow prev" data-slider="slider4" data-direction="-1">&#10094;</button>
-                        <button class="slider-arrow next" data-slider="slider4" data-direction="1">&#10095;</button>
-                        <div class="slider-controls">
-                            <span class="slider-dot active" data-slider="slider4" data-index="0"></span>
-                            <span class="slider-dot" data-slider="slider4" data-index="1"></span>
-                            <span class="slider-dot" data-slider="slider4" data-index="2"></span>
                         </div>
                     </div>
-                </div>
-
-                <div class="event-card">
-                    <div class="slider-container">
-                        <div class="slider" id="slider5">
-                            <div class="slide">
-                                <img loading="lazy" decoding="async" src="images/Самокат/Самокат 1WEB.webp" alt="Курьер-партнер компании Самокат">
-                                <div class="event-overlay">
-                                    <h3>Курьер-партнер компании "Самокат"</h3>
+                    <div class="event-card">
+                        <div class="slider-container">
+                            <div class="slider" id="slider4">
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗаWEB.webp" alt="Мероприятия вне ВУЗа">
+                                    <div class="event-overlay">
+                                        <h3>Организация мероприятия вне ВУЗа</h3>
+                                        <p>(г. Орехово-Зуево, г. Шатура)</p>
+                                    </div>
+                                </div>
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗа. 2WEB.webp" alt="Мероприятия вне ВУЗа">
+                                    <div class="event-overlay">
+                                        <h3>Организация мероприятия вне ВУЗа</h3>
+                                        <p>Дополнительные фото с организации мероприятия</p>
+                                    </div>
+                                </div>
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Организация мероприятия вне ВУЗа/Организация мероприятия вне ВУЗа 3WEB.webp" alt="Мероприятия вне ВУЗа">
+                                    <div class="event-overlay">
+                                        <h3>Организация мероприятия вне ВУЗа</h3>
+                                        <p>Дополнительные фото с организации мероприятия</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="slide">
-                                <img loading="lazy" decoding="async" src="images/Самокат/Самокат 2WEB.webp" alt="Курьер-партнер компании Самокат">
-                                <div class="event-overlay">
-                                    <h3>Курьер-партнер компании "Самокат"</h3>
-                                    <p>Дополнительные фото</p>
-                                </div>
+                            <button class="slider-arrow prev" data-slider="slider4" data-direction="-1">&#10094;</button>
+                            <button class="slider-arrow next" data-slider="slider4" data-direction="1">&#10095;</button>
+                            <div class="slider-controls">
+                                <span class="slider-dot active" data-slider="slider4" data-index="0"></span>
+                                <span class="slider-dot" data-slider="slider4" data-index="1"></span>
+                                <span class="slider-dot" data-slider="slider4" data-index="2"></span>
                             </div>
-                            <div class="slide">
-                                <img loading="lazy" decoding="async" src="images/Самокат/Самокат 3WEB.webp" alt="Курьер-партнер компании Самокат">
-                                <div class="event-overlay">
-                                    <h3>Курьер-партнер компании "Самокат"</h3>
-                                    <p>Дополнительные фото</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="slider-arrow prev" data-slider="slider5" data-direction="-1">&#10094;</button>
-                        <button class="slider-arrow next" data-slider="slider5" data-direction="1">&#10095;</button>
-                        <div class="slider-controls">
-                            <span class="slider-dot active" data-slider="slider5" data-index="0"></span>
-                            <span class="slider-dot" data-slider="slider5" data-index="1"></span>
-                            <span class="slider-dot" data-slider="slider5" data-index="2"></span>
                         </div>
                     </div>
-                </div>
-
-                <div class="event-card">
-                    <div class="slider-container">
-                        <div class="slider" id="slider6">
-                            <div class="slide">
-                                <img loading="lazy" decoding="async" src="images/Let's go camp/camp1WEB.webp" alt="Смены вожатого в лагере Let's go camp">
-                                <div class="event-overlay">
-                                    <h3>Смены вожатого в лагере "Let's go camp"</h3>
+                    <div class="event-card">
+                        <div class="slider-container">
+                            <div class="slider" id="slider5">
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат 1WEB.webp" alt="Курьер-партнер компании Самокат">
+                                    <div class="event-overlay">
+                                        <h3>Курьер-партнер компании "Самокат"</h3>
+                                    </div>
+                                </div>
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат 2WEB.webp" alt="Курьер-партнер компании Самокат">
+                                    <div class="event-overlay">
+                                        <h3>Курьер-партнер компании "Самокат"</h3>
+                                        <p>Дополнительные фото</p>
+                                    </div>
+                                </div>
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат 3WEB.webp" alt="Курьер-партнер компании Самокат">
+                                    <div class="event-overlay">
+                                        <h3>Курьер-партнер компании "Самокат"</h3>
+                                        <p>Дополнительные фото</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="slide">
-                                <img loading="lazy" decoding="async" src="images/Let's go camp/camp2WEB.webp" alt="Смены вожатого в лагере Let's go camp">
-                                <div class="event-overlay">
-                                    <h3>Смены вожатого в лагере "Let's go camp"</h3>
-                                    <p>Дополнительные фото с лагеря</p>
-                                </div>
+                            <button class="slider-arrow prev" data-slider="slider5" data-direction="-1">&#10094;</button>
+                            <button class="slider-arrow next" data-slider="slider5" data-direction="1">&#10095;</button>
+                            <div class="slider-controls">
+                                <span class="slider-dot active" data-slider="slider5" data-index="0"></span>
+                                <span class="slider-dot" data-slider="slider5" data-index="1"></span>
+                                <span class="slider-dot" data-slider="slider5" data-index="2"></span>
                             </div>
-                            <div class="slide">
-                                <img loading="lazy" decoding="async" src="images/Let's go camp/camp3WEB.webp" alt="Смены вожатого в лагере Let's go camp">
-                                <div class="event-overlay">
-                                    <h3>Смены вожатого в лагере "Let's go camp"</h3>
-                                    <p>Дополнительные фото с лагеря</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="slider-arrow prev" data-slider="slider6" data-direction="-1">&#10094;</button>
-                        <button class="slider-arrow next" data-slider="slider6" data-direction="1">&#10095;</button>
-                        <div class="slider-controls">
-                            <span class="slider-dot active" data-slider="slider6" data-index="0"></span>
-                            <span class="slider-dot" data-slider="slider6" data-index="1"></span>
-                            <span class="slider-dot" data-slider="slider6" data-index="2"></span>
                         </div>
                     </div>
-                </div>
+                    <div class="event-card">
+                        <div class="slider-container">
+                            <div class="slider" id="slider6">
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Let's go camp/camp1WEB.webp" alt="Смены вожатого в лагере Let's go camp">
+                                    <div class="event-overlay">
+                                        <h3>Смены вожатого в лагере "Let's go camp"</h3>
+                                    </div>
+                                </div>
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Let's go camp/camp2WEB.webp" alt="Смены вожатого в лагере Let's go camp">
+                                    <div class="event-overlay">
+                                        <h3>Смены вожатого в лагере "Let's go camp"</h3>
+                                        <p>Дополнительные фото с лагеря</p>
+                                    </div>
+                                </div>
+                                <div class="slide">
+                                    <img loading="lazy" decoding="async" src="images/Let's go camp/camp3WEB.webp" alt="Смены вожатого в лагере Let's go camp">
+                                    <div class="event-overlay">
+                                        <h3>Смены вожатого в лагере "Let's go camp"</h3>
+                                        <p>Дополнительные фото с лагеря</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="slider-arrow prev" data-slider="slider6" data-direction="-1">&#10094;</button>
+                            <button class="slider-arrow next" data-slider="slider6" data-direction="1">&#10095;</button>
+                            <div class="slider-controls">
+                                <span class="slider-dot active" data-slider="slider6" data-index="0"></span>
+                                <span class="slider-dot" data-slider="slider6" data-index="1"></span>
+                                <span class="slider-dot" data-slider="slider6" data-index="2"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div class="events-more-container">
-                <button id="toggleEvents" class="btn">Показать все проекты</button>
+                <button type="button" id="toggleEvents" class="btn" aria-expanded="false" aria-controls="eventsMoreWrapper">Показать все проекты</button>
             </div>
         </div>
     </section>

@@ -384,11 +384,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 eventsMoreWrapper.classList.add('events-more-wrapper--hidden');
                 eventsVisible = false;
                 this.textContent = 'Показать все проекты';
+                this.setAttribute('aria-expanded', 'false');
             } else {
                 eventsMoreWrapper.classList.remove('events-more-wrapper--hidden');
                 eventsMoreWrapper.classList.add('events-more-wrapper--visible');
                 eventsVisible = true;
                 this.textContent = 'Скрыть проекты';
+                this.setAttribute('aria-expanded', 'true');
+                eventsMoreWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         });
     }
