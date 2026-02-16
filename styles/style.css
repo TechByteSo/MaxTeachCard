@@ -301,6 +301,13 @@ a.logo:hover {
     overflow: hidden;
 }
 
+/* На десктопе отступ внизу уменьшен в 2 раза (еще раз) */
+@media (min-width: 1025px) {
+    .hero {
+        padding-bottom: 30px; /* уменьшено еще в 2 раза (было 60px, изначально 120px) */
+    }
+}
+
 .hero-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2102,8 +2109,8 @@ footer {
     position: fixed;
     bottom: 1.5rem;
     right: 1.5rem;
-    width: 48px;
-    height: 48px;
+    width: 58px; /* увеличено на 20% (было 48px) */
+    height: 58px; /* увеличено на 20% (было 48px) */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2128,25 +2135,25 @@ footer {
     transform: translateY(0);
 }
 .back-to-top i {
-    font-size: 1.2rem;
+    font-size: 1.44rem; /* увеличено на 20% (было 1.2rem) */
 }
 @media (max-width: 992px) {
     .back-to-top {
         bottom: 1rem;
         right: 1rem;
-        width: 44px;
-        height: 44px;
+        width: 53px; /* увеличено на 20% (было 44px) */
+        height: 53px; /* увеличено на 20% (было 44px) */
         bottom: max(1rem, env(safe-area-inset-bottom));
         right: max(1rem, env(safe-area-inset-right));
     }
     .back-to-top i {
-        font-size: 1.1rem;
+        font-size: 1.32rem; /* увеличено на 20% (было 1.1rem) */
     }
 }
 @media (max-width: 768px) {
     .back-to-top {
-        width: 40px;
-        height: 40px;
+        width: 48px; /* увеличено на 20% (было 40px) */
+        height: 48px; /* увеличено на 20% (было 40px) */
         bottom: max(0.75rem, env(safe-area-inset-bottom));
         right: max(0.75rem, env(safe-area-inset-right));
     }
