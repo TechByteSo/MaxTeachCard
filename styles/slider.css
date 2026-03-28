@@ -1,5 +1,5 @@
 /* Стили для слайдера */
-.slider-container {
+.slider__container {
     position: relative;
     width: 100%;
     height: 300px;
@@ -8,26 +8,26 @@
     border: 3px solid var(--white);
 }
 
-.slider {
+.slider__track {
     display: flex;
     transition: transform 0.5s ease;
     height: 100%;
 }
 
-.slide {
+.slider__slide {
     min-width: 100%;
     height: 100%;
     position: relative;
 }
 
-.slide img {
+.slider__slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
 }
 
-.slider-container .slider-controls {
+.slider__container .slider__controls {
     position: absolute;
     bottom: 10px;
     left: 0;
@@ -38,7 +38,7 @@
     z-index: 10;
 }
 
-.slider-container .slider-dot {
+.slider__container .slider__dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -47,11 +47,11 @@
     transition: background-color 0.3s;
 }
 
-.slider-container .slider-dot.active {
+.slider__container .slider__dot--active {
     background-color: var(--secondary-color);
 }
 
-.slider-container .slider-arrow {
+.slider__container .slider__arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -71,34 +71,34 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.slider-container .slider-arrow:hover {
+.slider__container .slider__arrow:hover {
     background-color: rgba(44, 81, 80, 1);
     transform: translateY(-50%) scale(1.1);
 }
 
-.slider-container .slider-arrow.prev {
+.slider__container .slider__arrow.prev {
     left: 10px;
 }
 
-.slider-container .slider-arrow.next {
+.slider__container .slider__arrow.next {
     right: 10px;
 }
 
 /* Адаптивность для мобильных устройств — кнопки меньше, не перекрывают текст */
 @media (max-width: 768px) {
-    .slider-container {
+    .slider__container {
         height: 250px;
     }
     
-    .slider-container .slider-arrow {
+    .slider__container .slider__arrow {
         width: 28px;
         height: 28px;
         font-size: 0.7rem;
     }
-    .slider-container .slider-arrow.prev {
+    .slider__container .slider__arrow.prev {
         left: 6px;
     }
-    .slider-container .slider-arrow.next {
+    .slider__container .slider__arrow.next {
         right: 6px;
     }
 }

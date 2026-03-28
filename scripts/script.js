@@ -1,20 +1,46 @@
-// Мобильное меню
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+// Плавная прокрутка к якорю с учётом scroll-padding-top (надёжнее scrollIntoView в части браузеров)
+function scrollToHashTarget(el) {
+    if (!el) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+        el.scrollIntoView({ behavior: 'auto', block: 'start' });
+        return;
+    }
+    const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 64;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - pad;
+    window.scrollTo({ top: Math.max(0, y), left: 0, behavior: 'smooth' });
+}
 
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
+// Мобильное меню
+const menuToggle = document.querySelector('.site-header__toggle');
+const navLinks = document.querySelector('.site-header__list');
+
+function setMenuOpen(isOpen) {
+    if (!navLinks) return;
+    navLinks.classList.toggle('site-header__list--open', isOpen);
+    if (menuToggle) {
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuToggle.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+    }
+}
+
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const willOpen = !navLinks.classList.contains('site-header__list--open');
+        setMenuOpen(willOpen);
+    });
+}
 
 // Закрытие бургер-меню по клику на пустое место (только на мобильных)
 document.addEventListener('click', function(e) {
-    if (!window.matchMedia('(max-width: 992px)').matches) return;
-    if (!navLinks.classList.contains('active')) return;
-    if (e.target.closest('.nav-links') || e.target.closest('.menu-toggle')) return;
-    navLinks.classList.remove('active');
+    if (!navLinks || !window.matchMedia('(max-width: 992px)').matches) return;
+    if (!navLinks.classList.contains('site-header__list--open')) return;
+    if (e.target.closest('.site-header__list') || e.target.closest('.site-header__toggle')) return;
+    setMenuOpen(false);
 });
 
-// Плавная прокрутка и подменю — один обработчик в capture-фазе (работает при file:// и Live Server)
+// Плавная прокрутка и подменю — один обработчик в capture-фазе
 document.addEventListener('click', function(e) {
     const anchor = e.target.closest('a[href^="#"]');
     if (!anchor) return;
@@ -24,13 +50,13 @@ document.addEventListener('click', function(e) {
     if (anchor.getAttribute('aria-haspopup') === 'true' && isMobile) {
         e.preventDefault();
         e.stopPropagation();
-        const dropdown = anchor.closest('.nav-dropdown');
+        const dropdown = anchor.closest('.site-header__dropdown');
         if (dropdown) {
-            const wasOpen = dropdown.classList.toggle('active-dropdown');
+            const wasOpen = dropdown.classList.toggle('site-header__dropdown--open');
             anchor.setAttribute('aria-expanded', wasOpen ? 'true' : 'false');
-            document.querySelectorAll('.nav-dropdown').forEach(other => {
+            document.querySelectorAll('.site-header__dropdown').forEach(other => {
                 if (other !== dropdown) {
-                    other.classList.remove('active-dropdown');
+                    other.classList.remove('site-header__dropdown--open');
                     const t = other.querySelector(':scope > a');
                     if (t) t.setAttribute('aria-expanded', 'false');
                 }
@@ -41,20 +67,21 @@ document.addEventListener('click', function(e) {
     e.preventDefault();
     const target = document.querySelector(href);
     if (!target) return;
-    if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
-    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('active-dropdown'));
-    document.querySelectorAll('.nav-dropdown > a').forEach(a => a.setAttribute('aria-expanded', 'false'));
-    target.scrollIntoView({ behavior: 'smooth' });
+    if (navLinks && navLinks.classList.contains('site-header__list--open')) setMenuOpen(false);
+    document.querySelectorAll('.site-header__dropdown').forEach(d => d.classList.remove('site-header__dropdown--open'));
+    document.querySelectorAll('.site-header__dropdown > a').forEach(a => a.setAttribute('aria-expanded', 'false'));
+    scrollToHashTarget(target);
 }, true);
 
 // Анимация при скролле
 const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.section-title, .teacher-profile, .service-card, .event-card, .contact-info, .contact-form, .stat-item, .review-card');
-    
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const elements = document.querySelectorAll('.section__title, .about__profile, .services__card, .events__card, .contact__form, .stats__item, .reviews__card');
+
     elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight * 1.05; /* анимация при появлении в зоне видимости (раньше по скроллу) */
-        
+        const screenPosition = window.innerHeight * 1.05;
+
         if (elementPosition < screenPosition) {
             element.style.animation = `fadeIn 1s forwards`;
         }
@@ -66,26 +93,29 @@ window.addEventListener('load', animateOnScroll);
 
 // FAQ аккордеон
 document.addEventListener('DOMContentLoaded', function() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
+    const faqItems = document.querySelectorAll('.faq__item');
+
     faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
+        const question = item.querySelector('.faq__question');
+        if (!question) return;
+
         question.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            
-            // Закрываем все остальные элементы
+            const isActive = item.classList.contains('faq__item--open');
+
             faqItems.forEach(otherItem => {
                 if (otherItem !== item) {
-                    otherItem.classList.remove('active');
+                    otherItem.classList.remove('faq__item--open');
+                    const q = otherItem.querySelector('.faq__question');
+                    if (q) q.setAttribute('aria-expanded', 'false');
                 }
             });
-            
-            // Переключаем текущий элемент
+
             if (isActive) {
-                item.classList.remove('active');
+                item.classList.remove('faq__item--open');
+                question.setAttribute('aria-expanded', 'false');
             } else {
-                item.classList.add('active');
+                item.classList.add('faq__item--open');
+                question.setAttribute('aria-expanded', 'true');
             }
         });
     });
@@ -99,18 +129,18 @@ const formMessage = document.getElementById('formMessage');
 function showFormMessage(text, type) {
     if (!formMessage) return;
     formMessage.textContent = text;
-    formMessage.className = 'form-message visible ' + (type || '');
+    formMessage.className = 'contact-form__message visible ' + (type || '');
     formMessage.setAttribute('aria-live', 'polite');
 }
 
 function clearFormMessage() {
     if (formMessage) {
         formMessage.textContent = '';
-        formMessage.className = 'form-message';
+        formMessage.className = 'contact-form__message';
     }
 }
 
-form.addEventListener('submit', async function(e) {
+if (form) form.addEventListener('submit', async function(e) {
     e.preventDefault();
     clearFormMessage();
     if (submitBtn) {
@@ -120,11 +150,13 @@ form.addEventListener('submit', async function(e) {
     const formData = new FormData();
     formData.append('name', document.getElementById('name').value);
     formData.append('email', document.getElementById('email').value);
+    const subjectEl = document.getElementById('subject');
+    if (subjectEl) formData.append('subject', subjectEl.value);
     formData.append('msg', document.getElementById('message').value);
-    
-    // URL для отправки формы (замените на реальный endpoint при настройке backend)
-    const formEndpoint = '/feedback'; // или 'https://your-domain.com/api/feedback'
-    
+    formData.append('consent', document.getElementById('consent') && document.getElementById('consent').checked ? '1' : '0');
+
+    const formEndpoint = '/feedback';
+
     try {
         const response = await fetch(formEndpoint, {
             method: 'POST',
@@ -137,7 +169,6 @@ form.addEventListener('submit', async function(e) {
             showFormMessage('Ошибка при отправке сообщения. Попробуйте позже.', 'error');
         }
     } catch (error) {
-        // Ошибка логируется только в development режиме
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
             console.error('Form submission error:', error);
         }
@@ -153,69 +184,66 @@ form.addEventListener('submit', async function(e) {
 // Функции для слайдера
 function changeSlide(sliderId, direction) {
     const slider = document.getElementById(sliderId);
-    const slides = slider.querySelectorAll('.slide');
-    const dots = slider.parentElement.querySelectorAll('.slider-dot');
-    const currentIndex = parseInt(slider.dataset.currentIndex || 0);
-    
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.slider__slide');
+    const dots = slider.parentElement.querySelectorAll('.slider__dot');
+    const currentIndex = parseInt(slider.dataset.currentIndex || 0, 10);
+
     let newIndex = currentIndex + direction;
-    
+
     if (newIndex < 0) {
         newIndex = slides.length - 1;
     } else if (newIndex >= slides.length) {
         newIndex = 0;
     }
-    
+
     slider.style.transform = `translateX(-${newIndex * 100}%)`;
     slider.dataset.currentIndex = newIndex;
-    
-    // Обновление активной точки
+
     dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === newIndex);
+        dot.classList.toggle('slider__dot--active', index === newIndex);
     });
 }
 
 function goToSlide(sliderId, index) {
     const slider = document.getElementById(sliderId);
-    const dots = slider.parentElement.querySelectorAll('.slider-dot');
-    
+    if (!slider) return;
+    const dots = slider.parentElement.querySelectorAll('.slider__dot');
+
     slider.style.transform = `translateX(-${index * 100}%)`;
     slider.dataset.currentIndex = index;
-    
-    // Обновление активной точки
+
     dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
+        dot.classList.toggle('slider__dot--active', i === index);
     });
 }
 
-// Инициализация слайдеров
 document.addEventListener('DOMContentLoaded', function() {
-    const sliders = document.querySelectorAll('.slider');
-    
+    const sliders = document.querySelectorAll('.slider__track');
+
     sliders.forEach(slider => {
         slider.dataset.currentIndex = 0;
     });
-    
-    // Обработчики для кнопок слайдера через делегирование событий
+
     document.addEventListener('click', function(e) {
-        // Стрелки слайдера
-        if (e.target.classList.contains('slider-arrow')) {
-            const sliderId = e.target.dataset.slider;
-            const direction = parseInt(e.target.dataset.direction);
+        const arrowBtn = e.target.closest('.slider__arrow');
+        if (arrowBtn) {
+            const sliderId = arrowBtn.dataset.slider;
+            const direction = parseInt(arrowBtn.dataset.direction, 10);
             changeSlide(sliderId, direction);
         }
-        
-        // Точки слайдера
-        if (e.target.classList.contains('slider-dot')) {
-            const sliderId = e.target.dataset.slider;
-            const index = parseInt(e.target.dataset.index);
+
+        const dotEl = e.target.closest('.slider__dot');
+        if (dotEl) {
+            const sliderId = dotEl.dataset.slider;
+            const index = parseInt(dotEl.dataset.index, 10);
             goToSlide(sliderId, index);
         }
     });
 
-    // Свайпы для слайдеров на мобильных
     const swipeThreshold = 50;
-    document.querySelectorAll('.slider-container').forEach(container => {
-        const sliderEl = container.querySelector('.slider');
+    document.querySelectorAll('.slider__container').forEach(container => {
+        const sliderEl = container.querySelector('.slider__track');
         if (!sliderEl || !sliderEl.id) return;
         let touchStartX = 0;
         container.addEventListener('touchstart', function(e) {
@@ -229,25 +257,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { passive: true });
     });
 
-    // Полноэкранный просмотр портфолио по клику на фото
     const lightbox = document.getElementById('portfolioLightbox');
-    const lightboxSlides = lightbox && lightbox.querySelector('.lightbox-slides');
-    const lightboxCaption = lightbox && lightbox.querySelector('.lightbox-caption');
-    const lightboxDots = lightbox && lightbox.querySelector('.lightbox-dots');
-    const lightboxClose = lightbox && lightbox.querySelector('.lightbox-close');
-    const lightboxPrev = lightbox && lightbox.querySelector('.lightbox-prev');
-    const lightboxNext = lightbox && lightbox.querySelector('.lightbox-next');
+    const lightboxSlides = lightbox && lightbox.querySelector('.lightbox__slides');
+    const lightboxCaption = lightbox && lightbox.querySelector('.lightbox__caption');
+    const lightboxDots = lightbox && lightbox.querySelector('.lightbox__dots');
+    const lightboxClose = lightbox && lightbox.querySelector('.lightbox__close');
+    const lightboxPrev = lightbox && lightbox.querySelector('.lightbox__prev');
+    const lightboxNext = lightbox && lightbox.querySelector('.lightbox__next');
 
     if (lightbox && lightboxSlides && lightboxCaption) {
         let lightboxCurrentIndex = 0;
         let lightboxSlideData = [];
 
         function openLightbox(sliderEl) {
-            const slides = sliderEl.querySelectorAll('.slide');
+            const slides = sliderEl.querySelectorAll('.slider__slide');
             const currentIndex = parseInt(sliderEl.dataset.currentIndex || 0, 10);
             lightboxSlideData = Array.from(slides).map(slide => {
                 const img = slide.querySelector('img');
-                const overlay = slide.querySelector('.event-overlay');
+                const overlay = slide.querySelector('.events__overlay');
                 const h3 = overlay ? overlay.querySelector('h3') : null;
                 const p = overlay ? overlay.querySelector('p') : null;
                 return {
@@ -258,10 +285,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
             });
             lightboxSlides.innerHTML = lightboxSlideData.map(d =>
-                `<div class="lightbox-slide"><img src="${d.src}" alt="${d.alt || ''}"></div>`
+                `<div class="lightbox__slide"><img src="${d.src}" alt="${d.alt || ''}"></div>`
             ).join('');
             lightboxDots.innerHTML = lightboxSlideData.map((_, i) =>
-                `<button type="button" class="lightbox-dot ${i === currentIndex ? 'active' : ''}" data-index="${i}" aria-label="Слайд ${i + 1}"></button>`
+                `<button type="button" class="lightbox__dot${i === currentIndex ? ' lightbox__dot--active' : ''}" data-index="${i}" aria-label="Слайд ${i + 1}"></button>`
             ).join('');
             lightboxCurrentIndex = currentIndex;
             lightboxSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -288,18 +315,18 @@ document.addEventListener('DOMContentLoaded', function() {
             if (n === 0) return;
             lightboxCurrentIndex = ((index % n) + n) % n;
             lightboxSlides.style.transform = `translateX(-${lightboxCurrentIndex * 100}%)`;
-            lightboxDots.querySelectorAll('.lightbox-dot').forEach((dot, i) => {
-                dot.classList.toggle('active', i === lightboxCurrentIndex);
+            lightboxDots.querySelectorAll('.lightbox__dot').forEach((dot, i) => {
+                dot.classList.toggle('lightbox__dot--active', i === lightboxCurrentIndex);
             });
             updateLightboxCaption();
         }
 
-        document.querySelectorAll('.events .slider-container').forEach(container => {
-            const sliderEl = container.querySelector('.slider');
+        document.querySelectorAll('.events .slider__container').forEach(container => {
+            const sliderEl = container.querySelector('.slider__track');
             if (!sliderEl) return;
             container.addEventListener('click', function(e) {
-                if (e.target.closest('.slider-arrow') || e.target.closest('.slider-dot')) return;
-                if (e.target.closest('.slide')) {
+                if (e.target.closest('.slider__arrow') || e.target.closest('.slider__dot')) return;
+                if (e.target.closest('.slider__slide')) {
                     e.preventDefault();
                     openLightbox(sliderEl);
                 }
@@ -311,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (lightboxNext) lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); lightboxGoTo(lightboxCurrentIndex + 1); });
         lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox) return closeLightbox();
-            if (!e.target.closest('.lightbox-slide img') && !e.target.closest('button') && !e.target.closest('.lightbox-caption')) closeLightbox();
+            if (!e.target.closest('.lightbox__slide img') && !e.target.closest('button') && !e.target.closest('.lightbox__caption')) closeLightbox();
         });
         document.addEventListener('keydown', function(e) {
             if (lightbox.getAttribute('data-open') !== 'true') return;
@@ -320,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.key === 'ArrowRight') lightboxGoTo(lightboxCurrentIndex + 1);
         });
         lightboxDots.addEventListener('click', function(e) {
-            const dot = e.target.closest('.lightbox-dot');
+            const dot = e.target.closest('.lightbox__dot');
             if (dot) lightboxGoTo(parseInt(dot.dataset.index, 10));
         });
 
@@ -335,118 +362,129 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { passive: true });
     }
 
-    // Текст предмета при клике
-    const subjectItems = document.querySelectorAll('.subject-preview-item');
+    const subjectItems = document.querySelectorAll('.services__subject');
     const subjectDetail = document.getElementById('subjectDetail');
-    const subjectDetailTitle = subjectDetail && subjectDetail.querySelector('.subject-detail-title');
-    const subjectDetailText = subjectDetail && subjectDetail.querySelector('.subject-detail-text');
-    const subjectDetailClose = subjectDetail && subjectDetail.querySelector('.subject-detail-close');
-    
+    const subjectDetailTitle = subjectDetail && subjectDetail.querySelector('.services__detail-title');
+    const subjectDetailText = subjectDetail && subjectDetail.querySelector('.services__detail-text');
+    const subjectDetailClose = subjectDetail && subjectDetail.querySelector('.services__detail-close');
+
     if (subjectItems.length && subjectDetail && subjectDetailTitle && subjectDetailText) {
         function showSubjectDetail() {
             subjectDetail.style.display = 'block';
             subjectDetail.offsetHeight;
-            subjectDetail.classList.add('subject-detail-visible');
-            subjectDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            subjectDetail.classList.add('services__detail--visible');
+            const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            subjectDetail.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'nearest' });
         }
         function hideSubjectDetail() {
-            subjectDetail.classList.remove('subject-detail-visible');
+            subjectDetail.classList.remove('services__detail--visible');
             setTimeout(function() {
                 subjectDetail.style.display = 'none';
             }, 350);
         }
+        function activateSubjectItem(el) {
+            const title = el.getAttribute('data-subject');
+            const text = el.getAttribute('data-text');
+            const isAlreadyOpen = subjectDetail.style.display === 'block' && subjectDetailTitle.textContent === title;
+            if (isAlreadyOpen) {
+                hideSubjectDetail();
+                return;
+            }
+            if (title) subjectDetailTitle.textContent = title;
+            if (text) subjectDetailText.textContent = text;
+            showSubjectDetail();
+        }
+
         subjectItems.forEach(item => {
             item.addEventListener('click', function() {
-                const title = this.getAttribute('data-subject');
-                const text = this.getAttribute('data-text');
-                const isAlreadyOpen = subjectDetail.style.display === 'block' && subjectDetailTitle.textContent === title;
-                if (isAlreadyOpen) {
-                    hideSubjectDetail();
-                    return;
+                activateSubjectItem(this);
+            });
+            item.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    activateSubjectItem(this);
                 }
-                if (title) subjectDetailTitle.textContent = title;
-                if (text) subjectDetailText.textContent = text;
-                showSubjectDetail();
             });
         });
         if (subjectDetailClose) {
             subjectDetailClose.addEventListener('click', hideSubjectDetail);
         }
     }
-    
-    // Кнопка показать/скрыть проекты: анимация через контейнер (max-height + opacity)
+
     const toggleEventsBtn = document.getElementById('toggleEvents');
     const eventsMoreWrapper = document.getElementById('eventsMoreWrapper');
     let eventsVisible = false;
-    
+
     if (toggleEventsBtn && eventsMoreWrapper) {
         toggleEventsBtn.addEventListener('click', function() {
             if (eventsVisible) {
-                eventsMoreWrapper.classList.remove('events-more-wrapper--visible');
-                eventsMoreWrapper.classList.add('events-more-wrapper--hidden');
+                eventsMoreWrapper.classList.remove('events__more--visible');
+                eventsMoreWrapper.classList.add('events__more--hidden');
                 eventsVisible = false;
                 this.textContent = 'Показать все проекты';
                 this.setAttribute('aria-expanded', 'false');
             } else {
-                eventsMoreWrapper.classList.remove('events-more-wrapper--hidden');
-                eventsMoreWrapper.classList.add('events-more-wrapper--visible');
+                eventsMoreWrapper.classList.remove('events__more--hidden');
+                eventsMoreWrapper.classList.add('events__more--visible');
                 eventsVisible = true;
                 this.textContent = 'Скрыть проекты';
                 this.setAttribute('aria-expanded', 'true');
-                eventsMoreWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                const rmEv = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                eventsMoreWrapper.scrollIntoView({ behavior: rmEv ? 'auto' : 'smooth', block: 'nearest' });
             }
         });
     }
-    
-    // Подсветка активного пункта меню при скролле
+
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
+    const navLinkEls = document.querySelectorAll('.site-header__list a[href^="#"]');
+
     function highlightNav() {
         let current = '';
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
             if (window.pageYOffset >= sectionTop - 200) {
                 current = section.getAttribute('id');
             }
         });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
+
+        navLinkEls.forEach(link => {
+            link.classList.remove('site-header__link--active', 'site-header__cta--active');
             if (link.getAttribute('href') === '#' + current) {
-                link.classList.add('active');
+                if (link.classList.contains('site-header__cta')) {
+                    link.classList.add('site-header__cta--active');
+                } else {
+                    link.classList.add('site-header__link--active');
+                }
             }
         });
     }
-    
+
     window.addEventListener('scroll', highlightNav);
     highlightNav();
 
-    // Aria и выпадающие меню: hover/focus обновляют aria-expanded, клик на мобильных открывает подменю
-    const dropdowns = document.querySelectorAll('.nav-dropdown');
+    const dropdowns = document.querySelectorAll('.site-header__dropdown');
     dropdowns.forEach(dropdown => {
         const trigger = dropdown.querySelector(':scope > a');
-        const menu = dropdown.querySelector('.dropdown-menu');
+        const menu = dropdown.querySelector('.site-header__submenu');
         if (!trigger || !menu) return;
         dropdown.addEventListener('mouseenter', () => trigger.setAttribute('aria-expanded', 'true'));
         dropdown.addEventListener('mouseleave', () => {
             if (window.matchMedia('(max-width: 992px)').matches) return;
             trigger.setAttribute('aria-expanded', 'false');
-            dropdown.classList.remove('active-dropdown');
+            dropdown.classList.remove('site-header__dropdown--open');
         });
         trigger.addEventListener('focus', () => trigger.setAttribute('aria-expanded', 'true'));
         dropdown.addEventListener('focusout', (e) => {
             if (window.matchMedia('(max-width: 992px)').matches) return;
             if (!dropdown.contains(e.relatedTarget)) {
                 trigger.setAttribute('aria-expanded', 'false');
-                dropdown.classList.remove('active-dropdown');
+                dropdown.classList.remove('site-header__dropdown--open');
             }
         });
     });
 });
 
-// Кнопка «Наверх» — показ при скролле и плавная прокрутка по клику
+// Кнопка «Наверх»
 (function() {
     const backToTop = document.getElementById('backToTop');
     if (!backToTop) return;
@@ -462,6 +500,7 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleVisibility();
     backToTop.addEventListener('click', function(e) {
         e.preventDefault();
-        document.getElementById('main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const mainEl = document.getElementById('main-content');
+        scrollToHashTarget(mainEl);
     });
 })();
