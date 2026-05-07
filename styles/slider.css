@@ -2,7 +2,9 @@
 .slider__container {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    min-height: 260px;
     overflow: hidden;
     border-radius: 16px;
     border: 3px solid var(--white);
@@ -47,6 +49,11 @@
     transition: background-color 0.3s;
 }
 
+.slider__container .slider__dot:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
+}
+
 .slider__container .slider__dot--active {
     background-color: var(--secondary-color);
 }
@@ -87,7 +94,7 @@
 /* Адаптивность для мобильных устройств — кнопки меньше, не перекрывают текст */
 @media (max-width: 768px) {
     .slider__container {
-        height: 250px;
+        min-height: 220px;
     }
     
     .slider__container .slider__arrow {

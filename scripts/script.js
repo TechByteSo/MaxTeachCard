@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const form = document.getElementById('messageForm');
 const submitBtn = document.getElementById('submitBtn');
 const formMessage = document.getElementById('formMessage');
+const DEFAULT_FORM_ENDPOINT = '/feedback';
 
 function showFormMessage(text, type) {
     if (!formMessage) return;
@@ -155,7 +156,8 @@ if (form) form.addEventListener('submit', async function(e) {
     formData.append('msg', document.getElementById('message').value);
     formData.append('consent', document.getElementById('consent') && document.getElementById('consent').checked ? '1' : '0');
 
-    const formEndpoint = '/feedback';
+    const formEndpoint = DEFAULT_FORM_ENDPOINT;
+    const isStaticFallbackEndpoint = formEndpoint === DEFAULT_FORM_ENDPOINT;
 
     try {
         const response = await fetch(formEndpoint, {
@@ -165,6 +167,9 @@ if (form) form.addEventListener('submit', async function(e) {
         if (response.ok) {
             showFormMessage('Сообщение отправлено! Я свяжусь с вами в ближайшее время.', 'success');
             form.reset();
+        } else if (isStaticFallbackEndpoint && (response.status === 404 || response.status === 405 || response.status === 501)) {
+            showFormMessage('Форма временно работает в режиме заглушки на статическом хостинге. Напишите в Telegram из блока контактов.', 'success');
+            form.reset();
         } else {
             showFormMessage('Ошибка при отправке сообщения. Попробуйте позже.', 'error');
         }
@@ -172,7 +177,12 @@ if (form) form.addEventListener('submit', async function(e) {
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
             console.error('Form submission error:', error);
         }
-        showFormMessage('Ошибка соединения с сервером. Попробуйте позже или свяжитесь напрямую.', 'error');
+        if (isStaticFallbackEndpoint) {
+            showFormMessage('Форма временно работает в режиме заглушки на статическом хостинге. Напишите в Telegram из блока контактов.', 'success');
+            form.reset();
+        } else {
+            showFormMessage('Ошибка соединения с сервером. Попробуйте позже или свяжитесь напрямую.', 'error');
+        }
     } finally {
         if (submitBtn) {
             submitBtn.disabled = false;
@@ -220,9 +230,15 @@ function goToSlide(sliderId, index) {
 
 document.addEventListener('DOMContentLoaded', function() {
     const sliders = document.querySelectorAll('.slider__track');
+    const sliderDots = document.querySelectorAll('.slider__dot');
 
     sliders.forEach(slider => {
         slider.dataset.currentIndex = 0;
+    });
+    sliderDots.forEach((dot, index) => {
+        dot.setAttribute('role', 'button');
+        dot.setAttribute('tabindex', '0');
+        dot.setAttribute('aria-label', `Перейти к слайду ${index + 1}`);
     });
 
     document.addEventListener('click', function(e) {
@@ -235,6 +251,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const dotEl = e.target.closest('.slider__dot');
         if (dotEl) {
+            const sliderId = dotEl.dataset.slider;
+            const index = parseInt(dotEl.dataset.index, 10);
+            goToSlide(sliderId, index);
+        }
+    });
+    document.addEventListener('keydown', function(e) {
+        const dotEl = e.target.closest('.slider__dot');
+        if (!dotEl) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
             const sliderId = dotEl.dataset.slider;
             const index = parseInt(dotEl.dataset.index, 10);
             goToSlide(sliderId, index);
@@ -432,6 +458,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 const rmEv = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                 eventsMoreWrapper.scrollIntoView({ behavior: rmEv ? 'auto' : 'smooth', block: 'nearest' });
             }
+        });
+    }
+
+    const docTabButtons = document.querySelectorAll('.documents-tabs__btn');
+    const docTabPanels = document.querySelectorAll('.documents-tabs__panel');
+
+    if (docTabButtons.length && docTabPanels.length) {
+        function activateDocTab(tabName) {
+            docTabButtons.forEach(btn => {
+                const active = btn.dataset.docTab === tabName;
+                btn.classList.toggle('is-active', active);
+                btn.setAttribute('aria-selected', active ? 'true' : 'false');
+            });
+            docTabPanels.forEach(panel => {
+                const active = panel.dataset.docPanel === tabName;
+                panel.classList.toggle('is-active', active);
+                panel.setAttribute('aria-hidden', active ? 'false' : 'true');
+            });
+        }
+
+        docTabButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                activateDocTab(this.dataset.docTab);
+            });
+            btn.addEventListener('keydown', function(e) {
+                if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+                e.preventDefault();
+                const tabs = Array.from(docTabButtons);
+                const currentIndex = tabs.indexOf(this);
+                const dir = e.key === 'ArrowRight' ? 1 : -1;
+                const nextIndex = (currentIndex + dir + tabs.length) % tabs.length;
+                const nextTab = tabs[nextIndex];
+                nextTab.focus();
+                activateDocTab(nextTab.dataset.docTab);
+            });
         });
     }
 

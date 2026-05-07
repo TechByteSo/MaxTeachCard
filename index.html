@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Педагог Алексашин Максим</title>
+    <title>Педагог Максим Алексашин</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Профессиональный педагог Алексашин Максим. Образовательные услуги, проекты и портфолио.">
-    <meta name="keywords" content="педагог, образование, обучение, Алексашин Максим">
+    <meta name="description" content="Педагог Максим Алексашин: репетиторские занятия, культурно-массовые мероприятия, портфолио проектов и документы.">
+    <meta name="keywords" content="преподаватель, репетитор, культурно-массовые мероприятия, Московские сезоны">
     <meta name="author" content="Алексашин Максим">
     
     <!-- Open Graph Meta Tags -->
@@ -15,7 +15,8 @@
     <meta property="og:description" content="Профессиональный педагог Алексашин Максим. Образовательные услуги, проекты и портфолио.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ru_RU">
-    <!-- DoD: при публикации добавьте og:url и og:image с абсолютными URL для превью в соцсетях -->
+    <meta property="og:url" content="https://your-domain.ru/">
+    <meta property="og:image" content="https://your-domain.ru/images/avatar.jpg">
     
     <!-- Favicon (остальные размеры добавьте при появлении файлов, иначе будут 404) -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -40,7 +41,7 @@
                     <li class="site-header__dropdown">
                         <a href="#events" aria-haspopup="true" aria-expanded="false" aria-controls="menu-projects">Проекты <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
                         <ul class="site-header__submenu" id="menu-projects" role="menu">
-                            <li role="none"><a href="#events" role="menuitem">Моё портфолио</a></li>
+                            <li role="none"><a href="#events" role="menuitem">Портфолио</a></li>
                             <li role="none"><a href="#documents" role="menuitem">Документы и сертификаты</a></li>
                         </ul>
                     </li>
@@ -71,7 +72,7 @@
                 </div>
                 <div class="hero__media">
                     <div class="hero__figure">
-                        <img src="images/avatar.jpg" alt="Алексашин Максим Алексеевич" class="hero__photo" width="500" height="500" fetchpriority="high">
+                        <img src="images/avatar.jpg" srcset="images/avatar.jpg 500w" sizes="(max-width: 768px) 70vw, 500px" alt="Алексашин Максим Алексеевич" class="hero__photo" width="500" height="500" fetchpriority="high">
                     </div>
                 </div>
             </div>
@@ -83,19 +84,19 @@
         <div class="layout__container">
             <div class="stats__grid">
                 <div class="stats__item">
-                    <div class="stats__value">2000</div>
+                    <div class="stats__value">200</div>
                     <div class="stats__label"><span class="stats__label-accent">Учеников</span></div>
                 </div>
                 <div class="stats__item">
-                    <div class="stats__value">10</div>
+                    <div class="stats__value">5</div>
                     <div class="stats__label"><span class="stats__label-accent">Лет</span> опыта</div>
                 </div>
                 <div class="stats__item">
-                    <div class="stats__value">800</div>
+                    <div class="stats__value">400</div>
                     <div class="stats__label"><span class="stats__label-accent">Учебных</span> часов</div>
                 </div>
                 <div class="stats__item">
-                    <div class="stats__value">150</div>
+                    <div class="stats__value">10</div>
                     <div class="stats__label"><span class="stats__label-accent">Учебных</span> программ</div>
                 </div>
             </div>
@@ -118,7 +119,7 @@
                 <div class="about__bio">
                     <h3 class="about__name">Алексашин Максим Алексеевич</h3>
                     <p>Преподаватель с современным подходом к образованию</p>
-                    <p>Специалист в области истории, обществознания и географии</p>
+                    <p>Администратор, а также активный работник в сфере организации и проведения культурно-массовых мероприятий</p>
                     <p>Активный участник образовательных мероприятий и форумов</p>
                 </div>
             </div>
@@ -229,7 +230,7 @@
     <section id="events" class="events">
         <div class="layout__container">
             <header class="events__header">
-                <h2 class="section__title">МОЁ ПОРТФОЛИО</h2>
+                <h2 class="section__title">ПОРТФОЛИО</h2>
             </header>
 
             <!-- Первая строка: всегда видимые проекты (десктоп — 3, планшет — 2, мобилка — 1) -->
@@ -238,7 +239,7 @@
                     <div class="slider__container">
                         <div class="slider__track" id="slider1">
                             <div class="slider__slide">
-                                <img loading="lazy" decoding="async" src="images/Муф 2024/муф 2024WEB.webp" alt="Московский урбанистический форум 2024г.">
+                                <img loading="lazy" decoding="async" src="images/Муф 2024/муф 2024WEB.webp" srcset="images/Муф 2024/муф 2024WEB.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="Московский урбанистический форум 2024г.">
                                 <div class="events__overlay">
                                     <h3>МУФ2030 2024г.</h3>
                                     <p>Московский урбанистический форум 2024г.</p>
@@ -272,7 +273,7 @@
                     <div class="slider__container">
                         <div class="slider__track" id="slider2">
                             <div class="slider__slide">
-                                <img loading="lazy" decoding="async" src="images/Муф 2025/муф 2025WEB.webp" alt="Московский урбанистический форум 2025г.">
+                                <img loading="lazy" decoding="async" src="images/Муф 2025/муф 2025WEB.webp" srcset="images/Муф 2025/муф 2025WEB.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="Московский урбанистический форум 2025г.">
                                 <div class="events__overlay">
                                     <h3>МУФ2030 2025г.</h3>
                                     <p>Московский урбанистический форум 2025г.</p>
@@ -413,7 +414,7 @@
                         <div class="slider__container">
                             <div class="slider__track" id="slider5">
                                 <div class="slider__slide">
-                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат 1WEB.webp" alt="Курьер-партнер компании Самокат">
+                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат-4.webp" srcset="images/Самокат/Самокат-4.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="Курьер-партнер компании Самокат">
                                     <div class="events__overlay">
                                         <h3>Курьер-партнер компании "Самокат"</h3>
                                     </div>
@@ -426,7 +427,7 @@
                                     </div>
                                 </div>
                                 <div class="slider__slide">
-                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат 3WEB.webp" alt="Курьер-партнер компании Самокат">
+                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат 1WEB.webp" alt="Курьер-партнер компании Самокат">
                                     <div class="events__overlay">
                                         <h3>Курьер-партнер компании "Самокат"</h3>
                                         <p>Дополнительные фото</p>
@@ -472,6 +473,163 @@
                                 <span class="slider__dot slider__dot--active" data-slider="slider6" data-index="0"></span>
                                 <span class="slider__dot" data-slider="slider6" data-index="1"></span>
                                 <span class="slider__dot" data-slider="slider6" data-index="2"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="events__card">
+                        <div class="slider__container">
+                            <div class="slider__track" id="slider7">
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/Городские уличные фестивали Москвы 2025/Губернаторский-проект-Лето-в-Москве-1.webp" alt="Городские уличные фестивали — Московские сезоны 2025">
+                                    <div class="events__overlay">
+                                        <h3>Городские уличные фестивали — Московские сезоны 2025</h3>
+                                    </div>
+                                </div>
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/Городские уличные фестивали Москвы 2025/Губернаторский-проект-Лето-в-Москве-2.webp" alt="Городские уличные фестивали — Московские сезоны 2025">
+                                    <div class="events__overlay">
+                                        <h3>Городские уличные фестивали — Московские сезоны 2025</h3>
+                                        <p>Дополнительные фото</p>
+                                    </div>
+                                </div>
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/Городские уличные фестивали Москвы 2025/Губернаторский-проект-Лето-в-Москве-3.webp" alt="Городские уличные фестивали — Московские сезоны 2025">
+                                    <div class="events__overlay">
+                                        <h3>Городские уличные фестивали — Московские сезоны 2025</h3>
+                                        <p>Дополнительные фото</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="slider__arrow prev" data-slider="slider7" data-direction="-1">&#10094;</button>
+                            <button class="slider__arrow next" data-slider="slider7" data-direction="1">&#10095;</button>
+                            <div class="slider__controls">
+                                <span class="slider__dot slider__dot--active" data-slider="slider7" data-index="0"></span>
+                                <span class="slider__dot" data-slider="slider7" data-index="1"></span>
+                                <span class="slider__dot" data-slider="slider7" data-index="2"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="events__card">
+                        <div class="slider__container">
+                            <div class="slider__track" id="slider8">
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/День города Москва 875/Москва875-1.webp" alt="Москва в движении — Москва 875, день города">
+                                    <div class="events__overlay">
+                                        <h3>Москва в движении — Москва 875, день города</h3>
+                                    </div>
+                                </div>
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/День города Москва 875/Москва875-2.webp" alt="Москва в движении — Москва 875, день города">
+                                    <div class="events__overlay">
+                                        <h3>Москва в движении — Москва 875, день города</h3>
+                                        <p>Дополнительные фото</p>
+                                    </div>
+                                </div>
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/День города Москва 875/Москва875-3.webp" alt="Москва в движении — Москва 875, день города">
+                                    <div class="events__overlay">
+                                        <h3>Москва в движении — Москва 875, день города</h3>
+                                        <p>Дополнительные фото</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="slider__arrow prev" data-slider="slider8" data-direction="-1">&#10094;</button>
+                            <button class="slider__arrow next" data-slider="slider8" data-direction="1">&#10095;</button>
+                            <div class="slider__controls">
+                                <span class="slider__dot slider__dot--active" data-slider="slider8" data-index="0"></span>
+                                <span class="slider__dot" data-slider="slider8" data-index="1"></span>
+                                <span class="slider__dot" data-slider="slider8" data-index="2"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="events__card">
+                        <div class="slider__container">
+                            <div class="slider__track" id="slider9">
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/Участие в БГУ/БГУ-1.webp" alt="Международная научная конференция в БГУ">
+                                    <div class="events__overlay">
+                                        <h3>Международная научная конференция в БГУ</h3>
+                                    </div>
+                                </div>
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/Участие в БГУ/БГУ-2.webp" alt="Международная научная конференция в БГУ">
+                                    <div class="events__overlay">
+                                        <h3>Международная научная конференция в БГУ</h3>
+                                        <p>Дополнительные фото</p>
+                                    </div>
+                                </div>
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/Участие в БГУ/БГУ-3.webp" alt="Международная научная конференция в БГУ">
+                                    <div class="events__overlay">
+                                        <h3>Международная научная конференция в БГУ</h3>
+                                        <p>Дополнительные фото</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="slider__arrow prev" data-slider="slider9" data-direction="-1">&#10094;</button>
+                            <button class="slider__arrow next" data-slider="slider9" data-direction="1">&#10095;</button>
+                            <div class="slider__controls">
+                                <span class="slider__dot slider__dot--active" data-slider="slider9" data-index="0"></span>
+                                <span class="slider__dot" data-slider="slider9" data-index="1"></span>
+                                <span class="slider__dot" data-slider="slider9" data-index="2"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="events__card">
+                        <div class="slider__container">
+                            <div class="slider__track" id="slider10">
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/Стажировка Волгоград/Стажировка-Волгоград-1.webp" alt="Стажировка на базе Волгоградского государственного социально-педагогического университета">
+                                    <div class="events__overlay">
+                                        <h3>Стажировка на базе Волгоградского государственного социально-педагогического университета</h3>
+                                    </div>
+                                </div>
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/Стажировка Волгоград/Стажировка-Волгоград-2.webp" alt="Стажировка на базе Волгоградского государственного социально-педагогического университета">
+                                    <div class="events__overlay">
+                                        <h3>Стажировка на базе Волгоградского государственного социально-педагогического университета</h3>
+                                        <p>Дополнительные фото</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="slider__arrow prev" data-slider="slider10" data-direction="-1">&#10094;</button>
+                            <button class="slider__arrow next" data-slider="slider10" data-direction="1">&#10095;</button>
+                            <div class="slider__controls">
+                                <span class="slider__dot slider__dot--active" data-slider="slider10" data-index="0"></span>
+                                <span class="slider__dot" data-slider="slider10" data-index="1"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="events__card">
+                        <div class="slider__container">
+                            <div class="slider__track" id="slider11">
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/Волонтерская деятельность в лагере 28 панфиловцев/Волонтерская-деятельность-28-панфиловцев-1.webp" alt="Волонтерская деятельность в лагере 28 панфиловцев">
+                                    <div class="events__overlay">
+                                        <h3>Волонтерская деятельность в лагере 28 панфиловцев</h3>
+                                    </div>
+                                </div>
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/Волонтерская деятельность в лагере 28 панфиловцев/Волонтерская-деятельность-28-панфиловцев-2.webp" alt="Волонтерская деятельность в лагере 28 панфиловцев">
+                                    <div class="events__overlay">
+                                        <h3>Волонтерская деятельность в лагере 28 панфиловцев</h3>
+                                        <p>Дополнительные фото</p>
+                                    </div>
+                                </div>
+                                <div class="slider__slide">
+                                    <img loading="lazy" decoding="async" src="images/Волонтерская деятельность в лагере 28 панфиловцев/Волонтерская-деятельность-28-панфиловцев-3.webp" alt="Волонтерская деятельность в лагере 28 панфиловцев">
+                                    <div class="events__overlay">
+                                        <h3>Волонтерская деятельность в лагере 28 панфиловцев</h3>
+                                        <p>Дополнительные фото</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="slider__arrow prev" data-slider="slider11" data-direction="-1">&#10094;</button>
+                            <button class="slider__arrow next" data-slider="slider11" data-direction="1">&#10095;</button>
+                            <div class="slider__controls">
+                                <span class="slider__dot slider__dot--active" data-slider="slider11" data-index="0"></span>
+                                <span class="slider__dot" data-slider="slider11" data-index="1"></span>
+                                <span class="slider__dot" data-slider="slider11" data-index="2"></span>
                             </div>
                         </div>
                     </div>
@@ -522,94 +680,25 @@
     <section id="documents" class="documents">
         <div class="layout__container">
             <h2 class="section__title">Документы и сертификаты</h2>
-            <div class="documents__grid">
-                <div class="documents__card">
-                    <div class="documents__icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3>Информационное письмо</h3>
-                    <p>Информационное письмо "Солнечный круг"</p>
-                    <div class="documents__actions">
-                        <a href="documents/ИнфоПисьмо Солнечный круг.pdf" class="documents__btn" target="_blank">
-                            <i class="fas fa-eye"></i> Просмотр
-                        </a>
-                    </div>
+            <div class="documents-tabs" role="tablist" aria-label="Категории документов">
+                <button type="button" class="documents-tabs__btn is-active" role="tab" aria-selected="true" aria-controls="documents-pane-docs" id="documents-tab-docs" data-doc-tab="docs">Документы</button>
+                <button type="button" class="documents-tabs__btn" role="tab" aria-selected="false" aria-controls="documents-pane-certs" id="documents-tab-certs" data-doc-tab="certs">Сертификаты</button>
+            </div>
+
+            <div class="documents-tabs__panel is-active" id="documents-pane-docs" role="tabpanel" aria-labelledby="documents-tab-docs" data-doc-panel="docs">
+                <div class="documents__grid">
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-file-alt"></i></div><h3>Информационное письмо</h3><p>Информационное письмо "Солнечный круг"</p><div class="documents__actions"><a href="documents/ИнфоПисьмо Солнечный круг.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-file-contract"></i></div><h3>Научная статья</h3><p>Научная публикация и исследовательская работа</p><div class="documents__actions"><a href="documents/Научная статья.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-medal"></i></div><h3>Благодарность Юнармии</h3><p>Благодарность от Всероссийского движения "Юнармия"</p><div class="documents__actions"><a href="documents/ЮнАрмия Благодарность.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-user-check"></i></div><h3>Характеристика ДОЛ "Let's go camp"</h3><p>Первая смена 2022г.</p><div class="documents__actions"><a href="documents/Характеристика Летнего лагеря.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-user-check"></i></div><h3>Характеристика волонтерства в ДОЛ "Осташево"</h3><p>Характеристика волонтерства в ДОЛ "Осташево" в помощи беженцами ДНР и ЛНР</p><div class="documents__actions"><a href="documents/Характеристика волонтерства в ДОЛ Осташево.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
                 </div>
-                
-                <div class="documents__card">
-                    <div class="documents__icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <h3>Научная статья</h3>
-                    <p>Научная публикация и исследовательская работа</p>
-                    <div class="documents__actions">
-                        <a href="documents/Научная статья.pdf" class="documents__btn" target="_blank">
-                            <i class="fas fa-eye"></i> Просмотр
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="documents__card">
-                    <div class="documents__icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3>Сертификат МинОбрнауки</h3>
-                    <p>Сертификат Министерства образования и науки</p>
-                    <div class="documents__actions">
-                        <a href="documents/Сертификат МинОбраз.pdf" class="documents__btn" target="_blank">
-                            <i class="fas fa-eye"></i> Просмотр
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="documents__card">
-                    <div class="documents__icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3>Сертификат Минпросвещения</h3>
-                    <p>Сертификат Министерства просвещения РФ</p>
-                    <div class="documents__actions">
-                        <a href="documents/Сертификат Минпросвещения.pdf" class="documents__btn" target="_blank">
-                            <i class="fas fa-eye"></i> Просмотр
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="documents__card">
-                    <div class="documents__icon">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h3>Благодарность Юнармии</h3>
-                    <p>Благодарность от Всероссийского движения "Юнармия"</p>
-                    <div class="documents__actions">
-                        <a href="documents/ЮнАрмия Благодарность.pdf" class="documents__btn" target="_blank">
-                            <i class="fas fa-eye"></i> Просмотр
-                        </a>
-                    </div>
-                </div>
-                <div class="documents__card">
-                    <div class="documents__icon">
-                        <i class="fas fa-user-check"></i>
-                    </div>
-                    <h3>Характеристика ДОЛ "Let's go camp"</h3>
-                    <p>Первая смена 2022г.</p>
-                    <div class="documents__actions">
-                        <a href="documents/Характеристика Летнего лагеря.pdf" class="documents__btn" target="_blank">
-                            <i class="fas fa-eye"></i> Просмотр
-                        </a>
-                    </div>
-                </div>
-                <div class="documents__card">
-                    <div class="documents__icon">
-                        <i class="fas fa-user-check"></i>
-                    </div>
-                    <h3>Характеристика волонтерства в ДОЛ "Осташево"</h3>
-                    <p>Характеристика волонтерства в ДОЛ "Осташево" в помощи беженцами ДНР и ЛНР</p>
-                    <div class="documents__actions">
-                        <a href="documents/Характеристика волонтерства в ДОЛ Осташево.pdf" class="documents__btn" target="_blank">
-                            <i class="fas fa-eye"></i> Просмотр
-                        </a>
-                    </div>
+            </div>
+
+            <div class="documents-tabs__panel" id="documents-pane-certs" role="tabpanel" aria-labelledby="documents-tab-certs" data-doc-panel="certs" aria-hidden="true">
+                <div class="documents__grid">
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-award"></i></div><h3>Сертификат МинОбрнауки</h3><p>Сертификат Министерства образования и науки</p><div class="documents__actions"><a href="documents/Сертификат МинОбраз.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-certificate"></i></div><h3>Сертификат Минпросвещения</h3><p>Сертификат Министерства просвещения РФ</p><div class="documents__actions"><a href="documents/Сертификат Минпросвещения.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
                 </div>
             </div>
         </div>
@@ -618,7 +707,7 @@
     <!-- Расписание -->
     <section id="schedule" class="schedule">
         <div class="layout__container">
-            <h2 class="section__title">Расписание занятий</h2>
+            <h2 class="section__title">Обратная связь</h2>
             <div class="schedule__layout">
                 <div class="schedule__info">
                     <h3>График работы</h3>
@@ -641,9 +730,9 @@
                 <div class="schedule__calendar">
                     <h3>Запись на консультацию</h3>
                     <p>Выберите удобное время</p>
-                    <p class="schedule__contact"><i class="fas fa-phone"></i> +7 915 466 34 40</p>
-                    <p class="schedule__contact"><i class="fas fa-envelope"></i> ТВОЯ_ПОЧТА@mail.com</p>
-                    <a href="https://t.me/free7macsanya" target="_blank" rel="noopener" class="btn btn--telegram"><i class="fab fa-telegram"></i> Написать в Telegram</a>
+                    <p class="schedule__contact"><i class="fas fa-phone"></i> <a href="tel:+79154663440">+7 915 466 34 40</a></p>
+                    <p class="schedule__contact"><i class="fas fa-envelope"></i> <a href="mailto:ТВОЯ_ПОЧТА@mail.com">ТВОЯ_ПОЧТА@mail.com</a></p>
+                    <a href="https://t.me/free7macsanya" target="_blank" rel="noopener noreferrer" class="btn btn--telegram"><i class="fab fa-telegram"></i> Написать в Telegram</a>
                     <a href="#contact" class="btn">Записаться</a>
                 </div>
             </div>

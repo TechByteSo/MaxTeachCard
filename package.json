@@ -1,0 +1,14 @@
+{
+  "name": "max-teach-card",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "minify": "npm run minify:css && npm run minify:js",
+    "minify:css": "cleancss -o styles/style.min.css styles/style.css && cleancss -o styles/slider.min.css styles/slider.css",
+    "minify:js": "terser scripts/script.js -c -m -o scripts/script.min.js"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.39.2"
+  }
+}
