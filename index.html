@@ -24,7 +24,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/style.min.css">
     <link rel="stylesheet" href="styles/slider.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 <body>
@@ -45,11 +45,10 @@
                             <li role="none"><a href="#documents" role="menuitem">Документы и сертификаты</a></li>
                         </ul>
                     </li>
-                    <li><a href="#schedule">Контакты</a></li>
                     <li><a href="#faq">FAQ</a></li>
-                    <li class="site-header__item--cta-mobile"><a href="#contact" class="site-header__cta">Записаться</a></li>
+                    <li class="site-header__item--cta-mobile"><a href="#contact" class="site-header__cta">Связаться</a></li>
                 </ul>
-                <a href="#contact" class="site-header__cta">Записаться</a>
+                <a href="#contact" class="site-header__cta">Связаться</a>
                 <button type="button" class="site-header__toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="primary-nav">
                     <i class="fas fa-bars" aria-hidden="true"></i>
                 </button>
@@ -154,8 +153,8 @@
                 </div>
                 <p class="services__subjects-hint">При нажатии на учебную дисциплину можно узнать о ней подробнее</p>
             </div>
-            <div class="services__detail" id="subjectDetail" style="display: none;">
-                <h3 class="services__detail-title"></h3>
+            <div class="services__detail" id="subjectDetail" role="region" aria-live="polite" aria-labelledby="subjectDetailHeading" aria-hidden="true" style="display: none;">
+                <h3 id="subjectDetailHeading" class="services__detail-title"></h3>
                 <p class="services__detail-text"></p>
                 <button type="button" class="services__detail-close">Закрыть</button>
             </div>
@@ -260,8 +259,8 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="slider__arrow prev" data-slider="slider1" data-direction="-1">&#10094;</button>
-                        <button class="slider__arrow next" data-slider="slider1" data-direction="1">&#10095;</button>
+                        <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider1" data-direction="-1">&#10094;</button>
+                        <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider1" data-direction="1">&#10095;</button>
                         <div class="slider__controls">
                             <span class="slider__dot slider__dot--active" data-slider="slider1" data-index="0"></span>
                             <span class="slider__dot" data-slider="slider1" data-index="1"></span>
@@ -294,8 +293,8 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="slider__arrow prev" data-slider="slider2" data-direction="-1">&#10094;</button>
-                        <button class="slider__arrow next" data-slider="slider2" data-direction="1">&#10095;</button>
+                        <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider2" data-direction="-1">&#10094;</button>
+                        <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider2" data-direction="1">&#10095;</button>
                         <div class="slider__controls">
                             <span class="slider__dot slider__dot--active" data-slider="slider2" data-index="0"></span>
                             <span class="slider__dot" data-slider="slider2" data-index="1"></span>
@@ -328,8 +327,8 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="slider__arrow prev" data-slider="slider3" data-direction="-1">&#10094;</button>
-                        <button class="slider__arrow next" data-slider="slider3" data-direction="1">&#10095;</button>
+                        <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider3" data-direction="-1">&#10094;</button>
+                        <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider3" data-direction="1">&#10095;</button>
                         <div class="slider__controls">
                             <span class="slider__dot slider__dot--active" data-slider="slider3" data-index="0"></span>
                             <span class="slider__dot" data-slider="slider3" data-index="1"></span>
@@ -367,8 +366,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider__arrow prev" data-slider="slider3-tablet" data-direction="-1">&#10094;</button>
-                            <button class="slider__arrow next" data-slider="slider3-tablet" data-direction="1">&#10095;</button>
+                            <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider3-tablet" data-direction="-1">&#10094;</button>
+                            <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider3-tablet" data-direction="1">&#10095;</button>
                             <div class="slider__controls">
                                 <span class="slider__dot slider__dot--active" data-slider="slider3-tablet" data-index="0"></span>
                                 <span class="slider__dot" data-slider="slider3-tablet" data-index="1"></span>
@@ -401,8 +400,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider__arrow prev" data-slider="slider4" data-direction="-1">&#10094;</button>
-                            <button class="slider__arrow next" data-slider="slider4" data-direction="1">&#10095;</button>
+                            <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider4" data-direction="-1">&#10094;</button>
+                            <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider4" data-direction="1">&#10095;</button>
                             <div class="slider__controls">
                                 <span class="slider__dot slider__dot--active" data-slider="slider4" data-index="0"></span>
                                 <span class="slider__dot" data-slider="slider4" data-index="1"></span>
@@ -434,8 +433,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider__arrow prev" data-slider="slider5" data-direction="-1">&#10094;</button>
-                            <button class="slider__arrow next" data-slider="slider5" data-direction="1">&#10095;</button>
+                            <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider5" data-direction="-1">&#10094;</button>
+                            <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider5" data-direction="1">&#10095;</button>
                             <div class="slider__controls">
                                 <span class="slider__dot slider__dot--active" data-slider="slider5" data-index="0"></span>
                                 <span class="slider__dot" data-slider="slider5" data-index="1"></span>
@@ -467,8 +466,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider__arrow prev" data-slider="slider6" data-direction="-1">&#10094;</button>
-                            <button class="slider__arrow next" data-slider="slider6" data-direction="1">&#10095;</button>
+                            <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider6" data-direction="-1">&#10094;</button>
+                            <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider6" data-direction="1">&#10095;</button>
                             <div class="slider__controls">
                                 <span class="slider__dot slider__dot--active" data-slider="slider6" data-index="0"></span>
                                 <span class="slider__dot" data-slider="slider6" data-index="1"></span>
@@ -500,8 +499,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider__arrow prev" data-slider="slider7" data-direction="-1">&#10094;</button>
-                            <button class="slider__arrow next" data-slider="slider7" data-direction="1">&#10095;</button>
+                            <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider7" data-direction="-1">&#10094;</button>
+                            <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider7" data-direction="1">&#10095;</button>
                             <div class="slider__controls">
                                 <span class="slider__dot slider__dot--active" data-slider="slider7" data-index="0"></span>
                                 <span class="slider__dot" data-slider="slider7" data-index="1"></span>
@@ -533,8 +532,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider__arrow prev" data-slider="slider8" data-direction="-1">&#10094;</button>
-                            <button class="slider__arrow next" data-slider="slider8" data-direction="1">&#10095;</button>
+                            <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider8" data-direction="-1">&#10094;</button>
+                            <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider8" data-direction="1">&#10095;</button>
                             <div class="slider__controls">
                                 <span class="slider__dot slider__dot--active" data-slider="slider8" data-index="0"></span>
                                 <span class="slider__dot" data-slider="slider8" data-index="1"></span>
@@ -566,8 +565,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider__arrow prev" data-slider="slider9" data-direction="-1">&#10094;</button>
-                            <button class="slider__arrow next" data-slider="slider9" data-direction="1">&#10095;</button>
+                            <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider9" data-direction="-1">&#10094;</button>
+                            <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider9" data-direction="1">&#10095;</button>
                             <div class="slider__controls">
                                 <span class="slider__dot slider__dot--active" data-slider="slider9" data-index="0"></span>
                                 <span class="slider__dot" data-slider="slider9" data-index="1"></span>
@@ -592,8 +591,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider__arrow prev" data-slider="slider10" data-direction="-1">&#10094;</button>
-                            <button class="slider__arrow next" data-slider="slider10" data-direction="1">&#10095;</button>
+                            <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider10" data-direction="-1">&#10094;</button>
+                            <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider10" data-direction="1">&#10095;</button>
                             <div class="slider__controls">
                                 <span class="slider__dot slider__dot--active" data-slider="slider10" data-index="0"></span>
                                 <span class="slider__dot" data-slider="slider10" data-index="1"></span>
@@ -624,8 +623,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider__arrow prev" data-slider="slider11" data-direction="-1">&#10094;</button>
-                            <button class="slider__arrow next" data-slider="slider11" data-direction="1">&#10095;</button>
+                            <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider11" data-direction="-1">&#10094;</button>
+                            <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider11" data-direction="1">&#10095;</button>
                             <div class="slider__controls">
                                 <span class="slider__dot slider__dot--active" data-slider="slider11" data-index="0"></span>
                                 <span class="slider__dot" data-slider="slider11" data-index="1"></span>
@@ -634,40 +633,9 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- ШАБЛОН ДЛЯ ДОБАВЛЕНИЯ НОВОГО ПРОЕКТА:
-                Скопируйте блок ниже и вставьте перед закрывающим </div> блока events__more-inner.
-                Замените sliderN на следующий номер (например, slider7, slider8 и т.д.)
-                Обновите пути к изображениям, заголовки и описания.
-                
-                <div class="events__card">
-                    <div class="slider__container">
-                        <div class="slider__track" id="sliderN">
-                            <div class="slider__slide">
-                                <img loading="lazy" decoding="async" src="images/ПапкаПроекта/фото1.webp" alt="Описание проекта">
-                                <div class="events__overlay">
-                                    <h3>Название проекта</h3>
-                                    <p>Описание проекта</p>
-                                </div>
-                            </div>
-                            <div class="slider__slide">
-                                <img loading="lazy" decoding="async" src="images/ПапкаПроекта/фото2.webp" alt="Дополнительное фото">
-                                <div class="events__overlay">
-                                    <h3>Название проекта</h3>
-                                    <p>Дополнительное описание</p>
-                                </div>
-                            </div>
-                            <!-- Добавьте больше слайдов по необходимости -->
-                        </div>
-                        <button class="slider__arrow prev" data-slider="sliderN" data-direction="-1">&#10094;</button>
-                        <button class="slider__arrow next" data-slider="sliderN" data-direction="1">&#10095;</button>
-                        <div class="slider__controls">
-                            <span class="slider__dot slider__dot--active" data-slider="sliderN" data-index="0"></span>
-                            <span class="slider__dot" data-slider="sliderN" data-index="1"></span>
-                            <!-- Добавьте точки для каждого слайда (data-index="0", "1", "2" и т.д.) -->
-                        </div>
-                    </div>
-                </div>
+
+            <!-- Новый проект в разворот «Показать все»: см. README.md -->
+
             </div>
 
             <div class="events__more-bar">
@@ -699,41 +667,6 @@
                 <div class="documents__grid">
                     <div class="documents__card"><div class="documents__icon"><i class="fas fa-award"></i></div><h3>Сертификат МинОбрнауки</h3><p>Сертификат Министерства образования и науки</p><div class="documents__actions"><a href="documents/Сертификат МинОбраз.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
                     <div class="documents__card"><div class="documents__icon"><i class="fas fa-certificate"></i></div><h3>Сертификат Минпросвещения</h3><p>Сертификат Министерства просвещения РФ</p><div class="documents__actions"><a href="documents/Сертификат Минпросвещения.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Расписание -->
-    <section id="schedule" class="schedule">
-        <div class="layout__container">
-            <h2 class="section__title">Обратная связь</h2>
-            <div class="schedule__layout">
-                <div class="schedule__info">
-                    <h3>График работы</h3>
-                    <div class="schedule__item">
-                        <i class="fas fa-calendar-week"></i>
-                        <div>
-                            <strong>Понедельник - Суббота</strong>
-                            <p>12:00 - 20:00</p>
-                        </div>
-                    </div>
-                    <div class="schedule__item">
-                        <i class="fas fa-calendar-times"></i>
-                        <div>
-                            <strong>Воскресенье</strong>
-                            <p>Выходной</p>
-                        </div>
-                    </div>
-                    <p class="schedule__note">* График может быть скорректирован по индивидуальной договоренности</p>
-                </div>
-                <div class="schedule__calendar">
-                    <h3>Запись на консультацию</h3>
-                    <p>Выберите удобное время</p>
-                    <p class="schedule__contact"><i class="fas fa-phone"></i> <a href="tel:+79154663440">+7 915 466 34 40</a></p>
-                    <p class="schedule__contact"><i class="fas fa-envelope"></i> <a href="mailto:ТВОЯ_ПОЧТА@mail.com">ТВОЯ_ПОЧТА@mail.com</a></p>
-                    <a href="https://t.me/free7macsanya" target="_blank" rel="noopener noreferrer" class="btn btn--telegram"><i class="fab fa-telegram"></i> Написать в Telegram</a>
-                    <a href="#contact" class="btn">Записаться</a>
                 </div>
             </div>
         </div>
@@ -786,43 +719,43 @@
                         <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </button>
                     <div class="faq__answer" id="faq-ans-5" role="region" aria-labelledby="faq-btn-5">
-                        <p>Вы можете связаться со мной через форму обратной связи на сайте, по телефону или через мессенджеры (Telegram, WhatsApp). Первая консультация обычно бесплатная.</p>
+                        <p>Вы можете связаться со мной по телефону, электронной почте или в Telegram. Первая консультация обычно бесплатная.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Контакты -->
-    <section id="contact" class="contact">
-        <div class="contact__inner">
-            <div class="contact__form-wrap">
-                <div class="contact__form">
-                    <h3>Связаться со мной</h3>
-                    <form id="messageForm">
-                        <div class="contact-form__field">
-                            <label for="name">Ваше имя</label>
-                            <input type="text" id="name" name="name" required autocomplete="name">
+    <!-- Обратная связь: график и контакты -->
+    <section id="contact" class="schedule">
+        <div class="layout__container">
+            <h2 class="section__title">Обратная связь</h2>
+            <div class="schedule__layout">
+                <div class="schedule__info">
+                    <h3>График работы</h3>
+                    <div class="schedule__item">
+                        <i class="fas fa-calendar-week"></i>
+                        <div>
+                            <strong>Понедельник - Суббота</strong>
+                            <p>12:00 - 20:00</p>
                         </div>
-                        <div class="contact-form__field">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required autocomplete="email">
+                    </div>
+                    <div class="schedule__item">
+                        <i class="fas fa-calendar-times"></i>
+                        <div>
+                            <strong>Воскресенье</strong>
+                            <p>Выходной</p>
                         </div>
-                        <div class="contact-form__field">
-                            <label for="subject">Тема</label>
-                            <input type="text" id="subject" name="subject" autocomplete="off">
-                        </div>
-                        <div class="contact-form__field">
-                            <label for="message">Сообщение</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <div class="contact-form__field contact-form__consent">
-                            <input type="checkbox" id="consent" name="consent" value="1" required>
-                            <label for="consent">Согласен на обработку персональных данных, указанных в форме, для обратной связи.</label>
-                        </div>
-                        <button type="submit" class="contact-form__submit" id="submitBtn">Отправить сообщение</button>
-                        <div id="formMessage" class="contact-form__message" role="status" aria-live="polite"></div>
-                    </form>
+                    </div>
+                    <p class="schedule__note">* График может быть скорректирован по индивидуальной договоренности</p>
+                </div>
+                <div class="schedule__calendar">
+                    <h3>Запись на консультацию</h3>
+                    <p>Выберите удобное время</p>
+                    <p class="schedule__contact"><i class="fas fa-phone"></i> <a href="tel:+79154663440">+7 915 466 34 40</a></p>
+                    <p class="schedule__contact"><i class="fas fa-envelope"></i> <a href="mailto:ТВОЯ_ПОЧТА@mail.com">ТВОЯ_ПОЧТА@mail.com</a></p>
+                    <a href="https://t.me/free7macsanya" target="_blank" rel="noopener noreferrer" class="btn btn--telegram"><i class="fab fa-telegram"></i> Написать в Telegram</a>
+                    <a href="#contact" class="btn">Записаться</a>
                 </div>
             </div>
         </div>

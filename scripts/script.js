@@ -76,7 +76,7 @@ document.addEventListener('click', function(e) {
 // Анимация при скролле
 const animateOnScroll = () => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const elements = document.querySelectorAll('.section__title, .about__profile, .services__card, .events__card, .contact__form, .stats__item, .reviews__card');
+    const elements = document.querySelectorAll('.section__title, .about__profile, .services__card, .events__card, .schedule__layout, .documents__card, .stats__item, .reviews__card, .faq__item');
 
     elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
@@ -119,76 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
-
-// Обработка формы с состоянием загрузки и сообщением в DOM
-const form = document.getElementById('messageForm');
-const submitBtn = document.getElementById('submitBtn');
-const formMessage = document.getElementById('formMessage');
-const DEFAULT_FORM_ENDPOINT = '/feedback';
-
-function showFormMessage(text, type) {
-    if (!formMessage) return;
-    formMessage.textContent = text;
-    formMessage.className = 'contact-form__message visible ' + (type || '');
-    formMessage.setAttribute('aria-live', 'polite');
-}
-
-function clearFormMessage() {
-    if (formMessage) {
-        formMessage.textContent = '';
-        formMessage.className = 'contact-form__message';
-    }
-}
-
-if (form) form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    clearFormMessage();
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Отправка...';
-    }
-    const formData = new FormData();
-    formData.append('name', document.getElementById('name').value);
-    formData.append('email', document.getElementById('email').value);
-    const subjectEl = document.getElementById('subject');
-    if (subjectEl) formData.append('subject', subjectEl.value);
-    formData.append('msg', document.getElementById('message').value);
-    formData.append('consent', document.getElementById('consent') && document.getElementById('consent').checked ? '1' : '0');
-
-    const formEndpoint = DEFAULT_FORM_ENDPOINT;
-    const isStaticFallbackEndpoint = formEndpoint === DEFAULT_FORM_ENDPOINT;
-
-    try {
-        const response = await fetch(formEndpoint, {
-            method: 'POST',
-            body: formData
-        });
-        if (response.ok) {
-            showFormMessage('Сообщение отправлено! Я свяжусь с вами в ближайшее время.', 'success');
-            form.reset();
-        } else if (isStaticFallbackEndpoint && (response.status === 404 || response.status === 405 || response.status === 501)) {
-            showFormMessage('Форма временно работает в режиме заглушки на статическом хостинге. Напишите в Telegram из блока контактов.', 'success');
-            form.reset();
-        } else {
-            showFormMessage('Ошибка при отправке сообщения. Попробуйте позже.', 'error');
-        }
-    } catch (error) {
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            console.error('Form submission error:', error);
-        }
-        if (isStaticFallbackEndpoint) {
-            showFormMessage('Форма временно работает в режиме заглушки на статическом хостинге. Напишите в Telegram из блока контактов.', 'success');
-            form.reset();
-        } else {
-            showFormMessage('Ошибка соединения с сервером. Попробуйте позже или свяжитесь напрямую.', 'error');
-        }
-    } finally {
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Отправить сообщение';
-        }
-    }
 });
 
 // Функции для слайдера
@@ -398,6 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function showSubjectDetail() {
             subjectDetail.style.display = 'block';
             subjectDetail.offsetHeight;
+            subjectDetail.setAttribute('aria-hidden', 'false');
             subjectDetail.classList.add('services__detail--visible');
             const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             subjectDetail.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'nearest' });
@@ -406,6 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
             subjectDetail.classList.remove('services__detail--visible');
             setTimeout(function() {
                 subjectDetail.style.display = 'none';
+                subjectDetail.setAttribute('aria-hidden', 'true');
             }, 350);
         }
         function activateSubjectItem(el) {
