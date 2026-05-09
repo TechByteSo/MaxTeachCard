@@ -2114,6 +2114,20 @@ footer {
     left: auto !important;
     top: auto !important;
 }
+
+/* Одно фото в галерее — без стрелок и точек в лайтбоксе */
+.lightbox.lightbox--single[data-open="true"] .lightbox__prev,
+.lightbox.lightbox--single[data-open="true"] .lightbox__next {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.lightbox.lightbox--single .lightbox__dots {
+    display: none !important;
+}
+
 .lightbox__prev:hover,
 .lightbox__next:hover {
     background: rgba(255, 255, 255, 0.35);

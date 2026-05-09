@@ -249,6 +249,11 @@ document.addEventListener('DOMContentLoaded', function() {
             lightboxCurrentIndex = currentIndex;
             lightboxSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
             updateLightboxCaption();
+            const singleSlide = lightboxSlideData.length <= 1;
+            if (lightboxPrev) lightboxPrev.hidden = singleSlide;
+            if (lightboxNext) lightboxNext.hidden = singleSlide;
+            if (lightboxDots) lightboxDots.hidden = singleSlide;
+            lightbox.classList.toggle('lightbox--single', singleSlide);
             lightbox.removeAttribute('hidden');
             lightbox.setAttribute('data-open', 'true');
             document.body.style.overflow = 'hidden';
@@ -263,6 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function closeLightbox() {
             lightbox.setAttribute('data-open', 'false');
             lightbox.setAttribute('hidden', '');
+            lightbox.classList.remove('lightbox--single');
             document.body.style.overflow = '';
         }
 
@@ -299,6 +305,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('keydown', function(e) {
             if (lightbox.getAttribute('data-open') !== 'true') return;
             if (e.key === 'Escape') closeLightbox();
+            if (lightboxSlideData.length <= 1) return;
             if (e.key === 'ArrowLeft') lightboxGoTo(lightboxCurrentIndex - 1);
             if (e.key === 'ArrowRight') lightboxGoTo(lightboxCurrentIndex + 1);
         });
@@ -312,6 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
             lightboxTouchStartX = e.touches[0].clientX;
         }, { passive: true });
         lightbox.addEventListener('touchend', function(e) {
+            if (lightboxSlideData.length <= 1) return;
             const x = e.changedTouches[0].clientX;
             const diff = lightboxTouchStartX - x;
             if (Math.abs(diff) > swipeThreshold) lightboxGoTo(lightboxCurrentIndex + (diff > 0 ? 1 : -1));
