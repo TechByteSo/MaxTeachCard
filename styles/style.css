@@ -1215,6 +1215,42 @@ section:first-of-type {
     position: relative !important;
 }
 
+/* Ссылка на пост ВКонтакте — правый верх карточки портфолио */
+.events__vk-link {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    z-index: 6;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--white);
+    background: rgba(44, 81, 80, 0.92);
+    text-decoration: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    max-width: calc(100% - 1.5rem);
+}
+
+.events__vk-link:hover {
+    background: var(--accent-color);
+}
+
+.events__vk-link:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
+}
+
+.events__vk-link-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 5.5rem;
+}
+
 /* Дубликат 3-го проекта только в блоке «ещё», виден только на планшетах */
 .events__card--tablet-only {
     display: none;
