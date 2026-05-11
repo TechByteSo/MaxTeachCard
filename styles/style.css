@@ -2134,6 +2134,7 @@ footer {
 }
 .lightbox__slider {
     flex: 1;
+    width: 100%;
     max-width: 100%;
     min-width: 0;
     overflow: hidden;
@@ -2155,9 +2156,15 @@ footer {
     transition: transform 0.4s ease;
     height: 100%;
     max-height: calc(100vh - 180px);
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 }
 .lightbox__slides .lightbox__slide {
     flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     height: 100%;
     display: flex;
     align-items: center;
