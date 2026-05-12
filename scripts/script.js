@@ -148,13 +148,17 @@ function changeSlide(sliderId, direction) {
 function goToSlide(sliderId, index) {
     const slider = document.getElementById(sliderId);
     if (!slider) return;
+    const slides = slider.querySelectorAll('.slider__slide');
+    const n = slides.length;
+    if (n === 0) return;
+    const i = Math.max(0, Math.min(index, n - 1));
     const dots = slider.parentElement.querySelectorAll('.slider__dot');
 
-    slider.style.transform = `translateX(-${index * 100}%)`;
-    slider.dataset.currentIndex = index;
+    slider.style.transform = `translateX(-${i * 100}%)`;
+    slider.dataset.currentIndex = String(i);
 
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('slider__dot--active', i === index);
+    dots.forEach((dot, j) => {
+        dot.classList.toggle('slider__dot--active', j === i);
     });
 }
 
@@ -165,10 +169,20 @@ document.addEventListener('DOMContentLoaded', function() {
     sliders.forEach(slider => {
         slider.dataset.currentIndex = 0;
     });
-    sliderDots.forEach((dot, index) => {
+    sliderDots.forEach((dot) => {
         dot.setAttribute('role', 'button');
         dot.setAttribute('tabindex', '0');
-        dot.setAttribute('aria-label', `Перейти к слайду ${index + 1}`);
+    });
+    sliders.forEach((track) => {
+        const id = track.id;
+        if (!id) return;
+        const dots = Array.from(track.parentElement.querySelectorAll('.slider__dot')).filter(
+            (d) => d.dataset.slider === id
+        );
+        const n = dots.length;
+        dots.forEach((dot, i) => {
+            dot.setAttribute('aria-label', `Слайд ${i + 1} из ${n}`);
+        });
     });
 
     document.addEventListener('click', function(e) {
@@ -206,7 +220,9 @@ document.addEventListener('DOMContentLoaded', function() {
             touchStartX = e.changedTouches ? e.changedTouches[0].clientX : e.touches[0].clientX;
         }, { passive: true });
         container.addEventListener('touchend', function(e) {
-            const touchEndX = e.changedTouches ? e.changedTouches[0].clientX : e.touches[0].clientX;
+            const endTouch = e.changedTouches && e.changedTouches[0];
+            if (!endTouch) return;
+            const touchEndX = endTouch.clientX;
             const diff = touchStartX - touchEndX;
             if (Math.abs(diff) < swipeThreshold) return;
             changeSlide(sliderEl.id, diff > 0 ? 1 : -1);
@@ -221,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const lightboxPrev = lightbox && lightbox.querySelector('.lightbox__prev');
     const lightboxNext = lightbox && lightbox.querySelector('.lightbox__next');
 
-    if (lightbox && lightboxSlides && lightboxCaption) {
+    if (lightbox && lightboxSlides && lightboxCaption && lightboxDots) {
         let lightboxCurrentIndex = 0;
         let lightboxSlideData = [];
 
@@ -243,8 +259,9 @@ document.addEventListener('DOMContentLoaded', function() {
             lightboxSlides.innerHTML = lightboxSlideData.map(d =>
                 `<div class="lightbox__slide"><img src="${d.src}" alt="${d.alt || ''}"></div>`
             ).join('');
+            const lbN = lightboxSlideData.length;
             lightboxDots.innerHTML = lightboxSlideData.map((_, i) =>
-                `<button type="button" class="lightbox__dot${i === currentIndex ? ' lightbox__dot--active' : ''}" data-index="${i}" aria-label="Слайд ${i + 1}"></button>`
+                `<button type="button" class="lightbox__dot${i === currentIndex ? ' lightbox__dot--active' : ''}" data-index="${i}" aria-label="Слайд ${i + 1} из ${lbN}"></button>`
             ).join('');
             lightboxCurrentIndex = currentIndex;
             lightboxSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -252,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const singleSlide = lightboxSlideData.length <= 1;
             if (lightboxPrev) lightboxPrev.hidden = singleSlide;
             if (lightboxNext) lightboxNext.hidden = singleSlide;
-            if (lightboxDots) lightboxDots.hidden = singleSlide;
+            lightboxDots.hidden = singleSlide;
             lightbox.classList.toggle('lightbox--single', singleSlide);
             lightbox.removeAttribute('hidden');
             lightbox.setAttribute('data-open', 'true');
