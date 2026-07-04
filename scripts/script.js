@@ -34,7 +34,7 @@ if (menuToggle && navLinks) {
 
 // Закрытие бургер-меню по клику на пустое место (только на мобильных)
 document.addEventListener('click', function(e) {
-    if (!navLinks || !window.matchMedia('(max-width: 992px)').matches) return;
+    if (!navLinks || !window.matchMedia('(max-width: 767px)').matches) return;
     if (!navLinks.classList.contains('site-header__list--open')) return;
     if (e.target.closest('.site-header__list') || e.target.closest('.site-header__toggle')) return;
     setMenuOpen(false);
@@ -46,7 +46,7 @@ document.addEventListener('click', function(e) {
     if (!anchor) return;
     const href = anchor.getAttribute('href');
     if (href === '#') return;
-    const isMobile = window.matchMedia('(max-width: 992px)').matches;
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
     if (anchor.getAttribute('aria-haspopup') === 'true' && isMobile) {
         e.preventDefault();
         e.stopPropagation();
@@ -71,6 +71,9 @@ document.addEventListener('click', function(e) {
     document.querySelectorAll('.site-header__dropdown').forEach(d => d.classList.remove('site-header__dropdown--open'));
     document.querySelectorAll('.site-header__dropdown > a').forEach(a => a.setAttribute('aria-expanded', 'false'));
     scrollToHashTarget(target);
+    if (anchor.classList.contains('skip-link')) {
+        target.focus({ preventScroll: true });
+    }
 }, true);
 
 // Анимация при скролле
@@ -170,8 +173,10 @@ document.addEventListener('DOMContentLoaded', function() {
         slider.dataset.currentIndex = 0;
     });
     sliderDots.forEach((dot) => {
-        dot.setAttribute('role', 'button');
-        dot.setAttribute('tabindex', '0');
+        dot.removeAttribute('role');
+        dot.removeAttribute('tabindex');
+        dot.removeAttribute('aria-label');
+        dot.setAttribute('aria-hidden', 'true');
     });
     sliders.forEach((track) => {
         const id = track.id;
@@ -179,9 +184,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const dots = Array.from(track.parentElement.querySelectorAll('.slider__dot')).filter(
             (d) => d.dataset.slider === id
         );
-        const n = dots.length;
-        dots.forEach((dot, i) => {
-            dot.setAttribute('aria-label', `Слайд ${i + 1} из ${n}`);
+        dots.forEach((dot) => {
+            dot.setAttribute('aria-hidden', 'true');
         });
     });
 
@@ -241,6 +245,71 @@ document.addEventListener('DOMContentLoaded', function() {
         let lightboxCurrentIndex = 0;
         let lightboxSlideData = [];
 
+        const lightboxContent = lightbox.querySelector('.lightbox__content');
+        const dismissThreshold = 100;
+        const axisLockThreshold = 10;
+        const touchLightboxMq = window.matchMedia('(max-width: 1024px)');
+        let lightboxTouchStartX = 0;
+        let lightboxTouchStartY = 0;
+        let lightboxTouchStartTime = 0;
+        let lightboxTouchAxis = null;
+        let lightboxSuppressClick = false;
+
+        function isTouchLightboxViewport() {
+            return touchLightboxMq.matches;
+        }
+
+        function lightboxDismissTargets() {
+            return [lightboxContent, lightboxCaption, lightboxDots].filter(Boolean);
+        }
+
+        function resetLightboxDismissStyles() {
+            lightbox.classList.remove('lightbox--dragging', 'lightbox--dismissing');
+            lightbox.style.removeProperty('background-color');
+            lightbox.style.removeProperty('--lightbox-dismiss-y');
+            lightbox.style.removeProperty('--lightbox-ui-opacity');
+            lightboxDismissTargets().forEach(el => {
+                el.style.removeProperty('transform');
+                el.style.removeProperty('transition');
+                el.style.removeProperty('opacity');
+            });
+        }
+
+        function setLightboxDismissDrag(dy) {
+            const progress = Math.min(Math.abs(dy) / 320, 1);
+            lightbox.style.setProperty('--lightbox-dismiss-y', `${dy}px`);
+            lightbox.style.setProperty('--lightbox-ui-opacity', String(Math.max(0.35, 1 - progress * 0.65)));
+            lightbox.style.backgroundColor = `rgba(0, 0, 0, ${0.8 * (1 - progress * 0.85)})`;
+        }
+
+        function animateLightboxDismissSnapBack() {
+            lightbox.classList.remove('lightbox--dragging');
+            lightbox.style.removeProperty('background-color');
+            lightbox.style.setProperty('--lightbox-dismiss-y', '0px');
+            lightbox.style.setProperty('--lightbox-ui-opacity', '1');
+            lightboxDismissTargets().forEach(el => {
+                el.style.transition = 'transform 0.25s ease, opacity 0.25s ease';
+            });
+            window.setTimeout(resetLightboxDismissStyles, 260);
+        }
+
+        function animateLightboxDismissClose(dy) {
+            lightboxSuppressClick = true;
+            const offScreen = dy >= 0 ? window.innerHeight : -window.innerHeight;
+            lightbox.classList.remove('lightbox--dragging');
+            lightbox.classList.add('lightbox--dismissing');
+            lightbox.style.setProperty('--lightbox-dismiss-y', `${offScreen}px`);
+            lightbox.style.setProperty('--lightbox-ui-opacity', '0');
+            lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+            lightboxDismissTargets().forEach(el => {
+                el.style.transition = 'transform 0.22s ease, opacity 0.22s ease';
+            });
+            window.setTimeout(() => {
+                closeLightbox();
+                resetLightboxDismissStyles();
+            }, 230);
+        }
+
         function openLightbox(sliderEl) {
             const slides = sliderEl.querySelectorAll('.slider__slide');
             const currentIndex = parseInt(sliderEl.dataset.currentIndex || 0, 10);
@@ -274,6 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
             lightbox.removeAttribute('hidden');
             lightbox.setAttribute('data-open', 'true');
             document.body.style.overflow = 'hidden';
+            resetLightboxDismissStyles();
         }
 
         function updateLightboxCaption() {
@@ -287,6 +357,10 @@ document.addEventListener('DOMContentLoaded', function() {
             lightbox.setAttribute('hidden', '');
             lightbox.classList.remove('lightbox--single');
             document.body.style.overflow = '';
+            resetLightboxDismissStyles();
+            window.setTimeout(() => {
+                lightboxSuppressClick = false;
+            }, 320);
         }
 
         function lightboxGoTo(index) {
@@ -316,6 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); lightboxGoTo(lightboxCurrentIndex - 1); });
         if (lightboxNext) lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); lightboxGoTo(lightboxCurrentIndex + 1); });
         lightbox.addEventListener('click', function(e) {
+            if (lightboxSuppressClick) return;
             if (e.target === lightbox) return closeLightbox();
             if (!e.target.closest('.lightbox__slide img') && !e.target.closest('button') && !e.target.closest('.lightbox__caption')) closeLightbox();
         });
@@ -331,15 +406,80 @@ document.addEventListener('DOMContentLoaded', function() {
             if (dot) lightboxGoTo(parseInt(dot.dataset.index, 10));
         });
 
-        let lightboxTouchStartX = 0;
         lightbox.addEventListener('touchstart', function(e) {
+            if (lightbox.getAttribute('data-open') !== 'true' || !e.touches[0]) return;
             lightboxTouchStartX = e.touches[0].clientX;
+            lightboxTouchStartY = e.touches[0].clientY;
+            lightboxTouchStartTime = Date.now();
+            lightboxTouchAxis = null;
+            if (isTouchLightboxViewport()) {
+                lightbox.classList.add('lightbox--dragging');
+            }
         }, { passive: true });
+
+        lightbox.addEventListener('touchmove', function(e) {
+            if (lightbox.getAttribute('data-open') !== 'true' || !isTouchLightboxViewport() || !e.touches[0]) return;
+            const dx = e.touches[0].clientX - lightboxTouchStartX;
+            const dy = e.touches[0].clientY - lightboxTouchStartY;
+
+            if (!lightboxTouchAxis) {
+                if (Math.abs(dx) < axisLockThreshold && Math.abs(dy) < axisLockThreshold) return;
+                lightboxTouchAxis = Math.abs(dy) > Math.abs(dx) ? 'y' : 'x';
+            }
+
+            if (lightboxTouchAxis === 'y') {
+                setLightboxDismissDrag(dy);
+            }
+        }, { passive: true });
+
         lightbox.addEventListener('touchend', function(e) {
-            if (lightboxSlideData.length <= 1) return;
-            const x = e.changedTouches[0].clientX;
-            const diff = lightboxTouchStartX - x;
-            if (Math.abs(diff) > swipeThreshold) lightboxGoTo(lightboxCurrentIndex + (diff > 0 ? 1 : -1));
+            if (lightbox.getAttribute('data-open') !== 'true' || !e.changedTouches[0]) return;
+            const touch = e.changedTouches[0];
+            const dx = touch.clientX - lightboxTouchStartX;
+            const dy = touch.clientY - lightboxTouchStartY;
+            const elapsed = Math.max(Date.now() - lightboxTouchStartTime, 1);
+
+            if (isTouchLightboxViewport() && lightboxTouchAxis === 'y') {
+                const velocity = Math.abs(dy) / elapsed;
+                if (Math.abs(dy) > dismissThreshold || velocity > 0.6) {
+                    animateLightboxDismissClose(dy);
+                } else {
+                    animateLightboxDismissSnapBack();
+                }
+                lightboxTouchAxis = null;
+                return;
+            }
+
+            lightbox.classList.remove('lightbox--dragging');
+
+            if (lightboxSlideData.length <= 1) {
+                lightboxTouchAxis = null;
+                return;
+            }
+
+            if (!lightboxTouchAxis) {
+                if (Math.abs(dx) < axisLockThreshold && Math.abs(dy) < axisLockThreshold) {
+                    lightboxTouchAxis = null;
+                    return;
+                }
+                lightboxTouchAxis = Math.abs(dy) > Math.abs(dx) ? 'y' : 'x';
+            }
+
+            if (lightboxTouchAxis === 'x' && Math.abs(dx) > swipeThreshold) {
+                lightboxGoTo(lightboxCurrentIndex + (dx < 0 ? 1 : -1));
+            }
+
+            lightboxTouchAxis = null;
+        }, { passive: true });
+
+        lightbox.addEventListener('touchcancel', function() {
+            if (lightbox.getAttribute('data-open') !== 'true') return;
+            if (isTouchLightboxViewport() && lightboxTouchAxis === 'y') {
+                animateLightboxDismissSnapBack();
+            } else {
+                lightbox.classList.remove('lightbox--dragging');
+            }
+            lightboxTouchAxis = null;
         }, { passive: true });
     }
 
@@ -350,7 +490,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const subjectDetailClose = subjectDetail && subjectDetail.querySelector('.services__detail-close');
 
     if (subjectItems.length && subjectDetail && subjectDetailTitle && subjectDetailText) {
+        let subjectDetailHideTimer = null;
+        let subjectDetailSwitchTimer = null;
+        const subjectSwitchDelay = 180;
+
+        function setSubjectContent(title, text) {
+            if (title) subjectDetailTitle.textContent = title;
+            if (text) subjectDetailText.textContent = text;
+        }
+
         function showSubjectDetail() {
+            clearTimeout(subjectDetailHideTimer);
             subjectDetail.style.display = 'block';
             subjectDetail.offsetHeight;
             subjectDetail.setAttribute('aria-hidden', 'false');
@@ -359,8 +509,10 @@ document.addEventListener('DOMContentLoaded', function() {
             subjectDetail.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'nearest' });
         }
         function hideSubjectDetail() {
+            clearTimeout(subjectDetailSwitchTimer);
+            subjectDetail.classList.remove('services__detail--switching');
             subjectDetail.classList.remove('services__detail--visible');
-            setTimeout(function() {
+            subjectDetailHideTimer = setTimeout(function() {
                 subjectDetail.style.display = 'none';
                 subjectDetail.setAttribute('aria-hidden', 'true');
             }, 350);
@@ -369,12 +521,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const title = el.getAttribute('data-subject');
             const text = el.getAttribute('data-text');
             const isAlreadyOpen = subjectDetail.style.display === 'block' && subjectDetailTitle.textContent === title;
+            const isOpen = subjectDetail.style.display === 'block' && subjectDetail.classList.contains('services__detail--visible');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (isAlreadyOpen) {
                 hideSubjectDetail();
                 return;
             }
-            if (title) subjectDetailTitle.textContent = title;
-            if (text) subjectDetailText.textContent = text;
+            clearTimeout(subjectDetailSwitchTimer);
+            if (isOpen && !reduceMotion) {
+                subjectDetail.classList.add('services__detail--switching');
+                subjectDetailSwitchTimer = setTimeout(function() {
+                    setSubjectContent(title, text);
+                    subjectDetail.classList.remove('services__detail--switching');
+                }, subjectSwitchDelay);
+                return;
+            }
+            subjectDetail.classList.remove('services__detail--switching');
+            setSubjectContent(title, text);
             showSubjectDetail();
         }
 
@@ -487,13 +650,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!trigger || !menu) return;
         dropdown.addEventListener('mouseenter', () => trigger.setAttribute('aria-expanded', 'true'));
         dropdown.addEventListener('mouseleave', () => {
-            if (window.matchMedia('(max-width: 992px)').matches) return;
+            if (window.matchMedia('(max-width: 767px)').matches) return;
             trigger.setAttribute('aria-expanded', 'false');
             dropdown.classList.remove('site-header__dropdown--open');
         });
         trigger.addEventListener('focus', () => trigger.setAttribute('aria-expanded', 'true'));
         dropdown.addEventListener('focusout', (e) => {
-            if (window.matchMedia('(max-width: 992px)').matches) return;
+            if (window.matchMedia('(max-width: 767px)').matches) return;
             if (!dropdown.contains(e.relatedTarget)) {
                 trigger.setAttribute('aria-expanded', 'false');
                 dropdown.classList.remove('site-header__dropdown--open');

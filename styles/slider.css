@@ -91,21 +91,18 @@
     right: 10px;
 }
 
-/* Адаптивность для мобильных устройств — кнопки меньше, не перекрывают текст */
-@media (max-width: 768px) {
+/* Телефоны и планшеты: свайп + точки, без стрелок */
+@media (max-width: 1024px) {
+    .slider__container .slider__arrow {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 767px) {
     .slider__container {
         min-height: 220px;
-    }
-    
-    .slider__container .slider__arrow {
-        width: 28px;
-        height: 28px;
-        font-size: 0.7rem;
-    }
-    .slider__container .slider__arrow.prev {
-        left: 6px;
-    }
-    .slider__container .slider__arrow.next {
-        right: 6px;
     }
 }

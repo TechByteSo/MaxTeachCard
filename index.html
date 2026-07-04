@@ -96,7 +96,7 @@
     </header>
 
     <!-- Герой секция -->
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
     <section class="hero">
         <div class="layout__container">
             <div class="hero__wrapper">
@@ -110,7 +110,7 @@
                 </div>
                 <div class="hero__media">
                     <div class="hero__figure">
-                        <img src="images/avatar.jpg" srcset="images/avatar.jpg 500w" sizes="(max-width: 768px) 70vw, 500px" alt="Алексашин Максим Алексеевич" class="hero__photo" width="500" height="500" fetchpriority="high">
+                        <img src="images/avatar.jpg" srcset="images/avatar.jpg 500w" sizes="(max-width: 767px) 70vw, 500px" alt="Алексашин Максим Алексеевич" class="hero__photo" width="500" height="500" fetchpriority="high">
                     </div>
                 </div>
             </div>
@@ -238,27 +238,40 @@
     <section id="reviews" class="reviews">
         <div class="layout__container">
             <h2 class="section__title">Отзывы и рекомендации</h2>
-            <div class="reviews__grid">
-                <div class="reviews__card">
-                    <div class="reviews__icon">
-                        <i class="fas fa-quote-left"></i>
+            <div class="reviews__slider slider__container">
+                <div class="slider__track" id="reviewsSlider">
+                    <div class="slider__slide">
+                        <div class="reviews__card">
+                            <div class="reviews__icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p class="reviews__text">«На уроках царит атмосфера взаимоуважения и всеобъемлющего понимания без нарушения дисциплины. Категорически не принимает насилия ни в какой форме, а повышение голоса на учащихся расценивает как грубую психологическую агрессию, разрушающую безопасную среду обучения.»</p>
+                            <div class="reviews__author">— МБОУ СОШ №4</div>
+                        </div>
                     </div>
-                    <p class="reviews__text">«На уроках царит атмосфера взаимоуважения и всеобъемлющего понимания без нарушения дисциплины. Категорически не принимает насилия ни в какой форме, а повышение голоса на учащихся расценивает как грубую психологическую агрессию, разрушающую безопасную среду обучения.»</p>
-                    <div class="reviews__author">— МБОУ СОШ №4</div>
+                    <div class="slider__slide">
+                        <div class="reviews__card">
+                            <div class="reviews__icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p class="reviews__text">«Проявил себя как грамотный специалист, умело применяющий имеющийся опыт и стремящийся к дальнейшему самоусовершенствованию. Трудолюбив, инициативен, принципиален в своем деле.»</p>
+                            <div class="reviews__author">— Директор лагеря А. С. Бобылев, «Let's go camp»</div>
+                        </div>
+                    </div>
+                    <div class="slider__slide">
+                        <div class="reviews__card">
+                            <div class="reviews__icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p class="reviews__text">"Рекомендую как опытного педагога с современными методиками преподавания. Результаты видны уже после первых занятий."</p>
+                            <div class="reviews__author">— Коллега</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="reviews__card">
-                    <div class="reviews__icon">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="reviews__text">"Профессиональный подход к обучению. Максим Алексеевич умеет заинтересовать предметом и объяснить сложные темы простым языком."</p>
-                    <div class="reviews__author">— Ученик</div>
-                </div>
-                <div class="reviews__card">
-                    <div class="reviews__icon">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="reviews__text">"Рекомендую как опытного педагога с современными методиками преподавания. Результаты видны уже после первых занятий."</p>
-                    <div class="reviews__author">— Коллега</div>
+                <div class="slider__controls">
+                    <span class="slider__dot slider__dot--active" data-slider="reviewsSlider" data-index="0"></span>
+                    <span class="slider__dot" data-slider="reviewsSlider" data-index="1"></span>
+                    <span class="slider__dot" data-slider="reviewsSlider" data-index="2"></span>
                 </div>
             </div>
         </div>
@@ -277,23 +290,23 @@
                     <div class="slider__container">
                         <div class="slider__track" id="slider1">
                             <div class="slider__slide">
-                                <img loading="lazy" decoding="async" src="images/Муф 2024/муф 2024WEB.webp" srcset="images/Муф 2024/муф 2024WEB.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="Московский урбанистический форум 2024г.">
+                                <img loading="lazy" decoding="async" src="images/Муф 2024/муф 2024WEB.webp" alt="Московский урбанистический форум 2024 г.">
                                 <div class="events__overlay">
-                                    <h3>МУФ2030 2024г.</h3>
-                                    <p>Московский урбанистический форум 2024г.</p>
+                                    <h3>МУФ2030 2024 г.</h3>
+                                    <p>Московский урбанистический форум 2024 г.</p>
                                 </div>
                             </div>
                             <div class="slider__slide">
                                 <img loading="lazy" decoding="async" src="images/Муф 2024/муф 2024 (2)WEB.webp" alt="Мероприятие 2">
                                 <div class="events__overlay">
-                                    <h3>МУФ2030 2024г.</h3>
+                                    <h3>МУФ2030 2024 г.</h3>
                                     <p>Дополнительное фото с форума</p>
                                 </div>
                             </div>
                             <div class="slider__slide">
                                 <img loading="lazy" decoding="async" src="images/Муф 2024/муф 2024 (3)WEB.webp" alt="Мероприятие 3">
                                 <div class="events__overlay">
-                                    <h3>МУФ2030 2024г.</h3>
+                                    <h3>МУФ2030 2024 г.</h3>
                                     <p>Дополнительное фото с форума</p>
                                 </div>
                             </div>
@@ -311,23 +324,23 @@
                     <div class="slider__container">
                         <div class="slider__track" id="slider2">
                             <div class="slider__slide">
-                                <img loading="lazy" decoding="async" src="images/Муф 2025/муф 2025WEB.webp" srcset="images/Муф 2025/муф 2025WEB.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="Московский урбанистический форум 2025г.">
+                                <img loading="lazy" decoding="async" src="images/Муф 2025/муф 2025WEB.webp" alt="Московский урбанистический форум 2025 г.">
                                 <div class="events__overlay">
-                                    <h3>МУФ2030 2025г.</h3>
-                                    <p>Московский урбанистический форум 2025г.</p>
+                                    <h3>МУФ2030 2025 г.</h3>
+                                    <p>Московский урбанистический форум 2025 г.</p>
                                 </div>
                             </div>
                             <div class="slider__slide">
                                 <img loading="lazy" decoding="async" src="images/Муф 2025/муф 2025 (2)WEB.webp" alt="Мероприятие 2">
                                 <div class="events__overlay">
-                                    <h3>МУФ2030 2025г.</h3>
+                                    <h3>МУФ2030 2025 г.</h3>
                                     <p>Дополнительное фото с форума</p>
                                 </div>
                             </div>
                             <div class="slider__slide">
                                 <img loading="lazy" decoding="async" src="images/Муф 2025/муф 2025 (3)WEB.webp" alt="Мероприятие 3">
                                 <div class="events__overlay">
-                                    <h3>МУФ2030 2025г.</h3>
+                                    <h3>МУФ2030 2025 г.</h3>
                                     <p>Дополнительное фото с форума</p>
                                 </div>
                             </div>
@@ -347,21 +360,21 @@
                             <div class="slider__slide">
                                 <img loading="lazy" decoding="async" src="images/Школа/Школа 1WEB.webp" alt="Уроки в сельской школе">
                                 <div class="events__overlay">
-                                    <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                    <h3>Открытые уроки в сельской школе 2022–2023 гг.</h3>
                                     <p>(Богородский округ)</p>
                                 </div>
                             </div>
                             <div class="slider__slide">
                                 <img loading="lazy" decoding="async" src="images/Школа/Школа 2WEB.webp" alt="Уроки в сельской школе">
                                 <div class="events__overlay">
-                                    <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                    <h3>Открытые уроки в сельской школе 2022–2023 гг.</h3>
                                     <p>Дополнительные фото с открытых уроков</p>
                                 </div>
                             </div>
                             <div class="slider__slide">
                                 <img loading="lazy" decoding="async" src="images/Школа/Школа 3WEB.webp" alt="Уроки в сельской школе">
                                 <div class="events__overlay">
-                                    <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                    <h3>Открытые уроки в сельской школе 2022–2023 гг.</h3>
                                     <p>Дополнительные фото с открытых уроков</p>
                                 </div>
                             </div>
@@ -386,21 +399,21 @@
                                 <div class="slider__slide">
                                     <img loading="lazy" decoding="async" src="images/Школа/Школа 1WEB.webp" alt="Уроки в сельской школе">
                                     <div class="events__overlay">
-                                        <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                        <h3>Открытые уроки в сельской школе 2022–2023 гг.</h3>
                                         <p>(Богородский округ)</p>
                                     </div>
                                 </div>
                                 <div class="slider__slide">
                                     <img loading="lazy" decoding="async" src="images/Школа/Школа 2WEB.webp" alt="Уроки в сельской школе">
                                     <div class="events__overlay">
-                                        <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                        <h3>Открытые уроки в сельской школе 2022–2023 гг.</h3>
                                         <p>Дополнительные фото с открытых уроков</p>
                                     </div>
                                 </div>
                                 <div class="slider__slide">
                                     <img loading="lazy" decoding="async" src="images/Школа/Школа 3WEB.webp" alt="Уроки в сельской школе">
                                     <div class="events__overlay">
-                                        <h3>Открытые уроки в сельской школе 2022,2023г.</h3>
+                                        <h3>Открытые уроки в сельской школе 2022–2023 гг.</h3>
                                         <p>Дополнительные фото с открытых уроков</p>
                                     </div>
                                 </div>
@@ -460,22 +473,22 @@
                         <div class="slider__container">
                             <div class="slider__track" id="slider6">
                                 <div class="slider__slide">
-                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат-4.webp" srcset="images/Самокат/Самокат-4.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="Курьер-партнер компании Самокат">
+                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат-4.webp" alt="Курьер-партнёр компании «Самокат»">
                                     <div class="events__overlay">
-                                        <h3>Курьер-партнер компании "Самокат"</h3>
+                                        <h3>Курьер-партнёр компании «Самокат»</h3>
                                     </div>
                                 </div>
                                 <div class="slider__slide">
-                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат 2WEB.webp" alt="Курьер-партнер компании Самокат">
+                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат 2WEB.webp" alt="Курьер-партнёр компании «Самокат»">
                                     <div class="events__overlay">
-                                        <h3>Курьер-партнер компании "Самокат"</h3>
+                                        <h3>Курьер-партнёр компании «Самокат»</h3>
                                         <p>Дополнительные фото</p>
                                     </div>
                                 </div>
                                 <div class="slider__slide">
-                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат 1WEB.webp" alt="Курьер-партнер компании Самокат">
+                                    <img loading="lazy" decoding="async" src="images/Самокат/Самокат 1WEB.webp" alt="Курьер-партнёр компании «Самокат»">
                                     <div class="events__overlay">
-                                        <h3>Курьер-партнер компании "Самокат"</h3>
+                                        <h3>Курьер-партнёр компании «Самокат»</h3>
                                         <p>Дополнительные фото</p>
                                     </div>
                                 </div>
@@ -495,20 +508,20 @@
                                 <div class="slider__slide">
                                     <img loading="lazy" decoding="async" src="images/Let's go camp/camp1WEB.webp" alt="Смены вожатого в лагере Let's go camp">
                                     <div class="events__overlay">
-                                        <h3>Смены вожатого в лагере "Let's go camp"</h3>
+                                        <h3>Смены вожатого в лагере «Let's go camp»</h3>
                                     </div>
                                 </div>
                                 <div class="slider__slide">
                                     <img loading="lazy" decoding="async" src="images/Let's go camp/camp2WEB.webp" alt="Смены вожатого в лагере Let's go camp">
                                     <div class="events__overlay">
-                                        <h3>Смены вожатого в лагере "Let's go camp"</h3>
+                                        <h3>Смены вожатого в лагере «Let's go camp»</h3>
                                         <p>Дополнительные фото с лагеря</p>
                                     </div>
                                 </div>
                                 <div class="slider__slide">
                                     <img loading="lazy" decoding="async" src="images/Let's go camp/camp3WEB.webp" alt="Смены вожатого в лагере Let's go camp">
                                     <div class="events__overlay">
-                                        <h3>Смены вожатого в лагере "Let's go camp"</h3>
+                                        <h3>Смены вожатого в лагере «Let's go camp»</h3>
                                         <p>Дополнительные фото с лагеря</p>
                                     </div>
                                 </div>
@@ -1180,6 +1193,94 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="events__card">
+                        <div class="slider__container">
+                            <a href="https://vk.com/wall-105527514_7058" class="events__vk-link" target="_blank" rel="noopener noreferrer" aria-label="Пост проекта ВКонтакте">
+                                <span class="events__vk-link-text">Ссылка</span>
+                                <i class="fab fa-vk" aria-hidden="true"></i>
+                            </a>
+                            <div class="slider__track" id="slider28">
+                            <div class="slider__slide">
+                                <img loading="lazy" decoding="async" src="images/Всероссийская акция Ночь Музеев/Всероссийская акция Ночь Музеев.webp" alt="Всероссийская акция «Ночь Музеев»">
+                                <div class="events__overlay">
+                                    <h3>Всероссийская акция «Ночь Музеев»</h3>
+                                    <p>Культурно-массовое мероприятие</p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="events__card">
+                        <div class="slider__container">
+                            <div class="slider__track" id="slider29">
+                            <div class="slider__slide">
+                                <img loading="lazy" decoding="async" src="images/Времена и Эпохи 2026г/Времена-и-Эпохи-1.webp" alt="Времена и Эпохи 2026">
+                                <div class="events__overlay">
+                                    <h3>Времена и Эпохи 2026 г.</h3>
+                                    <p>Исторический фестиваль</p>
+                                </div>
+                            </div>
+                            <div class="slider__slide">
+                                <img loading="lazy" decoding="async" src="images/Времена и Эпохи 2026г/Времена-и-Эпохи-2.webp" alt="Времена и Эпохи 2026">
+                                <div class="events__overlay">
+                                    <h3>Времена и Эпохи 2026 г.</h3>
+                                    <p>Исторический фестиваль</p>
+                                </div>
+                            </div>
+                            <div class="slider__slide">
+                                <img loading="lazy" decoding="async" src="images/Времена и Эпохи 2026г/Времена-и-Эпохи-3.webp" alt="Времена и Эпохи 2026">
+                                <div class="events__overlay">
+                                    <h3>Времена и Эпохи 2026 г.</h3>
+                                    <p>Исторический фестиваль</p>
+                                </div>
+                            </div>
+                            </div>
+                            <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider29" data-direction="-1">&#10094;</button>
+                            <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider29" data-direction="1">&#10095;</button>
+                            <div class="slider__controls">
+                                <span class="slider__dot slider__dot--active" data-slider="slider29" data-index="0"></span>
+                                <span class="slider__dot" data-slider="slider29" data-index="1"></span>
+                                <span class="slider__dot" data-slider="slider29" data-index="2"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="events__card">
+                        <div class="slider__container">
+                            <div class="slider__track" id="slider30">
+                            <div class="slider__slide">
+                                <img loading="lazy" decoding="async" src="images/Технический фотограф Лето в Москве/Тех.-Фотограф-Лето-в-Москве-1.webp" alt="Технический фотограф «Лето в Москве»">
+                                <div class="events__overlay">
+                                    <h3>Технический фотограф «Лето в Москве»</h3>
+                                    <p>Монтажные работы</p>
+                                </div>
+                            </div>
+                            <div class="slider__slide">
+                                <img loading="lazy" decoding="async" src="images/Технический фотограф Лето в Москве/Тех.-Фотограф-Лето-в-Москве-2.webp" alt="Технический фотограф «Лето в Москве»">
+                                <div class="events__overlay">
+                                    <h3>Технический фотограф «Лето в Москве»</h3>
+                                    <p>Монтажные работы</p>
+                                </div>
+                            </div>
+                            <div class="slider__slide">
+                                <img loading="lazy" decoding="async" src="images/Технический фотограф Лето в Москве/Тех.-Фотограф-Лето-в-Москве-3.webp" alt="Технический фотограф «Лето в Москве»">
+                                <div class="events__overlay">
+                                    <h3>Технический фотограф «Лето в Москве»</h3>
+                                    <p>Монтажные работы</p>
+                                </div>
+                            </div>
+                            </div>
+                            <button type="button" class="slider__arrow prev" aria-label="Предыдущий слайд" data-slider="slider30" data-direction="-1">&#10094;</button>
+                            <button type="button" class="slider__arrow next" aria-label="Следующий слайд" data-slider="slider30" data-direction="1">&#10095;</button>
+                            <div class="slider__controls">
+                                <span class="slider__dot slider__dot--active" data-slider="slider30" data-index="0"></span>
+                                <span class="slider__dot" data-slider="slider30" data-index="1"></span>
+                                <span class="slider__dot" data-slider="slider30" data-index="2"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             <!-- Новый проект в разворот «Показать все»: см. README.md -->
@@ -1203,26 +1304,29 @@
 
             <div class="documents-tabs__panel is-active" id="documents-pane-docs" role="tabpanel" aria-labelledby="documents-tab-docs" data-doc-panel="docs">
                 <div class="documents__grid">
-                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-file-alt"></i></div><h3>Информационное письмо</h3><p>Информационное письмо "Солнечный круг"</p><div class="documents__actions"><a href="documents/ИнфоПисьмо Солнечный круг.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
-                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-file-contract"></i></div><h3>Научная статья</h3><p>Научная публикация и исследовательская работа</p><div class="documents__actions"><a href="documents/Научная статья.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
-                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-medal"></i></div><h3>Благодарность Юнармии</h3><p>Благодарность от Всероссийского движения "Юнармия"</p><div class="documents__actions"><a href="documents/ЮнАрмия Благодарность.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
-                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-user-check"></i></div><h3>Характеристика ДОЛ "Let's go camp"</h3><p>Первая смена 2022г.</p><div class="documents__actions"><a href="documents/Характеристика Летнего лагеря.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
-                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-user-check"></i></div><h3>Характеристика волонтерства в ДОЛ "Осташево"</h3><p>Характеристика волонтерства в ДОЛ "Осташево" в помощи беженцами ДНР и ЛНР</p><div class="documents__actions"><a href="documents/Характеристика волонтерства в ДОЛ Осташево.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
-                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-id-card"></i></div><h3>Свидетельство о профессии «Вожатый»</h3><p>ГГТУ, 144 ч., регистрация № 468, июнь 2022 (титул, свидетельство и приложение)</p><div class="documents__actions"><a href="documents/Свидетельство вожатый ГГТУ 2022.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
-                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-scroll"></i></div><h3>Диплом участника конференции</h3><p>«Нюрнбергский военный трибунал: уроки для будущих поколений», март 2026</p><div class="documents__actions"><a href="documents/Диплом конференция Нюрнбергский трибунал 2026.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
-                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-door-open"></i></div><h3>Пропуск на репетиционное ЕГЭ</h3><p>ЕГЭ по истории, 8 апреля 2026</p><div class="documents__actions"><a href="documents/Пропуск репетиционное ЕГЭ история 2026.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-user-check"></i></div><h3>Характеристика «Самокат»</h3><p>Курьер-партнёр компании «Самокат»</p><div class="documents__actions"><a href="documents/Характеристика-Самокат.webp" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
                     <div class="documents__card"><div class="documents__icon"><i class="fas fa-user-check"></i></div><h3>Характеристика с педагогической практики</h3><p>МБОУ СОШ № 4, г.о. Солнечногорск, 2023–2026</p><div class="documents__actions"><a href="documents/Характеристика СОШ 4 Солнечногорск практика 2026.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-door-open"></i></div><h3>Пропуск на повторное ЕГЭ по Истории</h3><p>ЕГЭ по истории, 8 апреля 2026; результаты в отдельном файле</p><div class="documents__actions"><a href="documents/Пропуск репетиционное ЕГЭ история 2026.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Пропуск</a><a href="documents/Результаты ЕГЭ.xlsx" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-excel"></i> Результаты</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-scroll"></i></div><h3>Диплом участника конференции</h3><p>«Нюрнбергский военный трибунал: уроки для будущих поколений», март 2026</p><div class="documents__actions"><a href="documents/Диплом конференция Нюрнбергский трибунал 2026.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-file-alt"></i></div><h3>Информационное письмо</h3><p>Информационное письмо «Солнечный круг»</p><div class="documents__actions"><a href="documents/ИнфоПисьмо Солнечный круг.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-file-contract"></i></div><h3>Научная статья</h3><p>Сборник статей по итогам региональных семинаров, 2024</p><div class="documents__actions"><a href="documents/Научная статья.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-medal"></i></div><h3>Благодарность Юнармии</h3><p>Благодарность от Всероссийского движения «Юнармия»</p><div class="documents__actions"><a href="documents/ЮнАрмия Благодарность.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-id-card"></i></div><h3>Свидетельство о профессии «Вожатый»</h3><p>ГГТУ, 144 ч., регистрация № 468, июнь 2022 (титул, свидетельство и приложение)</p><div class="documents__actions"><a href="documents/Свидетельство вожатый ГГТУ 2022.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-user-check"></i></div><h3>Характеристика ДОЛ «Let's go camp»</h3><p>Первая смена, 2022 г.</p><div class="documents__actions"><a href="documents/Характеристика Летнего лагеря.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-user-check"></i></div><h3>Характеристика волонтерства в ДОЛ «Осташево»</h3><p>Характеристика волонтерства в ДОЛ «Осташево» в помощи беженцам ДНР и ЛНР</p><div class="documents__actions"><a href="documents/Характеристика волонтерства в ДОЛ Осташево.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
                 </div>
             </div>
 
             <div class="documents-tabs__panel" id="documents-pane-certs" role="tabpanel" aria-labelledby="documents-tab-certs" data-doc-panel="certs" aria-hidden="true">
                 <div class="documents__grid">
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-certificate"></i></div><h3>Федеральный интернет-экзамен для выпускников бакалавриата</h3><p>Сертификат ФИЭБ, 2026</p><div class="documents__actions"><a href="documents/ФИЭБ.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
                     <div class="documents__card"><div class="documents__icon"><i class="fas fa-award"></i></div><h3>Сертификат МинОбрнауки</h3><p>Сертификат Министерства образования и науки</p><div class="documents__actions"><a href="documents/Сертификат МинОбраз.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
-                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-certificate"></i></div><h3>Сертификат Минпросвещения</h3><p>Сертификат Министерства просвещения РФ</p><div class="documents__actions"><a href="documents/Сертификат Минпросвещения.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
-                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-certificate"></i></div><h3>Сертификат «Шаг в профессию»</h3><p>Участник внутреннего этапа регионального конкурса, апрель 2023</p><div class="documents__actions"><a href="documents/Сертификат Шаг в профессию участник 2023.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
                     <div class="documents__card"><div class="documents__icon"><i class="fas fa-trophy"></i></div><h3>Диплом III степени «Шаг в профессию»</h3><p>Победитель внутреннего этапа, апрель 2023</p><div class="documents__actions"><a href="documents/Диплом Шаг в профессию III степень 2023.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-certificate"></i></div><h3>Сертификат «Шаг в профессию»</h3><p>Участник внутреннего этапа регионального конкурса, апрель 2023</p><div class="documents__actions"><a href="documents/Сертификат Шаг в профессию участник 2023.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
+                    <div class="documents__card"><div class="documents__icon"><i class="fas fa-certificate"></i></div><h3>Сертификат Минпросвещения</h3><p>Сертификат Министерства просвещения РФ</p><div class="documents__actions"><a href="documents/Сертификат Минпросвещения.pdf" class="documents__btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Просмотр</a></div></div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -1318,7 +1422,7 @@
     </main>
 
     <!-- Полноэкранный просмотр портфолио -->
-    <div id="portfolioLightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото" hidden>
+    <div id="portfolioLightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото. На телефоне смахните вверх или вниз, чтобы закрыть." hidden>
         <button type="button" class="lightbox__close" aria-label="Закрыть">&times;</button>
         <div class="lightbox__content">
             <button type="button" class="lightbox__prev" aria-label="Назад">&#10094;</button>
