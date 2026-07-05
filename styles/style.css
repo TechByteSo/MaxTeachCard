@@ -46,6 +46,11 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
+html.is-lightbox-open,
+html.is-lightbox-open body {
+    overscroll-behavior: none;
+}
+
 /* Убираем синюю обводку при клике/тапе, оставляем outline для фокуса с клавиатуры */
 a:focus,
 button:focus {
@@ -2168,6 +2173,8 @@ footer {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    touch-action: none;
+    overscroll-behavior: none;
 }
 
 .lightbox__close {
@@ -2463,6 +2470,7 @@ footer {
         height: 4.5rem;
         min-height: 4.5rem;
         overflow-y: auto;
+        touch-action: pan-y;
         display: flex;
         flex-direction: column;
         align-items: center;

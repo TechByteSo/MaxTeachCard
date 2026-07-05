@@ -254,6 +254,33 @@ document.addEventListener('DOMContentLoaded', function() {
         let lightboxTouchStartTime = 0;
         let lightboxTouchAxis = null;
         let lightboxSuppressClick = false;
+        let lightboxScrollY = 0;
+
+        function lockPageScroll() {
+            lightboxScrollY = window.scrollY;
+            document.documentElement.classList.add('is-lightbox-open');
+            document.body.classList.add('is-lightbox-open');
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${lightboxScrollY}px`;
+            document.body.style.left = '0';
+            document.body.style.right = '0';
+            document.body.style.width = '100%';
+        }
+
+        function unlockPageScroll() {
+            document.documentElement.classList.remove('is-lightbox-open');
+            document.body.classList.remove('is-lightbox-open');
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            document.body.style.width = '';
+            window.scrollTo(0, lightboxScrollY);
+        }
 
         function isTouchLightboxViewport() {
             return touchLightboxMq.matches;
@@ -342,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
             lightbox.classList.toggle('lightbox--single', singleSlide);
             lightbox.removeAttribute('hidden');
             lightbox.setAttribute('data-open', 'true');
-            document.body.style.overflow = 'hidden';
+            lockPageScroll();
             resetLightboxDismissStyles();
         }
 
@@ -356,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function() {
             lightbox.setAttribute('data-open', 'false');
             lightbox.setAttribute('hidden', '');
             lightbox.classList.remove('lightbox--single');
-            document.body.style.overflow = '';
+            unlockPageScroll();
             resetLightboxDismissStyles();
             window.setTimeout(() => {
                 lightboxSuppressClick = false;
@@ -418,7 +445,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { passive: true });
 
         lightbox.addEventListener('touchmove', function(e) {
-            if (lightbox.getAttribute('data-open') !== 'true' || !isTouchLightboxViewport() || !e.touches[0]) return;
+            if (lightbox.getAttribute('data-open') !== 'true' || !e.touches[0]) return;
+
+            const caption = e.target.closest('.lightbox__caption');
+            if (caption && caption.scrollHeight > caption.clientHeight + 1) {
+                return;
+            }
+
+            e.preventDefault();
+
+            if (!isTouchLightboxViewport()) return;
+
             const dx = e.touches[0].clientX - lightboxTouchStartX;
             const dy = e.touches[0].clientY - lightboxTouchStartY;
 
@@ -430,7 +467,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (lightboxTouchAxis === 'y') {
                 setLightboxDismissDrag(dy);
             }
-        }, { passive: true });
+        }, { passive: false });
 
         lightbox.addEventListener('touchend', function(e) {
             if (lightbox.getAttribute('data-open') !== 'true' || !e.changedTouches[0]) return;
