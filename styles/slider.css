@@ -62,7 +62,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(44, 81, 80, 0.9);
+    background-color: var(--accent-a92);
     color: white;
     border: none;
     width: 40px;
@@ -79,7 +79,7 @@
 }
 
 .slider__container .slider__arrow:hover {
-    background-color: rgba(44, 81, 80, 1);
+    background-color: var(--secondary-color);
     transform: translateY(-50%) scale(1.1);
 }
 

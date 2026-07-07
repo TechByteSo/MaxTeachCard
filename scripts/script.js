@@ -11,6 +11,46 @@ function scrollToHashTarget(el) {
     window.scrollTo({ top: Math.max(0, y), left: 0, behavior: 'smooth' });
 }
 
+(function initThemeSwitcher() {
+    const THEME_KEY = 'maxteachcard-theme';
+    const themes = {
+        'ink-violet-light': { color: '#ffffff' },
+        'ink-violet-dark': { color: '#111018' }
+    };
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    const themeButtons = document.querySelectorAll('[data-theme-button]');
+
+    function setTheme(themeName) {
+        const theme = themes[themeName] ? themeName : 'ink-violet-light';
+        document.body.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-theme', theme);
+        if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', themes[theme].color);
+        }
+        themeButtons.forEach((button) => {
+            const isActive = button.getAttribute('data-theme-button') === theme;
+            button.classList.toggle('theme-switcher__btn--active', isActive);
+            button.setAttribute('aria-pressed', String(isActive));
+        });
+        try {
+            window.localStorage.setItem(THEME_KEY, theme);
+        } catch (_) {}
+    }
+
+    themeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            setTheme(button.getAttribute('data-theme-button'));
+        });
+    });
+
+    try {
+        const savedTheme = window.localStorage.getItem(THEME_KEY);
+        setTheme(savedTheme === 'ink-violet-dark' ? 'ink-violet-dark' : 'ink-violet-light');
+    } catch (_) {
+        setTheme('ink-violet-light');
+    }
+})();
+
 // Мобильное меню
 const menuToggle = document.querySelector('.site-header__toggle');
 const navLinks = document.querySelector('.site-header__list');

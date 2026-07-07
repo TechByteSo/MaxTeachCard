@@ -9,7 +9,7 @@
     <meta name="description" content="Педагог Максим Алексашин: репетиторские занятия, культурно-массовые мероприятия, портфолио проектов и документы.">
     <meta name="keywords" content="преподаватель, репетитор, культурно-массовые мероприятия, Московские сезоны">
     <meta name="author" content="Алексашин Максим">
-    <meta name="theme-color" content="#2A2A2A">
+    <meta name="theme-color" content="#ffffff">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Педагог Алексашин Максим">
     <meta name="twitter:description" content="Профессиональный педагог: репетиторство, проекты, портфолио и документы.">
@@ -66,7 +66,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
-<body>
+<body data-theme="ink-violet-light">
+<script>
+(function () {
+    try {
+        var theme = localStorage.getItem('maxteachcard-theme');
+        if (theme === 'ink-violet-dark') {
+            document.body.setAttribute('data-theme', 'ink-violet-dark');
+        }
+    } catch (e) {}
+})();
+</script>
     <a href="#main-content" class="skip-link">Перейти к контенту</a>
     <!-- Шапка -->
     <header class="site-header">
@@ -87,6 +97,14 @@
                     <li><a href="#faq">FAQ</a></li>
                     <li class="site-header__item--cta-mobile"><a href="#contact" class="site-header__cta">Связаться</a></li>
                 </ul>
+                <div class="theme-switcher" role="group" aria-label="Тема сайта">
+                    <button type="button" class="theme-switcher__btn theme-switcher__btn--active" data-theme-button="ink-violet-light" aria-label="Светлая тема" aria-pressed="true" title="Светлая тема">
+                        <i class="fas fa-sun" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="theme-switcher__btn" data-theme-button="ink-violet-dark" aria-label="Тёмная тема" aria-pressed="false" title="Тёмная тема">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
+                    </button>
+                </div>
                 <a href="#contact" class="site-header__cta">Связаться</a>
                 <button type="button" class="site-header__toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="primary-nav">
                     <i class="fas fa-bars" aria-hidden="true"></i>
