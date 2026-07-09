@@ -74,9 +74,26 @@
         if (theme === 'ink-violet-dark') {
             document.body.setAttribute('data-theme', 'ink-violet-dark');
         }
+        if (sessionStorage.getItem('maxteachcard-auth') === '1') {
+            document.documentElement.classList.add('site-authenticated');
+        } else {
+            document.documentElement.classList.add('site-locked');
+        }
     } catch (e) {}
 })();
 </script>
+    <div id="site-gate" class="site-gate" role="dialog" aria-modal="true" aria-labelledby="site-gate-title">
+        <div class="site-gate__card">
+            <h1 id="site-gate-title" class="site-gate__title">Доступ к сайту</h1>
+            <p class="site-gate__text">Введите пароль для просмотра содержимого</p>
+            <form class="site-gate__form" id="site-gate-form">
+                <label class="site-gate__label" for="site-gate-password">Пароль</label>
+                <input type="password" id="site-gate-password" class="site-gate__input" autocomplete="current-password" required>
+                <p class="site-gate__error" id="site-gate-error" hidden>Неверный пароль. Попробуйте ещё раз.</p>
+                <button type="submit" class="btn btn--primary site-gate__submit">Войти</button>
+            </form>
+        </div>
+    </div>
     <a href="#main-content" class="skip-link">Перейти к контенту</a>
     <!-- Шапка -->
     <header class="site-header">

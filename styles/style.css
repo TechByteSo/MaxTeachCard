@@ -119,6 +119,90 @@ html.is-lightbox-open body {
     overscroll-behavior: none;
 }
 
+html.site-locked body {
+    overflow: hidden;
+}
+
+html.site-authenticated .site-gate {
+    display: none !important;
+}
+
+.site-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: max(1.5rem, env(safe-area-inset-top)) max(1.5rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
+    background: var(--body-bg, #ffffff);
+}
+
+.site-gate__card {
+    width: min(100%, 22rem);
+    padding: clamp(1.5rem, 4vw, 2rem);
+    border-radius: 20px;
+    background: var(--surface, #ffffff);
+    border: 1px solid var(--border-soft, rgba(24, 20, 33, 0.1));
+    box-shadow: 0 24px 60px var(--accent-a20, rgba(139, 92, 246, 0.2));
+}
+
+.site-gate__title {
+    margin-bottom: 0.5rem;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.site-gate__text {
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+    color: var(--gray);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.site-gate__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.site-gate__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.site-gate__input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    background: var(--teal-lighter);
+    color: var(--text-color);
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.site-gate__input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px var(--accent-a20);
+}
+
+.site-gate__error {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #c0392b;
+}
+
+.site-gate__submit {
+    width: 100%;
+    margin-top: 0.25rem;
+    text-align: center;
+}
+
 /* Убираем синюю обводку при клике/тапе, оставляем outline для фокуса с клавиатуры */
 a:focus,
 button:focus {

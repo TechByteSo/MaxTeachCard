@@ -11,6 +11,64 @@ function scrollToHashTarget(el) {
     window.scrollTo({ top: Math.max(0, y), left: 0, behavior: 'smooth' });
 }
 
+(function initSiteGate() {
+    const AUTH_KEY = 'maxteachcard-auth';
+    const PASSWORD_HASH = 'cd56f4c29f3f7069ada98eadbe092a5360a10e810fc5d3fdfd8237fb7cc2be78';
+    const gate = document.getElementById('site-gate');
+    const form = document.getElementById('site-gate-form');
+    const input = document.getElementById('site-gate-password');
+    const error = document.getElementById('site-gate-error');
+
+    function unlockSite() {
+        document.documentElement.classList.add('site-authenticated');
+        document.documentElement.classList.remove('site-locked');
+        document.body.style.overflow = '';
+        if (gate) gate.setAttribute('hidden', '');
+        try {
+            sessionStorage.setItem(AUTH_KEY, '1');
+        } catch (_) {}
+    }
+
+    function isAuthenticated() {
+        try {
+            return sessionStorage.getItem(AUTH_KEY) === '1';
+        } catch (_) {
+            return false;
+        }
+    }
+
+    async function hashPassword(value) {
+        const data = new TextEncoder().encode(value);
+        const buffer = await crypto.subtle.digest('SHA-256', data);
+        return Array.from(new Uint8Array(buffer), (byte) => byte.toString(16).padStart(2, '0')).join('');
+    }
+
+    if (isAuthenticated()) {
+        unlockSite();
+        return;
+    }
+
+    document.body.style.overflow = 'hidden';
+    if (input) {
+        window.setTimeout(() => input.focus(), 0);
+    }
+
+    if (!form || !input) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const hash = await hashPassword(input.value);
+        if (hash === PASSWORD_HASH) {
+            if (error) error.hidden = true;
+            unlockSite();
+            return;
+        }
+        if (error) error.hidden = false;
+        input.value = '';
+        input.focus();
+    });
+})();
+
 (function initThemeSwitcher() {
     const THEME_KEY = 'maxteachcard-theme';
     const themes = {
